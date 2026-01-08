@@ -1,0 +1,78 @@
+---
+import Card from "./Card.astro";
+
+interface Location {
+  title: string;
+  prosCount: string;
+  description: string;
+  number: string;
+  linkUrl: string;
+  linkText: string;
+}
+
+const locations: Location[] = [
+  {
+    title: "London",
+    prosCount: "342+ PROS",
+    description:
+      "Specializing in 24/7 home lockouts and high-security uPVC upgrades.",
+    number: "01",
+    linkUrl: "/locations/london/",
+    linkText: "View London",
+  },
+  {
+    title: "Manchester",
+    prosCount: "156+ PROS",
+    description:
+      "Expert rapid response teams covering Greater Manchester suburbs.",
+    number: "02",
+    linkUrl: "/locations/manchester/",
+    linkText: "View Manchester",
+  },
+  {
+    title: "Birmingham",
+    prosCount: "124+ PROS",
+    description:
+      "Trusted commercial and auto specialists for West Midlands call-outs.",
+    number: "03",
+    linkUrl: "/locations/birmingham/",
+    linkText: "View Birmingham",
+  },
+  {
+    title: "Leeds",
+    prosCount: "98+ PROS",
+    description: "Comprehensive security audits and emergency entry services.",
+    number: "04",
+    linkUrl: "/locations/leeds/",
+    linkText: "View Leeds",
+  },
+];
+---
+
+<section class="relative">
+  <div class="mx-auto max-w-7xl px-6 py-10 md:py-24">
+    <div class="mb-10 max-w-3xl">
+      <h2 class="text-3xl font-bold text-primary tracking-tight">
+        Popular locksmith locations in the UK
+      </h2>
+      <p class="mt-4 text-lg text-base-300">
+        Discover our most active coverage areas. We connect you with verified
+        professionals in every major UK hub.
+      </p>
+    </div>
+
+    <!-- Location Cards Grid -->
+    <ol
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 list-none mt-0 mr-0 mb-10 ml-0 pt-0 pr-0 pb-0 pl-0 gap-x-6 gap-y-6">
+      {locations.map((location) => <Card {...location} variant="location" />)}
+    </ol>
+
+    <div class="text-center mt-8">
+      <a
+        href="#"
+        class="hover:text-secondary transition-colors text-sm font-bold text-primary"
+        >View all locksmith locations →</a
+      >
+    </div>
+  </div>
+</section>

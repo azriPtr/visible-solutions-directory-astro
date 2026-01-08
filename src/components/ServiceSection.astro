@@ -1,0 +1,66 @@
+---
+import Card from "./Card.astro";
+
+const services = [
+  {
+    number: "01",
+    title: "Emergency Lockouts",
+    description:
+      "Rapid entry solutions when you're locked out. Available 24/7 for residential and commercial.",
+    linkUrl: "/services/emergency-lockouts/",
+    linkText: "Find Lockout help near you",
+  },
+  {
+    number: "02",
+    title: "Lock Replacements",
+    description:
+      "Upgrading to BS3621 insurance-approved standards to ensure your property meets safety reqs.",
+    linkUrl: "/services/lock-replacements/",
+    linkText: "Find Lock replacement",
+  },
+  {
+    number: "03",
+    title: "uPVC Repairs",
+    description:
+      "Specialist alignment and mechanism fixes for jammed or broken mechanisms on modern doors.",
+    linkUrl: "/services/upvc-repairs/",
+    linkText: "Find uPVC specialists",
+  },
+  {
+    number: "04",
+    title: "Smart Locks",
+    description:
+      "Integration of Yale, August, or Ultion smart systems for seamless, keyless entry convenience.",
+    linkUrl: "/services/smart-locks/",
+    linkText: "Find Smart lock pros",
+  },
+];
+---
+
+<section class="relative">
+  <div class="mx-auto max-w-7xl px-6 py-10 md:py-24">
+    <div class="mb-10 max-w-3xl">
+      <h2 class="text-3xl font-bold text-primary tracking-tight">
+        Locksmith services we cover
+      </h2>
+      <p class="mt-4 text-lg text-base-300">
+        From emergency lockouts to high-security upgrades, explore the
+        specialized services our verified professionals provide.
+      </p>
+    </div>
+
+    <!-- Card Carousel -->
+    <ol
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 list-none mt-0 mr-0 mb-10 ml-0 pt-0 pr-0 pb-0 pl-0 gap-x-6 gap-y-6">
+      {services.map((service) => <Card {...service} />)}
+    </ol>
+
+    <div class="text-center mt-8">
+      <a
+        href="#"
+        class="hover:text-secondary transition-colors text-sm font-bold text-primary"
+        >View all locksmith services →</a
+      >
+    </div>
+  </div>
+</section>

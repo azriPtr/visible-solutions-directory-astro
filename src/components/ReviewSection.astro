@@ -1,0 +1,57 @@
+---
+import Card from "./Card.astro";
+
+interface Review {
+  title?: string; // Optional for reviews (can use description as main content)
+  description: string; // Review text (required)
+  rating?: number; // 1-5 stars
+  category?: string; // Service type and location (e.g., "EMERGENCY LOCKOUT IN MANCHESTER")
+  linkUrl?: string;
+  linkText?: string;
+}
+
+const reviews: Review[] = [
+  {
+    description:
+      "Arrived within 20 minutes at 2am. Got me back inside without damaging the lock. Brilliant service.",
+    rating: 5,
+    category: "EMERGENCY LOCKOUT IN MANCHESTER",
+  },
+  {
+    description:
+      "Fixed the jammed uPVC mechanism that two others couldn't. Very professional and tidy work.",
+    rating: 5,
+    category: "REPAIR IN BRISTOL",
+  },
+  {
+    description:
+      "Upgraded all our locks to Ultion stars. Feel much safer now. Highly recommended professionals.",
+    rating: 5,
+    category: "SECURITY UPGRADE IN LONDON",
+  },
+];
+---
+
+<section class="relative bg-surface">
+  <div class="mx-auto max-w-7xl px-6 py-10 md:py-24">
+    <div class="flex justify-center align-middle mb-10">
+      <h2 class="text-2xl font-bold text-primary tracking-tight">
+        What people say about locksmiths on UKLD
+      </h2>
+    </div>
+
+    <!-- Review Cards Grid -->
+    <ol
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 list-none mt-0 mr-0 mb-10 ml-0 pt-0 pr-0 pb-0 pl-0 gap-x-6 gap-y-6">
+      {reviews.map((review) => <Card {...review} variant="review" />)}
+    </ol>
+
+    <div class="text-center mt-8">
+      <a
+        href="#"
+        class="hover:text-secondary transition-colors text-sm font-bold text-primary"
+        >Read Trust & Verification policy →</a
+      >
+    </div>
+  </div>
+</section>

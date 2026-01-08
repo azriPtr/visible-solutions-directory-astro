@@ -1,0 +1,75 @@
+---
+const faqs = [
+  {
+    id: "faq-1",
+    question: "How do you vet locksmiths?",
+    answer:
+      "We verify every locksmith's credentials, insurance, and trade body memberships. Our team conducts thorough background checks, reviews qualifications, and validates their professional standing with organizations like MLA, NAL, and SafeContractor before listing them on our directory.",
+  },
+  {
+    id: "faq-2",
+    question: "Do you cover emergency callouts 24/7?",
+    answer:
+      "Yes, our directory includes locksmiths who offer 24/7 emergency services. When you search for locksmiths in your area, you can filter by availability and emergency services to find professionals who can help you any time of day or night.",
+  },
+  {
+    id: "faq-3",
+    question: "Are locksmiths insured and DBS checked?",
+    answer:
+      "All locksmiths listed on our platform are required to have valid public liability insurance and relevant certifications. Many of our professionals also hold DBS (Disclosure and Barring Service) checks. You can view each locksmith's credentials and certifications on their profile page.",
+  },
+];
+---
+
+<section class="relative bg-base-100">
+  <div class="mx-auto max-w-4xl px-6 py-12 md:py-24">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-primary tracking-tight">
+        Frequently asked questions
+      </h2>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4 mb-12">
+      {
+        faqs.map((faq) => (
+          <div class="border border-base-200 bg-white rounded-lg shadow-sm p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-primary">{faq.question}</h3>
+              <svg
+                class="h-5 w-5 text-base-300 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- CTA Link -->
+    <div class="text-center mt-12">
+      <a
+        href="/about"
+        class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors">
+        About the uk locksmith directory
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M5 12h14m-7-7 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,182 @@
+<section class="relative bg-surface">
+  <div class="mx-auto max-w-7xl px-6 py-12 md:py-24">
+    <div
+      class="grid grid-cols-1 mid:grid-cols-2 items-center gap-8 md:gap-12 lg:grid-cols-2">
+      <!-- Left Section -->
+      <div class="">
+        <div
+          class="badge badge-soft badge-primary inline-flex items-center gap-2 rounded-full border border-base-200 bg-base-100 px-3 py-1 mb-6 shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+            ></span>
+          </span>
+          <span class="text-xs font-bold text-primary uppercase tracking-wide"
+            >Semantic Assistant</span
+          >
+        </div>
+        <h2
+          class="text-2xl font-bold tracking-tight text-primary sm:text-5xl lg:text-4xl">
+          Not sure what you need? Our AI locksmith finder can help
+        </h2>
+        <p class="text-base-300 mt-4">
+          Describe your problem in plain English. Our assistant identifies the
+          right service and local specialists for your specific situation.
+        </p>
+      </div>
+      <!-- Right Section -->
+      <div
+        class="relative mx-auto w-full max-w-md rounded-box bg-base-100 shadow-xl ring-1 ring-base-content/5 overflow-hidden select-none pointer-events-none">
+        <div
+          class="flex items-center justify-between bg-surface px-4 py-3 border-b border-base-200">
+          <div class="flex items-center gap-3">
+            <div
+              class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-content">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path d="M12 8V4H8"></path>
+                <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                <path d="M2 14h2"></path>
+                <path d="M20 14h2"></path>
+                <path d="M15 13v2"></path>
+                <path d="M9 13v2"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-bold text-base-content">Locksmith AI</span
+            >
+          </div>
+        </div>
+        <div class="p-5 flex flex-col gap-4">
+          <!-- User Message -->
+          <div
+            class="user-message self-end rounded-2xl rounded-tr-sm bg-surface px-3 md:px-4 py-2.5 text-sm text-base-content/70 max-w-[90%]">
+            Key snapped in the front door lock.
+          </div>
+
+          <!-- AI Response Container -->
+          <div class="flex gap-2 max-w-[95%] relative">
+            <div
+              class="ai-avatar mt-1 h-6 w-6 shrink-0 rounded-full bg-primary flex items-center justify-center text-primary-content text-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="iconify iconify--lucide">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+                ></path>
+              </svg>
+            </div>
+
+            <div class="flex-1 relative">
+              <!-- Typing Indicator -->
+              <div
+                class="typing-indicator absolute inset-0 rounded-2xl rounded-tl-sm bg-primary px-4 py-3 text-sm text-primary-content shadow-sm flex items-center">
+                <div class="flex gap-1">
+                  <span
+                    class="w-2 h-2 bg-primary-content/70 rounded-full animate-bounce"
+                  ></span>
+                  <span
+                    class="w-2 h-2 bg-primary-content/70 rounded-full animate-bounce"
+                    style="animation-delay: 0.2s"></span>
+                  <span
+                    class="w-2 h-2 bg-primary-content/70 rounded-full animate-bounce"
+                    style="animation-delay: 0.4s"></span>
+                </div>
+              </div>
+
+              <!-- AI Message -->
+              <div
+                class="ai-message rounded-2xl rounded-tl-sm bg-primary px-4 py-3 text-sm text-primary-content shadow-sm">
+                I've found 3 emergency specialists near you for
+                <span class="font-bold text-emerald-300"
+                  >broken key extraction</span
+                >.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes show-typing {
+    0% {
+      opacity: 0;
+      z-index: 1;
+    }
+    1%,
+    54% {
+      opacity: 1;
+      z-index: 1;
+    }
+    55%,
+    100% {
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+
+  @keyframes show-message {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* User message appears first */
+  .user-message {
+    opacity: 0;
+    animation: fade-in-up 0.5s ease-out 0.5s forwards;
+  }
+
+  /* AI avatar appears after user message */
+  .ai-avatar {
+    opacity: 0;
+    animation: fade-in-up 0.5s ease-out 2s forwards;
+  }
+
+  /* Typing indicator shows, then hides */
+  .typing-indicator {
+    opacity: 0;
+    animation: show-typing 5.5s ease-in-out 2.5s forwards;
+  }
+
+  /* AI message appears after typing indicator */
+  .ai-message {
+    opacity: 0;
+    animation: show-message 0.3s ease-out 5.5s forwards;
+  }
+</style>

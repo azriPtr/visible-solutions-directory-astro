@@ -9,32 +9,32 @@
 @plugin "flyonui";
 @plugin "flyonui/theme" {
   name: "maintheme";
-  font-family: "Plus Jakarta Sans", sans-serif;
   default: true;
   prefersdark: false;
   color-scheme: light;
+  font-family: "Plus Jakarta Sans", sans-serif;
 
-  /* ===== BASE COLORS ===== */
-  --color-base-100: oklch(1 0 0); /* #FFFFFF */
-  --color-base-200: oklch(0.92 0.02 250); /* #94A3B8 (light) */
-  --color-base-300: oklch(0.86 0.03 250); /* #94A3B8 (darker) */
-  --color-base-content: oklch(0.32 0.04 260); /* dark text */
+  --color-base-100: oklch(1 0 0);
+  --color-base-200: oklch(0.869 0.0198 252.89);
+  --color-base-300: oklch(55.4% 0.046 257.417);
+  --color-base-content: oklch(0.32 0.04 260);
 
-  /* ===== BRAND ===== */
-  --color-primary: oklch(0.32 0.07 255); /* #1D3353 */
-  --color-primary-content: oklch(0.97 0.01 250); /* white text */
+  --color-surface-100: oklch(0.9842 0.0034 247.86);
+  --color-surface-200: oklch(0.96 0.006 250);
+  --color-surface-300: oklch(0.92 0.01 250);
 
-  --color-secondary: oklch(0.62 0.1 55); /* #A5744D */
-  --color-secondary-content: oklch(0.98 0.01 60); /* white-ish */
+  --color-primary: oklch(0.32 0.07 255);
+  --color-primary-content: oklch(0.97 0.01 250);
 
-  --color-accent: oklch(0.7 0.06 250); /* #94A3B8 */
+  --color-secondary: oklch(0.62 0.1 55);
+  --color-secondary-content: oklch(0.98 0.01 60);
+
+  --color-accent: oklch(0.7 0.06 250);
   --color-accent-content: oklch(0.25 0.03 260);
 
-  /* ===== NEUTRAL ===== */
-  --color-neutral: oklch(0.55 0.03 250); /* #94A3B8 */
+  --color-neutral: oklch(0.55 0.03 250);
   --color-neutral-content: oklch(0.2 0.03 260);
 
-  /* ===== STATE COLORS (tuned biar nyatu) ===== */
   --color-info: oklch(0.7 0.1 240);
   --color-info-content: oklch(0.98 0.01 240);
 
@@ -47,7 +47,6 @@
   --color-error: oklch(0.68 0.16 30);
   --color-error-content: oklch(0.98 0.01 30);
 
-  /* ===== SHAPE / FEEL ===== */
   --radius-selector: 1rem;
   --radius-field: 0.5rem;
   --radius-box: 0.75rem;
@@ -70,5 +69,29 @@
     font-feature-settings: "liga", "kern";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+  }
+}
+
+@layer utilities {
+  .bg-page {
+    background-color: var(--color-base-100);
+  }
+
+  .bg-surface {
+    background-color: var(--color-surface-100);
+  }
+
+  .bg-card {
+    background-color: var(--color-surface-200);
+  }
+
+  .text-main {
+    color: var(--color-base-content);
+  }
+
+  .text-muted {
+    color: oklch(0.45 0.02 260);
   }
 }

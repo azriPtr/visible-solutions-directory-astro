@@ -1,0 +1,115 @@
+{
+  "$ref": "#/definitions/pages",
+  "definitions": {
+    "pages": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "governance": {
+          "type": "object",
+          "properties": {
+            "operator": {
+              "type": "string"
+            },
+            "entityType": {
+              "type": "string"
+            },
+            "primaryFunction": {
+              "type": "string"
+            },
+            "dataController": {
+              "type": "string"
+            },
+            "gdprNote": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operator",
+            "entityType",
+            "primaryFunction",
+            "dataController",
+            "gdprNote"
+          ],
+          "additionalProperties": false
+        },
+        "independenceClause": {
+          "type": "string"
+        },
+        "governanceContact": {
+          "type": "string"
+        },
+        "infoBox": {
+          "type": "string"
+        },
+        "contactChannels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "linkText": {
+                "type": "string"
+              },
+              "linkHref": {
+                "type": "string"
+              },
+              "linkIcon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "icon",
+              "title",
+              "description",
+              "linkText",
+              "linkHref"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "breadcrumbs"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

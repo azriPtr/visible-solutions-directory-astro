@@ -1,14 +1,15 @@
 ---
 import logo from "../assets/logo.svg";
+import Button from "./Button.astro";
 ---
 
 <header>
-  <div class="flex flex-row justify-between mx-auto max-w-7xl p-4">
+  <div class="flex flex-row justify-between mx-auto max-w-7xl px-6 py-4">
     <!-- Logo -->
     <div class="flex">
       <a
         class="text-base-content flex items-center gap-2 text-sm font-semibold"
-        href="#">
+        href="/">
         <img src={logo.src} class="size-5" alt="brand-logo" />
         <span
           class="hidden sm:block text-sm text-primary font-bold tracking-tight"
@@ -19,10 +20,8 @@ import logo from "../assets/logo.svg";
 
     <!-- Emergency Button -->
     <div class="flex gap-4">
-      <div class="hidden sm:block">
-        <a
-          href="#"
-          class="btn btn-outline btn-primary group flex items-center gap-2 px-3 py-2 text-xs font-bold transition-all">
+      <div class="">
+        <Button variant="outline" size="sm" href="#" class="group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -39,7 +38,7 @@ import logo from "../assets/logo.svg";
               class=""></path></svg
           >
           <span class="text-sm">Emergency Support</span>
-        </a>
+        </Button>
       </div>
 
       <!-- Desktop menu -->

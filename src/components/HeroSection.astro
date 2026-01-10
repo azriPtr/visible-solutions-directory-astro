@@ -1,3 +1,7 @@
+---
+import Button from "./Button.astro";
+---
+
 <section class="relative">
   <div class="mx-auto max-w-7xl px-6 py-10 md:py-24">
     <div
@@ -6,7 +10,7 @@
       <div class="flex flex-col gap-4 md:mr-28">
         <h1
           class="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
-          The UK’s Larges Directory of Verified, Local Locksmiths
+          The UK's Larges Directory of Verified, Local Locksmiths
         </h1>
         <p>
           Search 1,200+ verified local professionals for emergencies, repairs,
@@ -20,10 +24,12 @@
             placeholder="Enter postcode (e.g. SW1A)"
             class="md:col-span-3 rounded-lg border border-base-300 px-4 py-3 text-primary placeholder-base-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
-          <button
-            class="md:col-span-2 btn btn-secondary rounded-lg py-6 font-bold"
-            >Find Locksmiths</button
-          >
+          <Button
+            text="Find Locksmiths"
+            variant="secondary"
+            size="lg"
+            class="md:col-span-2 rounded-lg"
+          />
         </div>
       </div>
 

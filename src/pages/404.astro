@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seoData = {
+  title: "Page Not Found | UK Locksmith Directory",
+  description:
+    "The page you're looking for doesn't exist. Find verified locksmiths near you.",
+};
+import Button from "../components/Button.astro";
+---
+
+<Layout {...seoData}>
+  <main class="min-h-screen flex flex-col">
+    <!-- 404 Content Section -->
+    <div class="flex-1 flex items-center justify-center px-4 py-16">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- 404 Number -->
+        <div class="mb-8">
+          <p
+            class="text-[120px] md:text-[160px] font-bold text-base-200 leading-none">
+            404
+          </p>
+        </div>
+
+        <!-- Page not found heading -->
+        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Page not found
+        </h1>
+
+        <!-- Description text -->
+        <p class="text-muted text-base md:text-lg mb-8 max-w-lg mx-auto">
+          The page you're looking for may have been moved, removed, or never
+          existed.
+        </p>
+
+        <!-- Action buttons -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <Button
+            text="Go to homepage"
+            variant="primary"
+            size="lg"
+            href="/"
+            class="text-white rounded-lg"
+          />
+          <Button
+            text="Find a locksmith"
+            variant="outline"
+            size="lg"
+            href="#"
+            class="rounded-lg"
+          />
+        </div>
+
+        <!-- Browse link -->
+        <div class="mt-6">
+          <a
+            href="#"
+            class="text-neutral hover:text-primary transition-colors inline-flex items-center gap-2 text-sm font-medium">
+            Browse UK locksmiths
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simplified Footer -->
+    <footer class="border-t border-base-200 py-8">
+      <div class="mx-auto max-w-7xl px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <!-- Copyright -->
+          <div class="text-muted text-sm">© Ⓒ 2025 Visible Solutions LLC</div>
+
+          <!-- Footer links -->
+          <div class="flex gap-6">
+            <a
+              href="#"
+              class="text-muted hover:text-primary transition-colors text-sm">
+              Privacy
+            </a>
+            <a
+              href="#"
+              class="text-muted hover:text-primary transition-colors text-sm">
+              Terms
+            </a>
+            <a
+              href="#"
+              class="text-muted hover:text-primary transition-colors text-sm">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>

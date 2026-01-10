@@ -1,0 +1,115 @@
+---
+interface Props {
+  // Content
+  text?: string;
+
+  // Variants
+  variant?: "primary" | "secondary" | "outline" | "text" | "ghost";
+
+  // Sizes
+  size?: "sm" | "md" | "lg" | "xl";
+
+  // States
+  disabled?: boolean;
+  loading?: boolean;
+
+  // Full width
+  fullWidth?: boolean;
+
+  // Icons (using Iconify format: icon-[tabler--icon-name])
+  iconLeft?: string;
+  iconRight?: string;
+
+  // Link or Button
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  target?: "_blank" | "_self";
+
+  // Styling
+  class?: string;
+}
+
+const {
+  text,
+  variant = "primary",
+  size = "md",
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  iconLeft,
+  iconRight,
+  href,
+  type = "button",
+  target = "_self",
+  class: className = "",
+} = Astro.props;
+
+// Base button classes
+const baseClasses = "btn inline-flex items-center justify-center gap-2 font-bold transition-all";
+
+// Variant classes
+const variantClasses = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  outline: "btn-outline btn-primary",
+  text: "btn-text btn-primary",
+  ghost: "btn-ghost",
+};
+
+// Size classes
+const sizeClasses = {
+  sm: "px-4 py-2 text-xs",
+  md: "px-6 py-2.5 text-sm",
+  lg: "px-6 py-3 text-sm btn-lg",
+  xl: "px-8 py-4 text-base",
+};
+
+// Build final class string
+const buttonClasses = [
+  baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  fullWidth ? "w-full md:w-auto" : "",
+  disabled || loading ? "opacity-60 cursor-not-allowed" : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+// Determine if we should render as link or button
+const Element = href ? "a" : "button";
+
+// Additional props for links
+const linkProps = href
+  ? {
+      href,
+      target,
+      ...(target === "_blank" ? { rel: "noopener noreferrer" } : {}),
+    }
+  : {};
+
+// Additional props for buttons
+const buttonProps = !href
+  ? {
+      type,
+      disabled: disabled || loading,
+    }
+  : {};
+---
+
+<Element class={buttonClasses} {...linkProps} {...buttonProps}>
+  {loading && (
+    <span class="loading loading-spinner loading-xs"></span>
+  )}
+  
+  {!loading && iconLeft && (
+    <span class={`${iconLeft} shrink-0`}></span>
+  )}
+  
+  {text || <slot />}
+  
+  {!loading && iconRight && (
+    <span class={`${iconRight} shrink-0`}></span>
+  )}
+</Element>
+

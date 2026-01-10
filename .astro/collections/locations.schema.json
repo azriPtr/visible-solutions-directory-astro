@@ -1,0 +1,41 @@
+{
+  "$ref": "#/definitions/locations",
+  "definitions": {
+    "locations": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "prosCount": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "linkUrl": {
+          "type": "string"
+        },
+        "linkText": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "number",
+        "title",
+        "prosCount",
+        "description",
+        "linkUrl",
+        "linkText"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

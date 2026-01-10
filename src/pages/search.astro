@@ -1,0 +1,249 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+
+const listings = [
+  {
+    variant: "listing" as const,
+    title: "London City Locksmiths",
+    description:
+      "Master Locksmith Association approved. Specializing in non-destructive entry, BS3621 lock upgrades, and uPVC door repairs.",
+    rating: 5.0,
+    reviewCount: 128,
+    distance: "0.8 miles away",
+    badges: ["VERIFIED", "24/7"],
+    features: ["DBS Checked", "Insured (£5m)", "No Call Out Fee"],
+    image:
+      "https://ui-avatars.com/api/?name=London+City+Locksmiths&background=1e3a8a&color=fff&size=128",
+    imageAlt: "London City Locksmiths logo",
+    phone: "+44 20 1234 5678",
+    profileUrl: "/locksmiths/london-city-locksmiths",
+    linkUrl: "/locksmiths/london-city-locksmiths",
+    linkText: "View Profile",
+    isFeatured: true,
+  },
+  {
+    variant: "listing" as const,
+    title: "SecureHome London",
+    description:
+      "Family run business since 1998. Experts in timber door locks and antique lock restoration. Daytime services only.",
+    rating: 4.9,
+    reviewCount: 84,
+    distance: "1.2 miles away",
+    badges: ["VERIFIED"],
+    features: ["DBS Checked", "1 Year Guarantee"],
+    image:
+      "https://ui-avatars.com/api/?name=SecureHome+London&background=059669&color=fff&size=128",
+    imageAlt: "SecureHome London logo",
+    phone: "+44 20 2345 6789",
+    profileUrl: "/locksmiths/securehome-london",
+    linkUrl: "/locksmiths/securehome-london",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+  {
+    variant: "listing" as const,
+    title: "AutoKeys Express",
+    description:
+      "Lost car keys replaced at roadside. Key programming for Ford, VW, BMW, and Audi. Mobile service.",
+    rating: 4.8,
+    reviewCount: 42,
+    distance: "5.1 miles away",
+    badges: ["AUTO SPECIALIST", "24/7"],
+    features: ["Accepts Card"],
+    image:
+      "https://ui-avatars.com/api/?name=AutoKeys+Express&background=dc2626&color=fff&size=128",
+    imageAlt: "AutoKeys Express logo",
+    phone: "+44 20 3456 7890",
+    profileUrl: "/locksmiths/autokeys-express",
+    linkUrl: "/locksmiths/autokeys-express",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+];
+
+// Stats
+const totalFound = 24;
+const avgRating = 4.8;
+const verifiedCount = 18;
+const searchLocation = "SW1A 1AA";
+
+const seoData = {
+  title: `Locksmiths covering ${searchLocation} | UK Locksmith Directory`,
+  description: `Find ${totalFound} verified locksmiths near ${searchLocation}. Compare ratings, reviews, and get instant quotes. Average rating: ${avgRating} stars.`,
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="min-h-screen bg-base-100">
+    <!-- Search Header -->
+    <section class="bg-white border-b border-base-200">
+      <div class="mx-auto max-w-7xl px-6 py-6">
+        <!-- Title and Stats -->
+        <div
+          class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h1 class="text-3xl font-bold text-primary mb-2">
+              Locksmiths covering {searchLocation}
+            </h1>
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+              <span class="font-semibold text-base-content">
+                {totalFound} found
+              </span>
+              <span class="text-base-content/60">
+                Avg. Rating {avgRating}
+              </span>
+              <span
+                class="rounded-md bg-success/10 px-3 py-1 text-sm font-medium text-success">
+                {verifiedCount} Verified Pros
+              </span>
+            </div>
+          </div>
+
+          <!-- Location Update -->
+          <div class="flex gap-2">
+            <div class="relative flex-1 md:w-64">
+              <span
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-base-content/60">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <input
+                type="text"
+                value={searchLocation}
+                class="w-full rounded-lg border border-base-300 py-2.5 pl-10 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
+            <Button text="Update" variant="primary" size="md" />
+          </div>
+        </div>
+
+        <!-- Filters and Sort -->
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Filter Buttons -->
+          <button
+            class="inline-flex items-center gap-2 rounded-lg border border-base-300 bg-white px-4 py-2 text-sm font-medium text-base-content hover:bg-base-100 transition-colors">
+            Service Type
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <button
+            class="rounded-lg border border-base-300 bg-white px-4 py-2 text-sm font-medium text-base-content hover:bg-base-100 transition-colors">
+            Emergency
+          </button>
+
+          <button
+            class="rounded-lg border border-base-300 bg-white px-4 py-2 text-sm font-medium text-base-content hover:bg-base-100 transition-colors">
+            Rating 4.0+
+          </button>
+
+          <button
+            class="rounded-lg border border-base-300 bg-white px-4 py-2 text-sm font-medium text-base-content hover:bg-base-100 transition-colors">
+            Advanced Filters
+          </button>
+
+          <!-- Sort By -->
+          <div class="ml-auto flex items-center gap-2">
+            <span class="text-sm text-base-content/60">Sort by:</span>
+            <button
+              class="inline-flex items-center gap-2 rounded-lg border border-base-300 bg-white px-4 py-2 text-sm font-semibold text-base-content hover:bg-base-100 transition-colors">
+              Best Match
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="mx-auto max-w-7xl px-6 py-8">
+      <!-- Listings -->
+      <ol class="mb-8 space-y-4 list-none">
+        {listings.map((listing) => <Card {...listing} class="bg-white" />)}
+      </ol>
+
+      <!-- Load More Button -->
+      <div class="flex justify-center">
+        <Button
+          text="Load More Results"
+          variant="outline"
+          size="lg"
+          class="min-w-64"
+        />
+      </div>
+    </section>
+
+    <!-- AI Assistant CTA -->
+    <section class="mx-auto max-w-7xl px-6 py-8">
+      <div class="rounded-lg border border-base-200 bg-white p-8 text-center">
+        <p class="mb-4 text-base text-base-content/80">
+          Can't find what you need?
+        </p>
+        <button
+          class="inline-flex items-center gap-2 text-lg font-semibold text-primary hover:text-secondary transition-colors">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 6V2H8"></path>
+            <path
+              d="m8 18-4 4V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2Z"
+            ></path>
+            <path d="M2 12h2"></path>
+            <path d="M9 11v2"></path>
+            <path d="M15 11v2"></path>
+            <path d="M20 12h2"></path>
+          </svg>
+          Ask the AI Locksmith Finder
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

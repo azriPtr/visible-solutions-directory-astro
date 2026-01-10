@@ -3,25 +3,82 @@ import Header from "../components/Header.astro";
 import HeroSection from "../components/HeroSection.astro";
 import Layout from "../layouts/Layout.astro";
 import AiSection from "../components/AiSection.astro";
-import ServiceSection from "../components/ServiceSection.astro";
+import ContentSection from "../components/ContentSection.astro";
 import ReviewSection from "../components/ReviewSection.astro";
-import LocationBasedSection from "../components/LocationBasedSection.astro";
 import Footer from "../components/Footer.astro";
 import SubscribeSection from "../components/SubscribeSection.astro";
-import ArticleSection from "../components/ArticleSection.astro";
 import VerifiedSection from "../components/VerifiedSection.astro";
 import FAQ from "../components/FAQ.astro";
+import { getCollection } from "astro:content";
+
+const seoData = {
+  title: "UK Locksmith Directory - Find Verified Local Locksmiths Near You",
+  description:
+    "Search 1,200+ verified local locksmiths for emergencies, repairs, and lock upgrades across the UK. Compare ratings, reviews, and get instant quotes 24/7.",
+};
+
+// Fetch data from content collections
+const servicesData = await getCollection("services");
+const reviewsData = await getCollection("reviews");
+const locationsData = await getCollection("locations");
+const articlesData = await getCollection("articles");
+
+// Transform to match Card component props
+const services = servicesData.map((entry) => ({
+  variant: "service" as const,
+  ...entry.data,
+}));
+
+const reviews = reviewsData.map((entry) => ({
+  variant: "review" as const,
+  ...entry.data,
+}));
+
+const locations = locationsData.map((entry) => ({
+  variant: "location" as const,
+  ...entry.data,
+}));
+
+const articles = articlesData.map((entry) => ({
+  variant: "article" as const,
+  ...entry.data,
+  image: entry.data.image.src,
+}));
 ---
 
-<Layout>
+<Layout {...seoData}>
   <Header />
   <HeroSection />
   <AiSection />
-  <ServiceSection />
+  <ContentSection
+    title="Locksmith services we cover"
+    description="From emergency lockouts to high-security upgrades, explore the specialized services our verified professionals provide."
+    items={services}
+    viewAllText="View all locksmith services →"
+    viewAllUrl="#"
+    columns="4"
+  />
   <ReviewSection />
-  <LocationBasedSection />
+  <ContentSection
+    title="Popular locksmith locations in the UK"
+    description="Discover our most active coverage areas. We connect you with verified professionals in every major UK hub."
+    items={locations}
+    viewAllText="View all locksmith locations →"
+    viewAllUrl="#"
+    columns="4"
+    cardVariant="location"
+  />
   <SubscribeSection />
-  <ArticleSection />
+  <ContentSection
+    title="Guides to staying secure"
+    description="Practical advice and security tips from our experts to help you protect your home and business."
+    items={articles}
+    viewAllText="View all guides"
+    viewAllUrl="/guides"
+    columns="3"
+    backgroundColor="bg-base-100"
+    showArrow={true}
+  />
   <VerifiedSection />
   <FAQ />
   <Footer />

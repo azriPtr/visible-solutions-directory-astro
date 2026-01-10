@@ -1,0 +1,11 @@
+# robots.txt for UK Locksmith Directory
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://uklocksmithdirectory.com/sitemap-index.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+

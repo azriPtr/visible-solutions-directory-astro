@@ -1,5 +1,5 @@
 ---
-
+import Button from "./Button.astro";
 ---
 
 <section class="relative bg-surface">
@@ -86,14 +86,13 @@
 
         <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-3 pt-2">
-          <a href="#" class="btn btn-primary px-6 py-2.5 text-sm font-bold">
-            Add your business
-          </a>
-          <a
+          <Button
+            text="Add your business"
+            variant="primary"
+            size="md"
             href="#"
-            class="btn btn-outline btn-primary px-6 py-2.5 text-sm font-bold">
-            See pricing
-          </a>
+          />
+          <Button text="See pricing" variant="outline" size="md" href="#" />
         </div>
       </div>
     </div>

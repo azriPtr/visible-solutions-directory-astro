@@ -3,7 +3,7 @@ interface Props {
   title?: string;
   description?: string;
 
-  variant?: "default" | "review" | "article" | "service" | "location";
+  variant?: "default" | "review" | "article" | "service" | "location" | "listing";
 
   number?: string;
   prosCount?: string; // For location cards (e.g., "342+ PROS")
@@ -17,6 +17,15 @@ interface Props {
 
   linkUrl?: string;
   linkText?: string;
+
+  // Listing card fields
+  reviewCount?: number;
+  distance?: string;
+  badges?: string[]; // Array of badges (e.g., ["VERIFIED", "24/7", "AUTO SPECIALIST"])
+  features?: string[]; // Array of features (e.g., ["DBS Checked", "Insured (£5m)"])
+  phone?: string; // Phone number for Call Now button
+  profileUrl?: string; // URL to locksmith profile
+  isFeatured?: boolean; // Whether listing is featured
 
   class?: string;
 }
@@ -36,6 +45,13 @@ const {
   category,
   linkUrl,
   linkText,
+  reviewCount,
+  distance,
+  badges,
+  features,
+  phone,
+  profileUrl,
+  isFeatured,
   class: className = "",
 } = Astro.props;
 
@@ -47,6 +63,16 @@ const stars =
 
 <li
   class={`group relative flex flex-col rounded-lg border border-base-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md ${className}`}>
+  <!-- Featured Badge (for listing variant) -->
+  {variant === "listing" && isFeatured && (
+    <div class="absolute left-4 top-4 z-10">
+      <span
+        class="rounded-md bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+        FEATURED
+      </span>
+    </div>
+  )}
+
   <!-- Overlay Number (for location variant) -->
   {variant === "location" && number && (
     <span class="absolute top-4 right-4 text-6xl font-bold text-base-200/30 pointer-events-none">
@@ -158,6 +184,237 @@ const stars =
             </a>
           )
         }
+      </>
+    ) : variant === "listing" ? (
+      <!-- Listing Variant Layout (Locksmith Directory) -->
+      <>
+        <div class="flex gap-4">
+          <!-- Left: Company Logo/Image -->
+          <div class="flex-shrink-0">
+            {
+              image ? (
+                <img
+                  src={image}
+                  alt={imageAlt || title}
+                  class="h-14 w-14 rounded-lg object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div
+                  class="flex h-14 w-14 items-center justify-center rounded-lg bg-base-100 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 22v-5" />
+                    <path
+                      d="M9 8V2"
+                    />
+                    <path d="M15 8V2" />
+                    <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" />
+                  </svg>
+                </div>
+              )
+            }
+          </div>
+
+          <!-- Right: Content -->
+          <div class="flex-1">
+            <!-- Title and Badges -->
+            <div class="mb-2 flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="mb-2 text-xl font-bold text-primary">{title}</h3>
+
+                <!-- Badges -->
+                {
+                  badges && badges.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {badges.map((badge) => (
+                        <span
+                          class={`rounded px-2 py-1 text-xs font-semibold uppercase ${
+                            badge === "VERIFIED"
+                              ? "bg-primary/10 text-primary"
+                              : badge === "24/7"
+                                ? "bg-success/10 text-success"
+                                : "bg-base-200 text-base-content"
+                          }`}>
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )
+                }
+              </div>
+
+              <!-- Action Buttons (Desktop) -->
+              <div class="hidden md:flex flex-col gap-2">
+                {
+                  phone && (
+                    <a
+                      href={`tel:${phone}`}
+                      class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                      Call Now
+                    </a>
+                  )
+                }
+                {
+                  profileUrl && (
+                    <a
+                      href={profileUrl}
+                      class="rounded-lg border border-base-300 bg-white px-6 py-2.5 text-center text-sm font-semibold text-base-content transition-colors hover:bg-base-100">
+                      View Profile
+                    </a>
+                  )
+                }
+              </div>
+            </div>
+
+            <!-- Rating and Distance -->
+            {
+              (rating !== undefined || distance) && (
+                <div class="mb-3 flex flex-wrap items-center gap-3 text-sm">
+                  {rating !== undefined && (
+                    <div class="flex items-center gap-1.5">
+                      {stars.map((isFilled) => (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill={isFilled ? "currentColor" : "none"}
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class={isFilled ? "text-secondary" : "text-base-300"}>
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                      ))}
+                      <span class="ml-1 font-semibold text-base-content">
+                        {rating.toFixed(1)}
+                      </span>
+                      {reviewCount && (
+                        <span class="text-base-content/60">
+                          ({reviewCount})
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  {distance && (
+                    <>
+                      <span class="text-base-content/40">•</span>
+                      <span class="flex items-center gap-1 text-base-content/60">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round">
+                          <path
+                            d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                          />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        {distance}
+                      </span>
+                    </>
+                  )}
+                </div>
+              )
+            }
+
+            <!-- Description -->
+            {
+              description && (
+                <p class="mb-4 text-sm leading-relaxed text-base-content/80">
+                  {description}
+                </p>
+              )
+            }
+
+            <!-- Features -->
+            {
+              features && features.length > 0 && (
+                <div class="flex flex-wrap gap-x-6 gap-y-2">
+                  {features.map((feature) => (
+                    <div class="flex items-center gap-2 text-sm text-base-content/70">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="text-success">
+                        <path d="M20 6 9 17l-5-5" />
+                      </svg>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              )
+            }
+
+            <!-- Action Buttons (Mobile) -->
+            <div class="mt-4 flex flex-col gap-2 md:hidden">
+              {
+                phone && (
+                  <a
+                    href={`tel:${phone}`}
+                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    Call Now
+                  </a>
+                )
+              }
+              {
+                profileUrl && (
+                  <a
+                    href={profileUrl}
+                    class="rounded-lg border border-base-300 bg-white px-6 py-2.5 text-center text-sm font-semibold text-base-content transition-colors hover:bg-base-100">
+                    View Profile
+                  </a>
+                )
+              }
+            </div>
+          </div>
+        </div>
       </>
     ) : (
       <!-- Default/Other Variants Layout -->

@@ -1,0 +1,195 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "contact");
+if (!entry) {
+  throw new Error("Contact page content not found");
+}
+
+const { Content } = await entry.render();
+const { title, description, breadcrumbs, infoBox, contactChannels } =
+  entry.data;
+
+const seoData = {
+  title: `${title} | UK Locksmith Directory`,
+  description,
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6">
+    <PageHero {title} {description} {breadcrumbs}>
+      <!-- Info Box -->
+      {
+        infoBox && (
+          <div class="mb-8 rounded-lg bg-base-200/60 p-6">
+            <div class="flex items-start gap-3">
+              <span class="icon-[tabler--info-circle] mt-1 size-5 shrink-0 text-base-content/60" />
+              <p
+                class="text-sm text-base-content/80"
+                set:html={infoBox.replace(
+                  "Visible Solutions LLC",
+                  '<span class="font-semibold text-base-content">Visible Solutions LLC</span>'
+                )}
+              />
+            </div>
+          </div>
+        )
+      }
+    </PageHero>
+
+    <!-- Contact Channels Grid -->
+    {
+      contactChannels && (
+        <div class="mb-16 grid gap-8 md:grid-cols-2">
+          {contactChannels.map(
+            (channel: {
+              icon: string;
+              title: string;
+              description: string;
+              linkText: string;
+              linkHref: string;
+              linkIcon?: string;
+            }) => (
+              <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                  <div class="rounded-lg bg-primary/10 p-3">
+                    <span class={`${channel.icon} size-6 text-primary`} />
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="mb-2 text-xl font-semibold text-base-content">
+                      {channel.title}
+                    </h3>
+                    <p class="mb-4 text-sm text-base-content/80">
+                      {channel.description}
+                    </p>
+                    <a
+                      href={channel.linkHref}
+                      class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+                      {channel.linkText}
+                      {channel.linkIcon && (
+                        <span class={`${channel.linkIcon} size-4`} />
+                      )}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        </div>
+      )
+    }
+
+    <!-- Contact Form -->
+    <div class="mb-12">
+      <h2 class="mb-8 text-3xl font-bold text-primary">Send a message</h2>
+
+      <div class="card shadow-none">
+        <div class="card-body">
+          <form class="space-y-6" onsubmit="return false;">
+            <!-- Full Name and Email Address Row -->
+            <div class="grid gap-6 md:grid-cols-2">
+              <div class="w-full">
+                <label class="label-text mb-2 block" for="fullname">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  class="input input-lg w-full"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div class="w-full">
+                <label class="label-text mb-2 block" for="email">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="input input-lg w-full"
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="label-text mb-2 block" for="intent">
+                Intent Category
+              </label>
+              <select
+                id="intent"
+                name="intent"
+                class="select select-lg w-full"
+                required>
+                <option value="" disabled selected>
+                  Select the nature of your inquiry
+                </option>
+                <option value="user-support">User Support</option>
+                <option value="business-support">Business Support</option>
+                <option value="gdpr-complaint">
+                  GDPR / Complaints / Governance
+                </option>
+                <option value="press">Press & Partnerships</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label class="label-text mb-2 block" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="textarea h-32 w-full"
+                placeholder="Type your message here..."
+                required></textarea>
+            </div>
+
+            <!-- Privacy Policy Checkbox -->
+            <div class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="privacy"
+                name="privacy"
+                class="checkbox mt-1"
+                required
+              />
+              <label class="label-text text-sm" for="privacy">
+                I understand my inquiry will be processed by Visible Solutions
+                LLC (USA) in accordance with the <a
+                  href="#"
+                  class="link text-primary">Privacy Policy</a
+                >. I acknowledge that I am not submitting emergency service
+                requests through this form.
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <Button
+              text="Submit Inquiry"
+              variant="primary"
+              size="lg"
+              type="submit"
+              fullWidth
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

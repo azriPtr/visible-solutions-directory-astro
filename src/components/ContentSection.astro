@@ -1,0 +1,71 @@
+---
+import Card from "./Card.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  items: any[];
+  viewAllText: string;
+  viewAllUrl: string;
+  columns?: "3" | "4"; // lg:grid-cols-3 or lg:grid-cols-4
+  backgroundColor?: string;
+  showArrow?: boolean;
+  cardVariant?: "location" | "article"; // Optional variant to pass to Card
+}
+
+const {
+  title,
+  description,
+  items,
+  viewAllText,
+  viewAllUrl,
+  columns = "4",
+  backgroundColor = "",
+  showArrow = false,
+  cardVariant,
+} = Astro.props;
+
+const gridColsClass = columns === "3" ? "lg:grid-cols-3" : "lg:grid-cols-4";
+---
+
+<section class={`relative ${backgroundColor}`}>
+  <div class="mx-auto max-w-7xl px-6 py-10 md:py-24">
+    <div class="mb-10 max-w-3xl">
+      <h2 class="text-3xl font-bold text-primary tracking-tight">
+        {title}
+      </h2>
+      <p class="mt-4 text-lg text-base-300">
+        {description}
+      </p>
+    </div>
+
+    <!-- Card Grid -->
+    <ol
+      class={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${gridColsClass} list-none mt-0 mr-0 mb-10 ml-0 pt-0 pr-0 pb-0 pl-0 gap-x-6 gap-y-6`}>
+      {items.map((item) => <Card {...item} variant={cardVariant} />)}
+    </ol>
+
+    <!-- View All CTA -->
+    <div class="text-center mt-8">
+      <a
+        href={viewAllUrl}
+        class={`${showArrow ? "inline-flex items-center gap-1" : ""} text-sm font-bold text-primary hover:text-secondary transition-colors`}>
+        {viewAllText}
+        {
+          showArrow && (
+            <svg
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
+          )
+        }
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,183 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "about");
+if (!entry) {
+  throw new Error("About page content not found");
+}
+
+const { Content } = await entry.render();
+const {
+  title,
+  description,
+  breadcrumbs,
+  governance,
+  independenceClause,
+  governanceContact,
+} = entry.data;
+
+const seoData = {
+  title: `${title} | UK Locksmith Directory`,
+  description,
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6">
+    <PageHero {title} {description} {breadcrumbs} />
+
+    <!-- Governance & Entity Information -->
+    {
+      governance && (
+        <section class="mb-12 rounded-lg bg-surface-100 p-6">
+          <h2 class="mb-6 text-xs font-semibold uppercase tracking-wider text-base-content/60">
+            Governance & Entity Information
+          </h2>
+
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <dt class="text-sm text-base-content/60">Operator</dt>
+              <dd class="text-sm font-semibold text-base-content sm:col-span-2">
+                {governance.operator}
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <dt class="text-sm text-base-content/60">Entity Type</dt>
+              <dd class="text-sm font-semibold text-base-content sm:col-span-2">
+                {governance.entityType}
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <dt class="text-sm text-base-content/60">Primary Function</dt>
+              <dd class="text-sm font-semibold text-base-content sm:col-span-2">
+                {governance.primaryFunction}
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <dt class="text-sm text-base-content/60">Data Controller</dt>
+              <dd class="text-sm text-base-content sm:col-span-2">
+                <span class="font-semibold">{governance.dataController}</span>
+                <span class="text-base-content/60"> {governance.gdprNote}</span>
+              </dd>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Content from Markdown -->
+    <article class="prose prose-lg max-w-none mb-12">
+      <Content />
+    </article>
+
+    <!-- The Independence Clause -->
+    {
+      independenceClause && (
+        <section class="mb-12">
+          <details class="group rounded-lg border border-base-300 bg-base-100">
+            <summary class="flex cursor-pointer items-center justify-between p-6 font-semibold text-primary">
+              <div class="flex items-center gap-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="flex-shrink-0">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4" />
+                  <path d="M12 8h.01" />
+                </svg>
+                <span class="text-lg">The Independence Clause</span>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="flex-shrink-0 transition-transform group-open:rotate-180">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="border-t border-base-300 p-6 pt-4">
+              <p class="mb-4 text-sm text-base-content/80 leading-relaxed">
+                {independenceClause}
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+                Read our Trust & Verification Standards
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </details>
+        </section>
+      )
+    }
+
+    <!-- Governance & Contact -->
+    {
+      governanceContact && (
+        <section class="mb-12">
+          <h2 class="mb-4 text-2xl font-bold text-primary">
+            Governance & Contact
+          </h2>
+          <p class="mb-6 text-base text-base-content/80 leading-relaxed">
+            {governanceContact.split("Privacy Policy")[0]}
+            <a href="#" class="font-semibold text-primary hover:underline">
+              Privacy Policy
+            </a>
+            {governanceContact.split("Privacy Policy")[1]}
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <Button
+              text="Contact Administration"
+              variant="primary"
+              size="lg"
+              href="#"
+            />
+            <Button
+              text="Terms of Service"
+              variant="outline"
+              size="lg"
+              href="#"
+            />
+          </div>
+        </section>
+      )
+    }
+  </main>
+
+  <Footer />
+</Layout>

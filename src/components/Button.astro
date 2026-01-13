@@ -1,31 +1,25 @@
 ---
 interface Props {
-  // Content
   text?: string;
 
-  // Variants
   variant?: "primary" | "secondary" | "outline" | "text" | "ghost";
 
-  // Sizes
   size?: "sm" | "md" | "lg" | "xl";
 
   // States
   disabled?: boolean;
   loading?: boolean;
 
-  // Full width
   fullWidth?: boolean;
 
   // Icons (using Iconify format: icon-[tabler--icon-name])
   iconLeft?: string;
   iconRight?: string;
 
-  // Link or Button
   href?: string;
   type?: "button" | "submit" | "reset";
   target?: "_blank" | "_self";
 
-  // Styling
   class?: string;
 }
 
@@ -45,7 +39,8 @@ const {
 } = Astro.props;
 
 // Base button classes
-const baseClasses = "btn inline-flex items-center justify-center gap-2 font-bold transition-all";
+const baseClasses =
+  "btn inline-flex items-center justify-center gap-2 font-bold transition-all";
 
 // Variant classes
 const variantClasses = {
@@ -98,18 +93,11 @@ const buttonProps = !href
 ---
 
 <Element class={buttonClasses} {...linkProps} {...buttonProps}>
-  {loading && (
-    <span class="loading loading-spinner loading-xs"></span>
-  )}
-  
-  {!loading && iconLeft && (
-    <span class={`${iconLeft} shrink-0`}></span>
-  )}
-  
-  {text || <slot />}
-  
-  {!loading && iconRight && (
-    <span class={`${iconRight} shrink-0`}></span>
-  )}
-</Element>
+  {loading && <span class="loading loading-spinner loading-xs" />}
 
+  {!loading && iconLeft && <span class={`${iconLeft} shrink-0`} />}
+
+  {text || <slot />}
+
+  {!loading && iconRight && <span class={`${iconRight} shrink-0`} />}
+</Element>

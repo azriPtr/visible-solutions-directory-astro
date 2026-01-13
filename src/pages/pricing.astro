@@ -1,0 +1,1368 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import FAQ from "../components/FAQ.astro";
+
+const seoData = {
+  title: "Pricing | UK Locksmith Directory",
+  description:
+    "Get more locksmith jobs without doing your own marketing. More emergency calls, fewer missed enquiries.",
+};
+
+const faqs = [
+  {
+    question: "What happens when someone finds my listing?",
+    answer:
+      "When a customer finds your listing, they can call you directly using the phone number you provide. You'll receive enquiries in real-time, allowing you to respond quickly and win more jobs.",
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer:
+      "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees. Your listing will remain active until the end of your billing period.",
+  },
+  {
+    question: "Do I need to verify my business?",
+    answer:
+      "Yes, all listings require identity verification (phone OTP and postcode check) before they can be published. This helps maintain trust and keeps scammers off the platform.",
+  },
+  {
+    question: "What's the difference between the plans?",
+    answer:
+      "Each plan offers different levels of visibility and features. Verified gets you listed, Featured puts you above organic results, Never Miss a Job ensures you capture enquiries even when busy, and Own the Area gives you exclusive territory dominance.",
+  },
+  {
+    question: "Can I upgrade or downgrade my plan?",
+    answer:
+      "Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades will apply at the start of your next billing cycle.",
+  },
+];
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="bg-base-50 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="text-center">
+        <h1 class="mb-4 text-4xl font-bold text-primary md:text-5xl">
+          Get More Locksmith Jobs
+        </h1>
+        <p class="mb-2 text-2xl font-semibold text-base-content/50 md:text-5xl">
+          (Without Doing Your Own Marketing)
+        </p>
+        <p class="mb-8 text-base text-base-content/70 md:text-lg">
+          More emergency calls. Fewer missed enquiries. No faff with ads or
+          socials.
+        </p>
+
+        <!-- Benefits -->
+        <div
+          class="mb-12 flex flex-col items-center justify-center gap-4 text-sm text-base-content/70 md:flex-row md:gap-6">
+          <div class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-success">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span>The phone rings directly</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-success">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span>Look like the safest choice</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-success">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <span>Stop losing jobs</span>
+          </div>
+        </div>
+
+        <!-- Pricing Toggle -->
+        <div
+          class="mb-12 inline-flex items-center gap-3 rounded-lg bg-base-100 p-1 border border-base-200">
+          <button
+            id="monthly-btn"
+            class="rounded-md bg-surface px-6 py-2 text-sm font-medium text-primary shadow-sm transition-all">
+            Monthly
+          </button>
+          <button
+            id="annual-btn"
+            class="rounded-md px-6 py-2 text-sm font-medium text-base-content/60 transition-all hover:text-base-content">
+            Annual
+          </button>
+          <span
+            id="free-months-label"
+            class="hidden rounded-md bg-success/20 px-4 py-1 text-sm font-bold text-success">
+            2 Months Free
+          </span>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Verified Plan -->
+        <div class="rounded-lg border border-success bg-white p-6 shadow-sm">
+          <div class="mb-4 flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-success">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+            <h3 class="text-lg font-bold text-primary">Verified</h3>
+          </div>
+          <p class="mb-4 text-sm text-base-content/70">
+            Look legit locally. Best for credibility
+          </p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-base-content">£19</span>
+            <span class="text-base-content/60">/mo</span>
+          </div>
+          <Button
+            href="/add-business"
+            variant="outline"
+            size="md"
+            class="mb-6 w-full">
+            Verify my listing
+          </Button>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span class="text-base-content/70">Verified locksmith badge</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span class="text-base-content/70"
+                >Full listing control (Photos/Fees)</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span class="text-base-content/70">NAP Consistency</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span class="text-base-content/70">Review request link</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Featured Plan -->
+        <div class="rounded-lg border-2 border-primary bg-white p-6 shadow-md">
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                ></polygon>
+              </svg>
+              <h3 class="text-lg font-bold text-primary">Featured</h3>
+            </div>
+            <span
+              class="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+              POPULAR
+            </span>
+          </div>
+          <p class="mb-4 text-sm text-base-content/70">
+            Be the first spot when they call
+          </p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-base-content">£79</span>
+            <span class="text-base-content/60">/mo</span>
+          </div>
+          <Button
+            href="/add-business"
+            variant="primary"
+            size="md"
+            class="mb-6 w-full">
+            Get featured
+          </Button>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+              <span class="text-base-content/70">Featured above organic</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="text-base-content/70"
+                >Google Business Profile setup</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+              <span class="text-base-content/70"
+                >Weekly job updates posted for you</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path
+                  d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                ></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span class="text-base-content/70">Branded job packs & promo</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Never Miss a Job Plan -->
+        <div class="rounded-lg border border-purple-600 bg-white p-6 shadow-sm">
+          <div class="mb-4 flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-purple-600">
+              <path
+                d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"
+              ></path>
+            </svg>
+            <h3 class="text-lg font-bold text-primary">Never Miss a Job</h3>
+          </div>
+          <p class="mb-4 text-sm text-base-content/70">
+            Capture jobs while you're busy working
+          </p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-base-content">£249</span>
+            <span class="text-base-content/60">/mo</span>
+          </div>
+          <Button
+            href="/add-business"
+            variant="outline"
+            size="md"
+            class="mb-6 w-full">
+            Stop missing jobs
+          </Button>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+              <span class="text-base-content/70"
+                >AI Receptionist (Answers calls)</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+              <span class="text-base-content/70">AI SMS & WhatsApp replies</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                <rect width="7" height="5" x="3" y="16" rx="1"></rect>
+              </svg>
+              <span class="text-base-content/70"
+                >CRM App, Invoicing & Payments</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+                ></path>
+                <path d="M3 3v5h5"></path>
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"
+                ></path>
+                <path d="M16 16h5v5"></path>
+              </svg>
+              <span class="text-base-content/70"
+                >Auto quote follow-ups & reviews (Optional)</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Own the Area Plan -->
+        <div class="rounded-lg border border-error bg-white p-6 shadow-sm">
+          <div class="mb-4 flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-error">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" x2="9.01" y1="9" y2="9"></line>
+              <line x1="15" x2="15.01" y1="9" y2="9"></line>
+            </svg>
+            <h3 class="text-lg font-bold text-primary">Own the Area</h3>
+          </div>
+          <p class="mb-4 text-sm text-base-content/70">
+            Exclusive dominance. 1 per territory
+          </p>
+          <div class="mb-6">
+            <div>
+              <span class="text-4xl font-bold text-base-content">£499</span>
+              <span class="text-base-content/60">/mo</span>
+            </div>
+            <span class="text-sm text-base-content/60">+ ad spend</span>
+          </div>
+          <Button
+            href="/add-business"
+            variant="outline"
+            size="md"
+            class="mb-6 w-full">
+            Check availability
+          </Button>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path d="M7 10v12"></path>
+                <path
+                  d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"
+                ></path>
+              </svg>
+              <span class="text-base-content/70">Google Ads Management</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span class="text-base-content/70">Territory Exclusivity</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path d="M3 3v18h18"></path>
+                <path d="m19 9-5 5-4-4-3 3"></path>
+              </svg>
+              <span class="text-base-content/70">Priority Exposure</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-base-content/40">
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+              <span class="text-base-content/70"
+                >Facebook Retargeting (Optional)</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Optional Add-on -->
+      <div
+        class="mt-8 rounded-lg border border-base-200 bg-white p-6 shadow-sm">
+        <div
+          class="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div class="flex-1">
+            <div class="mb-2 flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <h3 class="text-lg font-bold text-primary">
+                Optional Add-On: Managed Local Website
+              </h3>
+            </div>
+            <p class="text-sm text-base-content/70">
+              A local site designed to turn visitors into calls. Includes local
+              domain, hosting, 8 service pages, and weekly updates.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-4 text-sm text-base-content/70">
+              <div class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Zero tech headaches</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Lead capture built-in</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Monthly changes included</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-2">
+            <div>
+              <span class="text-3xl font-bold text-base-content">+£99</span>
+              <span class="text-base-content/60">/month</span>
+            </div>
+            <span class="text-sm text-base-content/60"
+              >Available with Never Miss a Job</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare Plans Section -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="mb-12 text-center text-3xl font-bold text-primary">
+        Compare Plans
+      </h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b border-base-200">
+              <th class="pb-4 pr-4 text-sm font-bold text-base-content">
+                Feature
+              </th>
+              <th class="pb-4 px-4 text-center text-sm font-bold text-primary">
+                Verified
+              </th>
+              <th class="pb-4 px-4 text-center text-sm font-bold text-primary">
+                Featured
+              </th>
+              <th class="pb-4 px-4 text-center text-sm font-bold text-primary">
+                Never Miss
+              </th>
+              <th class="pb-4 pl-4 text-center text-sm font-bold text-primary">
+                Own Area
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70"
+                >Verified locksmith badge</td
+              >
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70"
+                >Appears in local results</td
+              >
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70">Featured placement</td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70"
+                >Google Business Setup</td
+              >
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70">Weekly Job Updates</td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70"
+                >AI Receptionist & SMS</td
+              >
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70">CRM & Invoicing App</td
+              >
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr class="border-b border-base-200">
+              <td class="py-4 pr-4 text-base-content/70">Google/FB Ads Mgmt</td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-base-content/70"
+                >Territory Exclusivity</td
+              >
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <span class="text-base-content/40">—</span>
+              </td>
+              <td class="py-4 pl-4 text-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mx-auto text-success">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why UK Locksmiths Use Us Section -->
+  <section class="bg-base-900 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="mb-12 text-center text-3xl font-bold text-white">
+        Why UK Locksmiths Use Us
+      </h2>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Left Column -->
+        <div class="bg-surface p-6 rounded-lg">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-error/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-error">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" x2="9" y1="9" y2="15"></line>
+                <line x1="9" x2="15" y1="9" y2="15"></line>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 text-lg font-bold text-primary">
+                You don't want to:
+              </h3>
+              <ul class="space-y-2 text-base-content/80">
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-base-content/60">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" x2="9" y1="9" y2="15"></line>
+                    <line x1="9" x2="15" y1="9" y2="15"></line>
+                  </svg>
+                  <span>Learn SEO, ads, and CRM software from scratch</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-base-content/60">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" x2="9" y1="9" y2="15"></line>
+                    <line x1="9" x2="15" y1="9" y2="15"></line>
+                  </svg>
+                  <span>Spend evenings posting before-and-after photos</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-base-content/60">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" x2="9" y1="9" y2="15"></line>
+                    <line x1="9" x2="15" y1="9" y2="15"></line>
+                  </svg>
+                  <span>Sit by the phone all day just in case it rings</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="bg-primary p-6 rounded-lg">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-success/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 text-lg font-bold text-white">So we:</h3>
+              <ul class="space-y-2 text-base-100/80">
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-success">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                  <span>Make you look like the safest choice in your area</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-success">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                  <span>Answer and log enquiries when you're busy working</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="mt-1 flex-shrink-0 text-success">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                  <span>Give you a simple pipeline to track every job</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-base-content/70">
+          You pick the plan that matches where you are now. There is always an
+          obvious next step.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <FAQ {faqs} backgroundColor="bg-base-50" showCTA={false} />
+
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const monthlyBtn = document.getElementById("monthly-btn");
+    const annualBtn = document.getElementById("annual-btn");
+    const freeMonthsLabel = document.getElementById("free-months-label");
+
+    if (!monthlyBtn || !annualBtn || !freeMonthsLabel) return;
+
+    // Active and inactive styles
+    const activeClasses = "bg-surface text-primary shadow-sm";
+    const inactiveClasses = "text-base-content/60 hover:text-base-content";
+
+    // Monthly button click
+    monthlyBtn.addEventListener("click", () => {
+      // Set Monthly as active
+      monthlyBtn.className = `rounded-md px-6 py-2 text-sm font-medium transition-all ${activeClasses}`;
+      // Set Annual as inactive
+      annualBtn.className = `rounded-md px-6 py-2 text-sm font-medium transition-all ${inactiveClasses}`;
+      // Hide the free months label
+      freeMonthsLabel.classList.add("hidden");
+    });
+
+    // Annual button click
+    annualBtn.addEventListener("click", () => {
+      // Set Annual as active
+      annualBtn.className = `rounded-md px-6 py-2 text-sm font-medium transition-all ${activeClasses}`;
+      // Set Monthly as inactive
+      monthlyBtn.className = `rounded-md px-6 py-2 text-sm font-medium transition-all ${inactiveClasses}`;
+      // Show the free months label
+      freeMonthsLabel.classList.remove("hidden");
+    });
+  });
+</script>

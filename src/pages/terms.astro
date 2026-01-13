@@ -1,0 +1,376 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "terms");
+if (!entry) {
+  throw new Error("Terms of Service content not found");
+}
+
+const {
+  title,
+  description,
+  breadcrumbs,
+  lastUpdated,
+  policyVersion,
+  contactInfo,
+} = entry.data;
+
+const seoData = {
+  title: `${title} | UK Locksmith Directory`,
+  description,
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Page Title -->
+      <h1 class="mb-4 text-4xl font-bold text-primary">
+        {title}
+      </h1>
+
+      <!-- Meta Information -->
+      <div
+        class="mb-6 flex flex-wrap gap-2 text-xs uppercase tracking-wide text-base-content/40">
+        <span>Last updated: {lastUpdated}</span>
+        <span>•</span>
+        <span>Version: {policyVersion}</span>
+      </div>
+
+      <!-- Introduction Paragraph -->
+      <p class="mb-6 leading-relaxed text-base-content/70">
+        {description}
+      </p>
+
+      <p class="mb-12 leading-relaxed text-base-content/70">
+        By accessing, browsing, or using this Platform, you ("User," "you")
+        acknowledge that you have read, understood, and agree to be bound by
+        these Terms. If you do not agree to these Terms, you must immediately
+        cease using the Platform.
+      </p>
+
+      <!-- Note to UK Consumers Box -->
+      <div class="mb-8 rounded-lg border-l-4 border-primary bg-primary/5 p-6">
+        <h3
+          class="mb-3 text-sm font-bold uppercase tracking-wide text-base-content">
+          Note to UK Consumers
+        </h3>
+        <p class="text-sm leading-relaxed text-base-content/70">
+          While these Terms are governed by the laws of the State of Delaware,
+          nothing in these Terms is intended to limit any mandatory consumer
+          rights you may have under the Consumer Rights Act 2015 or other
+          applicable United Kingdom consumer protection legislation that cannot
+          be contractually waived.
+        </p>
+      </div>
+
+      <!-- Table of Contents -->
+      <section class="mb-12">
+        <details
+          class="group rounded-lg border border-base-200 bg-white p-6 shadow-sm">
+          <summary
+            class="flex cursor-pointer items-center justify-between text-base font-bold text-base-content">
+            <span>Table of Contents</span>
+            <svg
+              class="h-5 w-5 transition-transform group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+        </details>
+      </section>
+
+      <!-- Main Content -->
+      <article class="mb-16">
+        <!-- Section 1: Acceptance & Modifications -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          1. Acceptance & Modifications
+        </h2>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          1.1 Binding Agreement
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          These Terms constitute a legally-binding agreement between you and
+          Visible Solutions LLC.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          1.2 Modifications
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          We reserve the right to modify these Terms at any time. Material
+          changes will be announced by an update to the "Last Updated" date at
+          the top of this page. Your continued use of the Platform after any
+          such changes constitutes your acceptance of the new Terms.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 2: Nature of the Platform -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          2. Nature of the Platform
+        </h2>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          2.1 Directory Service
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          The Platform acts solely as a technology provider and directory
+          service that connects independent third-party locksmiths and security
+          professionals ("Service Providers").
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          2.2 Not a Service Provider
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          Visible Solutions LLC is <strong>not</strong> a locksmith, security company,
+          or contractor. We do not employ the Service Providers listed on the Platform,
+          nor do we perform any security services ourselves. All contractual relationships
+          formed for the provision of services are strictly between the User and the
+          Service Provider.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          2.3 No Agency
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          Nothing in these Terms creates an agency, partnership, joint venture,
+          or employment relationship between Visible Solutions LLC and any
+          Service Provider.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 3: Acceptable Use Policy -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          3. Acceptable Use Policy
+        </h2>
+
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          You agree to use the Platform only for lawful purposes. You are
+          strictly prohibited from:
+        </p>
+
+        <ul class="mb-6 space-y-2 pl-6">
+          <li class="list-disc text-base-content/70">
+            Using the Platform to solicit Service Providers for employment
+            outside the scope of locksmith services.
+          </li>
+          <li class="list-disc text-base-content/70">
+            Engaging in any automated data collection, scraping, or indexing of
+            the Platform's content without our express written consent.
+          </li>
+          <li class="list-disc text-base-content/70">
+            Attempting to interfere with the proper functioning of the
+            Platform's software or network infrastructure.
+          </li>
+          <li class="list-disc text-base-content/70">
+            Submitting false reports, fraudulent reviews, or misleading
+            information about Service Providers.
+          </li>
+          <li class="list-disc text-base-content/70">
+            Harassing, threatening, or defaming any other user or Service
+            Provider through the Platform.
+          </li>
+        </ul>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 4: Reviews & User Content -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          4. Reviews & User Content
+        </h2>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">4.1 License</h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          By submitting reviews, comments, or other content ("User Content") to
+          the Platform, you grant Visible Solutions LLC a non-exclusive,
+          royalty-free, perpetual, irrevocable, and fully sub-licensable right
+          to use, reproduce, modify, adapt, publish, translate, and display such
+          User Content throughout the world in any media.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">4.2 Accuracy</h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          You represent and warrant that your User Content is accurate, honest,
+          and based on your genuine experience with a Service Provider. We
+          strictly prohibit the posting of reviews by competitors, affiliates,
+          or third parties.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          4.3 Moderation
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          We reserve the right, but have no obligation, to monitor, edit, or
+          remove User Content that we determine in our sole discretion violates
+          these Terms or is otherwise objectionable.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 5: Disclaimers & Limitation of Liability -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          5. Disclaimers & Limitation of Liability
+        </h2>
+
+        <!-- Important Notice Box -->
+        <div class="mb-6 rounded-lg bg-base-100 p-6">
+          <h3
+            class="mb-3 text-sm font-bold uppercase tracking-wide text-base-content">
+            Important Notice Regarding Liability
+          </h3>
+          <p class="text-sm leading-relaxed text-base-content/70">
+            Visible Solutions LLC does not guarantee the quality, skill, or
+            aspects of the services provided by independent locksmiths. We are
+            not a party to any transaction between you and a Service Provider.
+          </p>
+        </div>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          5.1 "As Is" Basis
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          The Platform constitutes an "as is" and "as available" service. We
+          disclaim all warranties, express or implied, regarding the accuracy of
+          Service Provider listings, pricing, or availability.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          5.2 Service Performance
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          Visible Solutions LLC shall not be liable for any damages, direct or
+          indirect, arising from the acts, omissions, errors,
+          misrepresentations, warranties, breaches, or negligence of any Service
+          Provider or for any personal injuries, death, property damage, or
+          other damages or expenses resulting there from.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          5.3 Cap on Liability
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          To the maximum extent permitted by applicable law, in no event shall
+          the aggregate liability of Visible Solutions LLC exceeding the greater
+          of (a) the amount you paid to Visible Solutions LLC in the 12 months
+          prior to the action giving rise to liability, or (b) $100.00 USD.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 6: Intellectual Property -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          6. Intellectual Property
+        </h2>
+
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          All content included on the Platform, such as text, graphics, logos,
+          images, and software, is the property of Visible Solutions LLC or its
+          content suppliers and is protected by United States and international
+          copyright laws.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 7: Governing Law & Jurisdiction -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          7. Governing Law & Jurisdiction
+        </h2>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          7.1 Jurisdiction
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          These Terms and any disputes related to them or the Platform shall be
+          governed by and construed in accordance with the laws of the
+          <strong>State of Delaware, United States</strong>, without regard to
+          its conflict of law principles.
+        </p>
+
+        <h3 class="mb-3 text-base font-bold text-base-content">
+          7.2 Dispute Resolution
+        </h3>
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          You agree that any legal action or proceeding between Visible
+          Solutions LLC and you for any purpose concerning these Terms or the
+          parties' obligations hereunder shall be brought exclusively in a
+          federal or state court of competent jurisdiction sitting in Delaware.
+        </p>
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Section 8: Contact Information -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          8. Contact Information
+        </h2>
+
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          If you have any questions regarding these Terms or need to report a
+          violation, please contact:
+        </p>
+
+        {
+          contactInfo && (
+            <p class="mb-6 leading-relaxed text-base-content/70">
+              <strong class="font-bold text-base-content">
+                {contactInfo.company}
+              </strong>
+              <br />
+              {contactInfo.department}
+              <br />
+              Email:{" "}
+              <a
+                href={`mailto:${contactInfo.email}`}
+                class="text-primary hover:underline">
+                {contactInfo.email}
+              </a>
+            </p>
+          )
+        }
+
+        <hr class="my-12 border-base-200" />
+
+        <!-- Related Policies -->
+        <h2 class="mb-6 text-2xl font-bold text-primary">Related Policies</h2>
+
+        <p class="mb-4 leading-relaxed text-base-content/70">
+          These Terms incorporate the following policies by reference. In the
+          event of a conflict, the most specific policy shall prevail regarding
+          the subject matter of that policy.
+        </p>
+
+        <ul class="space-y-2">
+          <li>
+            <a href="/privacy" class="text-primary hover:underline"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:underline">Cookie Policy</a>
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:underline"
+              >Trust & Verification Standards</a
+            >
+          </li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

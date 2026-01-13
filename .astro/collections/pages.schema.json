@@ -99,6 +99,60 @@
             "additionalProperties": false
           }
         },
+        "lastUpdated": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "dataController": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "registeredIn": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "ukRep": {
+              "type": "string"
+            },
+            "ukRepAddress": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "registeredIn",
+            "email",
+            "ukRep",
+            "ukRepAddress"
+          ],
+          "additionalProperties": false
+        },
+        "contactInfo": {
+          "type": "object",
+          "properties": {
+            "company": {
+              "type": "string"
+            },
+            "department": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "company",
+            "department",
+            "email"
+          ],
+          "additionalProperties": false
+        },
         "$schema": {
           "type": "string"
         }

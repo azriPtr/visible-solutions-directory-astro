@@ -1,0 +1,100 @@
+---
+import Button from "./Button.astro";
+
+interface SecondaryLink {
+  text: string;
+  href: string;
+  icon?: boolean;
+  color?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  buttonText: string;
+  buttonHref: string;
+  buttonVariant?: "primary" | "secondary" | "outline" | "text" | "ghost";
+  buttonSize?: "sm" | "md" | "lg" | "xl";
+  buttonClass?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  descriptionColor?: string;
+  cardBackground?: string;
+  withBorder?: boolean;
+  class?: string;
+  secondaryLinks?: SecondaryLink[];
+}
+
+const {
+  title,
+  description = "",
+  buttonText,
+  buttonHref,
+  buttonVariant = "primary",
+  buttonSize = "lg",
+  buttonClass = "",
+  backgroundColor = "bg-white",
+  textColor = "text-primary",
+  descriptionColor = "text-base-content/80",
+  cardBackground = "bg-white",
+  withBorder = true,
+  class: className = "",
+  secondaryLinks = [],
+} = Astro.props;
+---
+
+<section class={`py-12 ${backgroundColor} ${className}`}>
+  <div
+    class={`container mx-auto max-w-3xl px-6 py-12 text-center ${cardBackground} ${withBorder ? "rounded-lg border border-base-200 shadow-sm" : ""}`}>
+    <h2
+      class={`text-3xl font-bold md:text-4xl ${textColor} ${description ? "mb-4" : "mb-8"}`}>
+      {title}
+    </h2>
+    {
+      description && (
+        <p
+          class={`mb-8 text-base leading-relaxed md:text-lg ${descriptionColor}`}>
+          {description}
+        </p>
+      )
+    }
+    <Button
+      href={buttonHref}
+      variant={buttonVariant}
+      size={buttonSize}
+      class={buttonClass}>
+      {buttonText}
+    </Button>
+
+    {
+      secondaryLinks.length > 0 && (
+        <div class="mt-6 space-y-4">
+          {secondaryLinks.map((link) => (
+            <div>
+              <a
+                href={link.href}
+                class={`inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:underline ${link.color || "text-primary"}`}>
+                {link.text}
+                {link.icon && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                )}
+              </a>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,75 +1,100 @@
 ---
-const faqs = [
-  {
-    id: "faq-1",
-    question: "How do you vet locksmiths?",
-    answer:
-      "We verify every locksmith's credentials, insurance, and trade body memberships. Our team conducts thorough background checks, reviews qualifications, and validates their professional standing with organizations like MLA, NAL, and SafeContractor before listing them on our directory.",
-  },
-  {
-    id: "faq-2",
-    question: "Do you cover emergency callouts 24/7?",
-    answer:
-      "Yes, our directory includes locksmiths who offer 24/7 emergency services. When you search for locksmiths in your area, you can filter by availability and emergency services to find professionals who can help you any time of day or night.",
-  },
-  {
-    id: "faq-3",
-    question: "Are locksmiths insured and DBS checked?",
-    answer:
-      "All locksmiths listed on our platform are required to have valid public liability insurance and relevant certifications. Many of our professionals also hold DBS (Disclosure and Barring Service) checks. You can view each locksmith's credentials and certifications on their profile page.",
-  },
-];
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  faqs?: FAQ[];
+  backgroundColor?: string;
+  showCTA?: boolean;
+}
+
+const {
+  title = "Frequently asked questions",
+  faqs = [
+    {
+      question: "How do you vet locksmiths?",
+      answer:
+        "We verify every locksmith's credentials, insurance, and trade body memberships. Our team conducts thorough background checks, reviews qualifications, and validates their professional standing with organizations like MLA, NAL, and SafeContractor before listing them on our directory.",
+    },
+    {
+      question: "Do you cover emergency callouts 24/7?",
+      answer:
+        "Yes, our directory includes locksmiths who offer 24/7 emergency services. When you search for locksmiths in your area, you can filter by availability and emergency services to find professionals who can help you any time of day or night.",
+    },
+    {
+      question: "Are locksmiths insured and DBS checked?",
+      answer:
+        "All locksmiths listed on our platform are required to have valid public liability insurance and relevant certifications. Many of our professionals also hold DBS (Disclosure and Barring Service) checks. You can view each locksmith's credentials and certifications on their profile page.",
+    },
+  ],
+  backgroundColor = "bg-base-100",
+  showCTA = true,
+} = Astro.props;
 ---
 
-<section class="relative bg-base-100">
-  <div class="mx-auto max-w-4xl px-6 py-12 md:py-24">
+<section class={`relative ${backgroundColor} py-16`}>
+  <div class="mx-auto max-w-4xl px-6">
     <!-- Section Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-primary tracking-tight">
-        Frequently asked questions
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-primary">
+        {title}
       </h2>
     </div>
 
     <!-- FAQ Items -->
-    <div class="space-y-4 mb-12">
+    <div class="mb-12 space-y-4">
       {
         faqs.map((faq) => (
-          <div class="border border-base-200 bg-white rounded-lg shadow-sm p-6">
-            <div class="flex items-center justify-between">
-              <h3 class="text-lg font-bold text-primary">{faq.question}</h3>
+          <details class="group rounded-lg border border-base-200 bg-white p-6 shadow-sm">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold text-base-content">
+              <span class="text-lg text-primary">{faq.question}</span>
               <svg
-                class="h-5 w-5 text-base-300 flex-shrink-0"
-                viewBox="0 0 24 24"
+                class="h-5 w-5 flex-shrink-0 text-base-content/40 transition-transform group-open:rotate-180"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="m6 9 6 6 6-6" />
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
+            </summary>
+            <div class="mt-4 border-t border-base-200 pt-4">
+              <p class="text-sm leading-relaxed text-base-content/70">
+                {faq.answer}
+              </p>
             </div>
-          </div>
+          </details>
         ))
       }
     </div>
 
     <!-- CTA Link -->
-    <div class="text-center mt-12">
-      <a
-        href="/about"
-        class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors">
-        About the uk locksmith directory
-        <svg
-          class="h-4 w-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M5 12h14m-7-7 7 7-7 7"></path>
-        </svg>
-      </a>
-    </div>
+    {
+      showCTA && (
+        <div class="mt-12 text-center">
+          <a
+            href="/about"
+            class="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-secondary">
+            About the uk locksmith directory
+            <svg
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>

@@ -63,6 +63,132 @@ const listings = [
     linkText: "View Profile",
     isFeatured: false,
   },
+  {
+    variant: "listing" as const,
+    title: "Guardian Lock Services",
+    description:
+      "Specialists in commercial security systems and access control. Serving businesses across London for over 15 years.",
+    rating: 4.7,
+    reviewCount: 96,
+    distance: "3.2 miles away",
+    badges: ["VERIFIED"],
+    features: [
+      "Commercial Specialist",
+      "Free Consultation",
+      "30-Day Guarantee",
+    ],
+    image:
+      "https://ui-avatars.com/api/?name=Guardian+Lock&background=7c3aed&color=fff&size=128",
+    imageAlt: "Guardian Lock Services logo",
+    phone: "+44 20 4567 8901",
+    profileUrl: "/locksmiths/guardian-lock-services",
+    linkUrl: "/locksmiths/guardian-lock-services",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+  {
+    variant: "listing" as const,
+    title: "FastTrack Locksmiths",
+    description:
+      "Emergency lockout specialists with 15-minute response time. No call-out charges for emergencies.",
+    rating: 4.9,
+    reviewCount: 203,
+    distance: "2.1 miles away",
+    badges: ["VERIFIED", "24/7"],
+    features: ["15-Min Response", "No Call Out Fee", "Price Match Guarantee"],
+    image:
+      "https://ui-avatars.com/api/?name=FastTrack&background=ea580c&color=fff&size=128",
+    imageAlt: "FastTrack Locksmiths logo",
+    phone: "+44 20 5678 9012",
+    profileUrl: "/locksmiths/fasttrack-locksmiths",
+    linkUrl: "/locksmiths/fasttrack-locksmiths",
+    linkText: "View Profile",
+    isFeatured: true,
+  },
+  {
+    variant: "listing" as const,
+    title: "Westminster Security Solutions",
+    description:
+      "High-security lock installation and smart home integration. Authorized dealer for Yale, Ultion, and August.",
+    rating: 4.6,
+    reviewCount: 78,
+    distance: "4.5 miles away",
+    badges: ["VERIFIED"],
+    features: [
+      "Smart Lock Specialist",
+      "Authorized Dealer",
+      "Warranty Included",
+    ],
+    image:
+      "https://ui-avatars.com/api/?name=Westminster+Security&background=0891b2&color=fff&size=128",
+    imageAlt: "Westminster Security Solutions logo",
+    phone: "+44 20 6789 0123",
+    profileUrl: "/locksmiths/westminster-security",
+    linkUrl: "/locksmiths/westminster-security",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+  {
+    variant: "listing" as const,
+    title: "ProLock Masters",
+    description:
+      "Master locksmiths specializing in period property locks and antique restoration. Heritage building approved.",
+    rating: 5.0,
+    reviewCount: 51,
+    distance: "6.8 miles away",
+    badges: ["VERIFIED"],
+    features: [
+      "Heritage Specialist",
+      "Master Locksmith Association",
+      "Listed Building Approved",
+    ],
+    image:
+      "https://ui-avatars.com/api/?name=ProLock+Masters&background=059669&color=fff&size=128",
+    imageAlt: "ProLock Masters logo",
+    phone: "+44 20 7890 1234",
+    profileUrl: "/locksmiths/prolock-masters",
+    linkUrl: "/locksmiths/prolock-masters",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+  {
+    variant: "listing" as const,
+    title: "Emergency Access 24/7",
+    description:
+      "Round-the-clock emergency locksmith service. Average 20-minute response time across Greater London.",
+    rating: 4.8,
+    reviewCount: 167,
+    distance: "1.7 miles away",
+    badges: ["VERIFIED", "24/7"],
+    features: ["DBS Checked", "20-Min Average Response", "Fixed Pricing"],
+    image:
+      "https://ui-avatars.com/api/?name=Emergency+Access&background=dc2626&color=fff&size=128",
+    imageAlt: "Emergency Access 24/7 logo",
+    phone: "+44 20 8901 2345",
+    profileUrl: "/locksmiths/emergency-access-247",
+    linkUrl: "/locksmiths/emergency-access-247",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
+  {
+    variant: "listing" as const,
+    title: "City Safe & Lock Co.",
+    description:
+      "Family-run business since 1985. Specializing in safe installation, repairs, and combination changes.",
+    rating: 4.7,
+    reviewCount: 89,
+    distance: "5.9 miles away",
+    badges: ["VERIFIED"],
+    features: ["Safe Specialists", "Insured (£10m)", "Free Site Survey"],
+    image:
+      "https://ui-avatars.com/api/?name=City+Safe&background=4338ca&color=fff&size=128",
+    imageAlt: "City Safe & Lock Co. logo",
+    phone: "+44 20 9012 3456",
+    profileUrl: "/locksmiths/city-safe-lock",
+    linkUrl: "/locksmiths/city-safe-lock",
+    linkText: "View Profile",
+    isFeatured: false,
+  },
 ];
 
 // Stats
@@ -197,20 +323,55 @@ const seoData = {
     <!-- Results -->
     <section class="mx-auto max-w-7xl px-6 py-8">
       <!-- Listings -->
-      <ol class="mb-8 space-y-4 list-none">
-        {listings.map((listing) => <Card {...listing} class="bg-white" />)}
+      <ol id="listings-container" class="mb-8 space-y-4 list-none">
+        {
+          listings.map((listing, index) => (
+            <Card
+              {...listing}
+              class={`bg-white listing-item ${index >= 3 ? "hidden" : ""}`}
+            />
+          ))
+        }
       </ol>
 
       <!-- Load More Button -->
-      <div class="flex justify-center">
-        <Button
-          text="Load More Results"
-          variant="outline"
-          size="lg"
-          class="min-w-64"
-        />
+      <div id="load-more-container" class="flex justify-center">
+        <button
+          id="load-more-btn"
+          class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-primary bg-transparent px-8 py-3 text-base font-semibold text-primary transition-colors hover:bg-primary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed min-w-64">
+          Load More Results
+        </button>
       </div>
     </section>
+
+    <script>
+      const loadMoreBtn = document.getElementById("load-more-btn");
+      const listingsContainer = document.getElementById("listings-container");
+      const loadMoreContainer = document.getElementById("load-more-container");
+
+      if (loadMoreBtn && listingsContainer) {
+        loadMoreBtn.addEventListener("click", () => {
+          const hiddenListings = listingsContainer.querySelectorAll(
+            ".listing-item.hidden"
+          );
+
+          // Show next 3 listings
+          Array.from(hiddenListings)
+            .slice(0, 3)
+            .forEach((listing) => {
+              listing.classList.remove("hidden");
+            });
+
+          // Hide button if no more listings to show
+          const remainingHidden = listingsContainer.querySelectorAll(
+            ".listing-item.hidden"
+          );
+          if (remainingHidden.length === 0 && loadMoreContainer) {
+            loadMoreContainer.classList.add("hidden");
+          }
+        });
+      }
+    </script>
 
     <!-- AI Assistant CTA -->
     <section class="mx-auto max-w-7xl px-6 py-8">

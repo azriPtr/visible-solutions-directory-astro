@@ -1,0 +1,561 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import CTASection from "../components/CTASection.astro";
+
+const seoData = {
+  title: "Upgrade to Featured | UK Locksmith Directory",
+  description:
+    "Get more visibility in competitive areas — without affecting verification or trust. Promote your locksmith listing.",
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="bg-base-50 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <!-- Left Content -->
+        <div>
+          <div class="mb-6 flex items-center gap-2 text-sm text-success">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span class="font-semibold">Commercial Transparency</span>
+          </div>
+
+          <h1 class="mb-4 text-4xl font-bold text-primary md:text-5xl">
+            Promote your locksmith listing
+          </h1>
+          <p class="mb-6 text-base-content/70">
+            Get more visibility in competitive areas — without affecting
+            verification or trust.
+          </p>
+
+          <!-- Benefits List -->
+          <ul class="mb-8 space-y-3">
+            <li class="flex items-start gap-3 text-base-content/70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span>Appear in prominent positions on relevant local pages</span>
+            </li>
+            <li class="flex items-start gap-3 text-base-content/70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span
+                >Clearly labelled as "Featured" — never disguised as organic</span
+              >
+            </li>
+            <li class="flex items-start gap-3 text-base-content/70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 flex-shrink-0 text-success">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span>Pay for visibility, not fabricated ratings</span>
+            </li>
+          </ul>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap gap-4">
+            <Button
+              href="/pricing"
+              variant="primary"
+              size="lg"
+              class="bg-success hover:bg-success/90">
+              Upgrade to Featured
+            </Button>
+            <Button href="/pricing" variant="outline" size="lg">
+              View full pricing
+            </Button>
+          </div>
+        </div>
+
+        <!-- Right Visual -->
+        <div class="rounded-lg bg-white p-6 shadow-md">
+          <!-- Featured Slots Mockup -->
+          <div class="mb-4 flex items-center justify-between">
+            <h3 class="text-sm font-bold uppercase text-base-content/60">
+              Featured Slots
+            </h3>
+            <span
+              class="rounded bg-success px-2 py-1 text-xs font-semibold text-white">
+              High Visibility
+            </span>
+          </div>
+
+          <div class="space-y-3">
+            <!-- Featured Listing 1 -->
+            <div
+              class="flex items-center gap-3 rounded-lg border-2 border-primary bg-primary/5 p-4">
+              <div
+                class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <div class="h-3 w-3/4 rounded bg-base-300"></div>
+                <div class="mt-2 h-2 w-1/2 rounded bg-base-200"></div>
+              </div>
+              <span
+                class="rounded-full bg-success px-3 py-1 text-xs font-bold text-white">
+                Featured
+              </span>
+            </div>
+
+            <!-- Featured Listing 2 -->
+            <div
+              class="flex items-center gap-3 rounded-lg border border-base-200 bg-white p-4">
+              <div
+                class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-base-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-base-content/40">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <div class="h-3 w-3/4 rounded bg-base-300"></div>
+                <div class="mt-2 h-2 w-1/2 rounded bg-base-200"></div>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="py-2 text-center">
+              <span
+                class="text-xs font-semibold uppercase tracking-wide text-base-content/40">
+                Organic Results Below
+              </span>
+            </div>
+
+            <!-- Organic Listings -->
+            <div
+              class="flex items-center gap-3 rounded-lg border border-base-200 bg-white p-4 opacity-60">
+              <div
+                class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-base-100">
+                <div class="h-6 w-6 rounded bg-base-200"></div>
+              </div>
+              <div class="flex-1">
+                <div class="h-3 w-3/4 rounded bg-base-300"></div>
+                <div class="mt-2 h-2 w-1/2 rounded bg-base-200"></div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-3 rounded-lg border border-base-200 bg-white p-4 opacity-60">
+              <div
+                class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-base-100">
+                <div class="h-6 w-6 rounded bg-base-200"></div>
+              </div>
+              <div class="flex-1">
+                <div class="h-3 w-3/4 rounded bg-base-300"></div>
+                <div class="mt-2 h-2 w-1/2 rounded bg-base-200"></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 text-center text-xs text-base-content/50">
+            Representation of a city/town directory page
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visibility Insight -->
+  <section class="bg-base-50 py-12">
+    <div class="mx-auto max-w-4xl px-6">
+      <div
+        class="rounded-xl border border-base-200 bg-white p-8 shadow-sm md:flex md:items-start md:gap-6">
+        <div class="mb-4 flex-shrink-0 md:mb-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-primary">
+            <path d="M3 3v18h18"></path>
+            <path d="m19 9-5 5-4-4-3 3"></path>
+          </svg>
+        </div>
+        <div class="flex-1">
+          <h3 class="mb-3 text-xl font-bold text-base-content">
+            Visibility Insight
+          </h3>
+          <p class="text-base text-base-content/60 leading-relaxed">
+            In competitive areas, featured listings are shown above organic
+            results to ensure you are seen first by local customers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Featured Placement Works -->
+  <section class="bg-base-50 py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold text-primary md:text-4xl">
+          How featured placement works
+        </h2>
+        <p class="mx-auto max-w-2xl text-base-content/70">
+          We've built a system that increases visibility without compromising
+          the integrity of the directory.
+        </p>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-2">
+        <!-- Left Column: Standards & Fairness -->
+        <div>
+          <div class="mb-6 flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 16v-4"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
+            <h3 class="text-xl font-bold text-primary">Standards & Fairness</h3>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Item 1 -->
+            <div class="flex gap-4">
+              <div
+                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                1
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold text-base-content">
+                  Identical Verification Standards
+                </h4>
+                <p class="text-sm text-base-content/70">
+                  Featured locksmiths must meet the exact same verification
+                  standards as organic ones. Paying does not bypass our identity
+                  insurance or DBS checks.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex gap-4">
+              <div
+                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                2
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold text-base-content">
+                  Strict Relevance
+                </h4>
+                <p class="text-sm text-base-content/70">
+                  Your listing only appears if it matches the customer's
+                  specific service needs and geographic area. You cannot buy
+                  placement in towns you do not serve.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex gap-4">
+              <div
+                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                3
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold text-base-content">
+                  Hard Caps on Inventory
+                </h4>
+                <p class="text-sm text-base-content/70">
+                  We limit the number of featured spots per page (max 3) to
+                  maintain a fair ecosystem and ensure organic results remain
+                  visible.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: The "Not For Sale" List -->
+        <div>
+          <div class="mb-6 flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-base-content/60">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <h3 class="text-xl font-bold text-primary">
+              The "Not For Sale" List
+            </h3>
+          </div>
+
+          <p class="mb-6 text-sm text-base-content/70">
+            To preserve trust, the following elements can never be bought,
+            regardless of subscription tier:
+          </p>
+
+          <div class="space-y-3">
+            <!-- Item 1 -->
+            <div
+              class="flex items-center justify-between rounded-lg border border-base-200 bg-white p-4">
+              <span class="text-sm text-base-content/70"
+                >Editorial "Best Of" rankings</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-base-content/20">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="flex items-center justify-between rounded-lg border border-base-200 bg-white p-4">
+              <span class="text-sm text-base-content/70"
+                >Verification Badges (DBS/Insured)</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-base-content/20">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+
+            <!-- Item 3 -->
+            <div
+              class="flex items-center justify-between rounded-lg border border-base-200 bg-white p-4">
+              <span class="text-sm text-base-content/70"
+                >Review scores or star ratings</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-base-content/20">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+
+            <!-- Item 4 -->
+            <div
+              class="flex items-center justify-between rounded-lg border border-base-200 bg-white p-4">
+              <span class="text-sm text-base-content/70"
+                >Removal of negative reviews</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-base-content/20">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Questions -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="mb-12 text-center text-3xl font-bold text-primary">
+        Common questions from professionals
+      </h2>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Question 1 -->
+        <div class="rounded-lg border border-base-200 bg-base-50 p-6">
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Does paying improve my rating?
+          </h3>
+          <p class="text-sm text-base-content/70">
+            No. Ratings are aggregated from real customer reviews. We do not
+            inflate review scores for advertisers.
+          </p>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="rounded-lg border border-base-200 bg-base-50 p-6">
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Can I cancel anytime?
+          </h3>
+          <p class="text-sm text-base-content/70">
+            Yes. Featured placement is billed monthly. You can downgrade or
+            cancel at any time via your dashboard.
+          </p>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="rounded-lg border border-base-200 bg-base-50 p-6">
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Is promotion required to get leads?
+          </h3>
+          <p class="text-sm text-base-content/70">
+            No. Many locksmiths succeed with organic listings. Promotion is a
+            tool for faster growth in high-competition zones.
+          </p>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="rounded-lg border border-base-200 bg-base-50 p-6">
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Does this affect my verification?
+          </h3>
+          <p class="text-sm text-base-content/70">
+            No. All locksmiths are subject to the same strict identity and
+            insurance checks to remain on the platform.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <CTASection
+    title="Ready to increase your local visibility?"
+    buttonText="Upgrade to a plan with featured placement"
+    buttonHref="/pricing"
+    buttonVariant="primary"
+    buttonSize="lg"
+    buttonClass="bg-success hover:bg-success/90"
+    backgroundColor="bg-primary"
+    textColor="text-white"
+    descriptionColor="text-base-100/80"
+    cardBackground="bg-transparent"
+    withBorder={false}
+    class="py-16"
+    secondaryLinks={[
+      {
+        text: "View full pricing",
+        href: "/pricing",
+        icon: true,
+        color: "text-white",
+      },
+      {
+        text: "Talk to us about multi-location packages",
+        href: "#",
+        icon: true,
+        color: "text-base-100/70 hover:text-white",
+      },
+    ]}
+  />
+
+  <Footer />
+</Layout>

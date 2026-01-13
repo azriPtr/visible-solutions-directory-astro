@@ -6,6 +6,10 @@
     },
     {
       "hasSchema": true,
+      "name": "listings"
+    },
+    {
+      "hasSchema": true,
       "name": "locations"
     },
     {
@@ -25,18 +29,24 @@
     "file:///users/azri/documents/github/directory-astro/src/content/articles/high-security-locks.md": "articles",
     "file:///users/azri/documents/github/directory-astro/src/content/articles/locksmith-cost-2026.md": "articles",
     "file:///users/azri/documents/github/directory-astro/src/content/articles/upvc-door-handle-stuck.md": "articles",
-    "file:///users/azri/documents/github/directory-astro/src/content/locations/birmingham.md": "locations",
+    "file:///users/azri/documents/github/directory-astro/src/content/listings/brum-city-security.md": "listings",
     "file:///users/azri/documents/github/directory-astro/src/content/locations/leeds.md": "locations",
     "file:///users/azri/documents/github/directory-astro/src/content/locations/london.md": "locations",
+    "file:///users/azri/documents/github/directory-astro/src/content/locations/birmingham.md": "locations",
     "file:///users/azri/documents/github/directory-astro/src/content/locations/manchester.md": "locations",
-    "file:///users/azri/documents/github/directory-astro/src/content/pages/about.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/add-business.md": "pages",
     "file:///users/azri/documents/github/directory-astro/src/content/pages/contact.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/cookies.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/about.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/privacy.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/trust.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/pages/terms.md": "pages",
+    "file:///users/azri/documents/github/directory-astro/src/content/reviews/review-3.md": "reviews",
     "file:///users/azri/documents/github/directory-astro/src/content/reviews/review-2.md": "reviews",
     "file:///users/azri/documents/github/directory-astro/src/content/reviews/review-1.md": "reviews",
-    "file:///users/azri/documents/github/directory-astro/src/content/reviews/review-3.md": "reviews",
-    "file:///users/azri/documents/github/directory-astro/src/content/services/emergency-lockouts.md": "services",
-    "file:///users/azri/documents/github/directory-astro/src/content/services/upvc-repairs.md": "services",
+    "file:///users/azri/documents/github/directory-astro/src/content/services/lock-replacements.md": "services",
     "file:///users/azri/documents/github/directory-astro/src/content/services/smart-locks.md": "services",
-    "file:///users/azri/documents/github/directory-astro/src/content/services/lock-replacements.md": "services"
+    "file:///users/azri/documents/github/directory-astro/src/content/services/upvc-repairs.md": "services",
+    "file:///users/azri/documents/github/directory-astro/src/content/services/emergency-lockouts.md": "services"
   }
 }

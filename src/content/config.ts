@@ -37,6 +37,26 @@ const pages = defineCollection({
         })
       )
       .optional(),
+    // Privacy page
+    lastUpdated: z.string().optional(),
+    policyVersion: z.string().optional(),
+    dataController: z
+      .object({
+        name: z.string(),
+        registeredIn: z.string(),
+        email: z.string(),
+        ukRep: z.string(),
+        ukRepAddress: z.string(),
+      })
+      .optional(),
+    // Terms page
+    contactInfo: z
+      .object({
+        company: z.string(),
+        department: z.string(),
+        email: z.string(),
+      })
+      .optional(),
   }),
 });
 
@@ -87,10 +107,91 @@ const articles = defineCollection({
     }),
 });
 
+const listings = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      rating: z.number().min(0).max(5),
+      reviewCount: z.number(),
+      googleRating: z.number().min(0).max(5).optional(),
+      breadcrumbs: z.array(
+        z.object({
+          label: z.string(),
+          href: z.string().optional(),
+        })
+      ),
+      // Badges
+      isVerified: z.boolean().default(true),
+      isDbsChecked: z.boolean().default(false),
+      isEmergency: z.boolean().default(false),
+      // At a Glance
+      established: z.string().optional(),
+      focus: z.string().optional(),
+      insurance: z.string().optional(),
+      callOutFee: z.string().optional(),
+      // Contact
+      phone: z.string(),
+      responseTime: z.string().optional(),
+      // Status & Hours
+      status: z.enum(["Open Now", "Closed", "24 Hours"]).default("Open Now"),
+      openingHours: z
+        .array(
+          z.object({
+            day: z.string(),
+            hours: z.string(),
+          })
+        )
+        .optional(),
+      // Verification
+      isIdentityVerified: z.boolean().default(false),
+      isInsuranceChecked: z.boolean().default(false),
+      // Services
+      servicesOffered: z
+        .array(
+          z.object({
+            icon: z.string(),
+            title: z.string(),
+            description: z.string(),
+          })
+        )
+        .optional(),
+      // Service Area
+      serviceAreaRadius: z.string().optional(),
+      serviceAreas: z.array(z.string()).optional(),
+      serviceAreaMap: image().optional(),
+      serviceAreaMapAlt: z.string().optional(),
+      // Reviews (from directory)
+      directoryReviews: z
+        .array(
+          z.object({
+            author: z.string(),
+            initials: z.string(),
+            date: z.string(),
+            rating: z.number().min(1).max(5),
+            comment: z.string(),
+            isVerified: z.boolean().default(true),
+          })
+        )
+        .optional(),
+      // External Reviews
+      externalReviews: z
+        .array(
+          z.object({
+            platform: z.string(),
+            rating: z.number(),
+            reviewCount: z.number(),
+          })
+        )
+        .optional(),
+    }),
+});
+
 export const collections = {
   pages,
   services,
   reviews,
   locations,
   articles,
+  listings,
 };

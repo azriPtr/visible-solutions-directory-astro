@@ -1,0 +1,555 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import FAQ from "../components/FAQ.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "add-business");
+if (!entry) {
+  throw new Error("Add Business content not found");
+}
+
+const { title, description } = entry.data;
+
+const seoData = {
+  title: `${title} | UK Locksmith Directory`,
+  description,
+};
+
+// FAQ data
+const faqs = [
+  {
+    question: "Is there a contract?",
+    answer:
+      'No. We believe in earning your business every month. There are no long-term lock-ins or "initial setup charges."',
+  },
+  {
+    question: "Do you sell leads to other locksmiths?",
+    answer:
+      "Never. Customers contact you directly via phone or your website. We are not a directory-buy, not a lead agency.",
+  },
+  {
+    question: "What if I already have a website?",
+    answer:
+      "Perfect! Your directory listing will link directly to your existing site, driving more traffic and improving your local SEO.",
+  },
+  {
+    question: "How long does verification take?",
+    answer:
+      "Basic identity verification is typically completed within 24 hours. Optional trust upgrades (DBS, insurance) may take 2-3 business days depending on document availability.",
+  },
+];
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="bg-base-50 py-16">
+    <!-- Hero Section -->
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-8 text-center">
+        <div class="mb-4 flex items-center justify-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-success">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+          <span class="text-sm text-base-content/60"
+            >Join 1,200+ Verified UK Locksmiths</span
+          >
+        </div>
+
+        <h1 class="mb-4 text-4xl font-bold text-primary md:text-5xl">
+          {title}
+        </h1>
+
+        <p class="mx-auto max-w-2xl text-lg text-base-content/70">
+          {description}
+        </p>
+      </div>
+
+      <!-- Main Action Cards -->
+      <div class="mb-8 grid gap-6 lg:grid-cols-2">
+        <!-- Claim Existing Listing Card -->
+        <div class="rounded-lg border border-base-200 bg-white p-8">
+          <div class="mb-4 flex items-center gap-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-success">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <h2 class="text-xl font-bold text-primary">
+              Claim an existing listing
+            </h2>
+          </div>
+
+          <p class="mb-6 text-sm text-base-content/70">
+            Search for your business to unlock your profile and manage your
+            data.
+          </p>
+
+          <form class="mb-4">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Business name or Postcode"
+                class="input input-bordered w-full pr-10"
+              />
+              <button
+                type="submit"
+                class="absolute right-3 top-1/2 -translate-y-1/2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-base-content/40">
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Add New Business Card -->
+        <div class="rounded-lg bg-primary p-8 text-white">
+          <div class="mb-4 flex items-center gap-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5v14"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Add a new locksmith business</h2>
+          </div>
+
+          <p class="mb-6 text-sm text-white/90">
+            New to the directory? Create a verified profile in under 2 minutes.
+          </p>
+
+          <Button
+            variant="secondary"
+            size="lg"
+            href="#create-listing"
+            class="w-full bg-[#34d399] text-primary hover:bg-accent/90"
+            iconRight="icon-[tabler--arrow-right]">
+            Create Free Listing
+          </Button>
+        </div>
+      </div>
+
+      <!-- Benefits Row -->
+      <div
+        class="flex flex-wrap justify-center gap-6 text-sm text-base-content/60 mb-16">
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-success">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+          <span>No long-term contracts</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-success">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+          <span>Keep control of your reviews</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-success">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+          <span>Verified listings rank higher</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why List Section -->
+    <section class="bg-surface">
+      <div class="mx-auto max-w-7xl px-6 py-16">
+        <div class="mb-12 text-center">
+          <h2 class="mb-4 text-3xl font-bold text-primary">
+            Why list with UK Locksmith Directory?
+          </h2>
+          <p class="mx-auto max-w-2xl text-base-content/70">
+            We are building a transparent ecosystem where customers connect
+            directly with vetted experts.
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-3">
+          <!-- Direct Customer Contact -->
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Direct Customer Contact
+            </h3>
+            <p class="text-sm text-base-content/70">
+              Phones ringing, vans on the road. When a customer finds you here,
+              they call your number directly. We do not sit in the middle or
+              route calls through a switchboard.
+            </p>
+          </div>
+
+          <!-- Review Integrity -->
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Review Integrity
+            </h3>
+            <p class="text-sm text-base-content/70">
+              We don't hijack your reputation. Your profile links directly to
+              your existing Google Reviews, helping you build authority on the
+              platform that matters most.
+            </p>
+          </div>
+
+          <!-- Zero Lead Resale -->
+          <div class="text-center">
+            <div
+              class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Zero Lead Resale
+            </h3>
+            <p class="text-sm text-base-content/70">
+              We are not a lead agency. We don't sell the same customer enquiry
+              to 5 different locksmiths causing a race to the bottom on price.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Roadmap -->
+    <section class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mb-12 text-center">
+          <h2 class="mb-4 text-3xl font-bold text-primary">
+            The Verification Roadmap
+          </h2>
+          <p class="mx-auto max-w-2xl text-base-content/70">
+            A simple process designed to keep scammers out and legitimate
+            businesses visible.
+          </p>
+        </div>
+
+        <!-- Roadmap Steps -->
+        <div class="mx-auto max-w-3xl">
+          <div class="relative">
+            <!-- Step 1 -->
+            <div class="flex items-center justify-between gap-8 py-8">
+              <div class="flex-1 text-right">
+                <h3 class="mb-1 text-lg font-bold text-primary">
+                  Create Account
+                </h3>
+                <p class="text-sm text-base-content/70">
+                  Name, Email & Password
+                </p>
+              </div>
+              <div
+                class="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-success/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-success">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                  <path d="M16 11h6"></path>
+                  <path d="M19 8v6"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Connector Line -->
+            <div class="absolute right-[23px] top-22 h-16 w-px bg-base-200">
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex items-center justify-between gap-8 py-8">
+              <div class="flex-1 text-right">
+                <h3 class="mb-1 text-lg font-bold text-primary">
+                  Identity Verification
+                </h3>
+                <p class="mb-2 text-sm text-base-content/70">
+                  Phone OTP & Postcode Check
+                </p>
+                <span
+                  class="inline-block rounded bg-success/10 px-2 py-1 text-xs font-semibold text-success">
+                  Required to Publish
+                </span>
+              </div>
+              <div
+                class="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Connector Line -->
+            <div class="absolute right-[23px] top-54 h-16 w-px bg-base-200">
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex items-center justify-between gap-8 py-8">
+              <div class="flex-1 text-right">
+                <h3 class="mb-1 text-lg font-bold text-primary">
+                  Trust Upgrades (Optional)
+                </h3>
+                <p class="text-sm text-base-content/70">
+                  DBS Check, Insurance, Associations
+                </p>
+              </div>
+              <div
+                class="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-warning/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-warning">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path
+                    d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
+                  ></path>
+                  <path
+                    d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
+                  ></path>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="bg-surface">
+      <div class="mx-auto max-w-7xl px-6 py-16">
+        <div class="overflow-hidden rounded-lg border border-base-200 bg-white">
+          <table class="w-full">
+            <thead class="bg-base-50">
+              <tr>
+                <th
+                  class="px-6 py-4 text-left text-sm font-semibold text-base-content">
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-base-content">
+                  Claim Listing
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-base-content">
+                  Add New
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-base-200">
+              <tr>
+                <td class="px-6 py-4 text-sm font-medium text-base-content">
+                  Time to Live
+                </td>
+                <td class="px-6 py-4 text-center text-sm text-base-content/70">
+                  Instant
+                </td>
+                <td class="px-6 py-4 text-center text-sm text-base-content/70">
+                  &lt;24 Hours
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm font-medium text-base-content">
+                  Verification
+                </td>
+                <td class="px-6 py-4 text-center text-sm text-base-content/70">
+                  Ownership Proof
+                </td>
+                <td class="px-6 py-4 text-center text-sm text-base-content/70">
+                  Identity Check
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm font-medium text-base-content">
+                  Cost
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <span class="font-semibold text-success">Free</span>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <span class="font-semibold text-success">Free</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="mb-4 text-sm text-base-content/60">
+            Looking for enterprise tools?
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+            View SaaS Lead Tools
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <FAQ
+      title="Frequently Asked Questions"
+      faqs={faqs}
+      backgroundColor="bg-base-50"
+      showCTA={false}
+    />
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
 import { getEntry } from "astro:content";
@@ -19,8 +17,6 @@ const seoData = {
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="bg-white py-16">
     <div class="mx-auto max-w-7xl px-6">
       <!-- Page Title -->
@@ -35,7 +31,8 @@ const seoData = {
 
       <!-- Contents Navigation -->
       <div class="mb-16 rounded-lg border border-base-200 bg-base-50 p-6">
-        <h2 class="mb-4 text-xs font-bold uppercase tracking-wider text-base-content/60">
+        <h2
+          class="mb-4 text-xs font-bold uppercase tracking-wider text-base-content/60">
           Contents
         </h2>
         <div class="flex flex-wrap gap-x-6 gap-y-2">
@@ -276,8 +273,8 @@ const seoData = {
               </h3>
             </div>
             <p class="text-sm leading-relaxed text-base-content/70">
-              Identity and business details (address, ownership, and phone)
-              have been manually checked by our internal verification team.
+              Identity and business details (address, ownership, and phone) have
+              been manually checked by our internal verification team.
             </p>
           </div>
 
@@ -325,15 +322,15 @@ const seoData = {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="text-warning">
-                <path
-                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"
-                ></path>
-                <path
-                  d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"
-                ></path>
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
                 <path d="M4 22h16"></path>
-                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path
+                  d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
+                ></path>
+                <path
+                  d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
+                ></path>
                 <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
               </svg>
               <h3 class="text-base font-bold text-base-content">MLA Member</h3>
@@ -404,9 +401,8 @@ const seoData = {
         </h2>
 
         <p class="mb-8 leading-relaxed text-base-content/70">
-          We provide a 360-degree view of a provider's reputation by
-          aggregating ratings from our directory and external authority
-          platforms.
+          We provide a 360-degree view of a provider's reputation by aggregating
+          ratings from our directory and external authority platforms.
         </p>
 
         <div class="mb-6 grid gap-6 sm:grid-cols-2">
@@ -454,7 +450,8 @@ const seoData = {
                 stroke-linejoin="round"
                 class="text-primary">
                 <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
+                ></path>
                 <path d="M2 12h20"></path>
               </svg>
               <h3 class="text-base font-bold text-base-content">
@@ -471,9 +468,9 @@ const seoData = {
 
         <!-- Note -->
         <p class="text-xs italic text-base-content/50">
-          <span class="font-bold">Disclaimer:</span> We strive not to interfere
-          as an intermediary in third-party sites. Ratings or reviews may not
-          always represent the most recent update.
+          <span class="font-bold">Disclaimer:</span> We strive not to interfere as
+          an intermediary in third-party sites. Ratings or reviews may not always
+          represent the most recent update.
         </p>
       </section>
 
@@ -497,8 +494,7 @@ const seoData = {
           <li class="text-sm leading-relaxed text-base-content/70">
             Providers who fail to meet ongoing trust standards, lack valid
             insurance, or are found to be operating fraudulently are <span
-              class="font-semibold text-base-content"
-              >removed permanently</span
+              class="font-semibold text-base-content">removed permanently</span
             > and assigned a <span class="font-semibold text-base-content"
               >410 (Gone)</span
             > status.
@@ -524,8 +520,7 @@ const seoData = {
 
         <div class="space-y-4">
           <!-- FAQ 1 -->
-          <details
-            class="group rounded-lg border border-base-200 bg-white p-6">
+          <details class="group rounded-lg border border-base-200 bg-white p-6">
             <summary
               class="flex cursor-pointer items-center justify-between font-semibold text-base-content">
               <span>Can a locksmith pay to be verified?</span>
@@ -544,16 +539,15 @@ const seoData = {
             <div class="mt-4 border-t border-base-200 pt-4">
               <p class="text-sm leading-relaxed text-base-content/70">
                 <span class="font-semibold text-base-content">No.</span> Verification
-                is an entirely safety-and-identity check that cannot be bypassed
-                or purchased. While providers may pay for increased visibility via
-                promoted listings, they must pass our standard vetting process first.
+                is an entirely safety-and-identity check that cannot be bypassed or
+                purchased. While providers may pay for increased visibility via promoted
+                listings, they must pass our standard vetting process first.
               </p>
             </div>
           </details>
 
           <!-- FAQ 2 -->
-          <details
-            class="group rounded-lg border border-base-200 bg-white p-6">
+          <details class="group rounded-lg border border-base-200 bg-white p-6">
             <summary
               class="flex cursor-pointer items-center justify-between font-semibold text-base-content">
               <span>Do promoted listings skip checks?</span>
@@ -579,8 +573,7 @@ const seoData = {
           </details>
 
           <!-- FAQ 3 -->
-          <details
-            class="group rounded-lg border border-base-200 bg-white p-6">
+          <details class="group rounded-lg border border-base-200 bg-white p-6">
             <summary
               class="flex cursor-pointer items-center justify-between font-semibold text-base-content">
               <span>How often are checks repeated?</span>
@@ -607,8 +600,7 @@ const seoData = {
           </details>
 
           <!-- FAQ 4 -->
-          <details
-            class="group rounded-lg border border-base-200 bg-white p-6">
+          <details class="group rounded-lg border border-base-200 bg-white p-6">
             <summary
               class="flex cursor-pointer items-center justify-between font-semibold text-base-content">
               <span>What happens if a locksmith fails a check?</span>
@@ -638,6 +630,4 @@ const seoData = {
       </section>
     </div>
   </main>
-
-  <Footer />
 </Layout>

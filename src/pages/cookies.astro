@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
 import { getEntry } from "astro:content";
@@ -10,8 +8,7 @@ if (!entry) {
   throw new Error("Cookie Policy content not found");
 }
 
-const { title, description, lastUpdated, policyVersion } =
-  entry.data;
+const { title, description, lastUpdated, policyVersion } = entry.data;
 
 const seoData = {
   title: `${title} | UK Locksmith Directory`,
@@ -20,8 +17,6 @@ const seoData = {
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="bg-white py-16">
     <div class="mx-auto max-w-7xl px-6">
       <!-- Page Title -->
@@ -227,7 +222,9 @@ const seoData = {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="text-base-content/60">
-                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <path
+                  d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+                ></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
               <h3 class="text-base font-bold text-base-content">Functional</h3>
@@ -333,6 +330,4 @@ const seoData = {
       </article>
     </div>
   </main>
-
-  <Footer />
 </Layout>

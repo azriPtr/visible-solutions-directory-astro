@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import { getEntry } from "astro:content";
 
@@ -9,13 +7,8 @@ if (!entry) {
   throw new Error("Terms of Service content not found");
 }
 
-const {
-  title,
-  description,
-  lastUpdated,
-  policyVersion,
-  contactInfo,
-} = entry.data;
+const { title, description, lastUpdated, policyVersion, contactInfo } =
+  entry.data;
 
 const seoData = {
   title: `${title} | UK Locksmith Directory`,
@@ -24,8 +17,6 @@ const seoData = {
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="bg-white py-16">
     <div class="mx-auto max-w-7xl px-6">
       <!-- Page Title -->
@@ -370,6 +361,4 @@ const seoData = {
       </article>
     </div>
   </main>
-
-  <Footer />
 </Layout>

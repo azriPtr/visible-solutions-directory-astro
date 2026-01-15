@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import PageHero from "../components/PageHero.astro";
 import Button from "../components/Button.astro";
@@ -12,8 +10,7 @@ if (!entry) {
 }
 
 const { Content } = await entry.render();
-const { title, description, infoBox, contactChannels } =
-  entry.data;
+const { title, description, infoBox, contactChannels } = entry.data;
 
 const seoData = {
   title: `${title} | UK Locksmith Directory`,
@@ -22,8 +19,6 @@ const seoData = {
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="mx-auto max-w-7xl px-4 sm:px-6">
     <PageHero {title} {description}>
       <!-- Info Box -->
@@ -190,6 +185,4 @@ const seoData = {
       </div>
     </div>
   </main>
-
-  <Footer />
 </Layout>

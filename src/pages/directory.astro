@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import PageHero from "../components/PageHero.astro";
 import Button from "../components/Button.astro";
@@ -103,8 +101,6 @@ const specializedServices = [
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="bg-base-50">
     <!-- Hero Section -->
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
@@ -162,7 +158,9 @@ const specializedServices = [
         </h2>
 
         <!-- England Counties -->
-        <details class="group mb-6 rounded-lg border border-base-200 bg-white" open>
+        <details
+          class="group mb-6 rounded-lg border border-base-200 bg-white"
+          open>
           <summary
             class="flex cursor-pointer items-center justify-between px-6 py-4 font-bold text-primary hover:bg-base-50 transition-colors">
             <span>England</span>
@@ -364,7 +362,8 @@ const specializedServices = [
 
         <div class="grid gap-6 md:grid-cols-3">
           <!-- Stat Card 1 -->
-          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+          <div
+            class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
             <div class="mb-2 text-5xl font-bold text-primary">48</div>
             <div class="text-sm font-semibold text-base-content/70">
               Counties Covered
@@ -372,7 +371,8 @@ const specializedServices = [
           </div>
 
           <!-- Stat Card 2 -->
-          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+          <div
+            class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
             <div class="mb-2 text-5xl font-bold text-primary">1,200+</div>
             <div class="text-sm font-semibold text-base-content/70">
               Verified Professionals
@@ -380,7 +380,8 @@ const specializedServices = [
           </div>
 
           <!-- Stat Card 3 -->
-          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+          <div
+            class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
             <div class="mb-2 text-5xl font-bold text-primary">24/7</div>
             <div class="text-sm font-semibold text-base-content/70">
               Availability
@@ -414,6 +415,4 @@ const specializedServices = [
       </div>
     </section>
   </main>
-
-  <Footer />
 </Layout>

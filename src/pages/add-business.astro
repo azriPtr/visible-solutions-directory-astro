@@ -1,6 +1,4 @@
 ---
-
-
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
 import FAQ from "../components/FAQ.astro";
@@ -44,8 +42,6 @@ const faqs = [
 ---
 
 <Layout {...seoData}>
-  <Header />
-
   <main class="bg-base-50 py-16">
     <!-- Hero Section -->
     <div class="mx-auto max-w-7xl px-6">
@@ -344,7 +340,7 @@ const faqs = [
         </div>
 
         <!-- Roadmap Steps -->
-        <div class="mx-auto max-w-3xl">
+        <div class="mx-auto">
           <div class="relative">
             <!-- Step 1 -->
             <div class="flex items-center justify-between gap-8 py-8">
@@ -550,6 +546,4 @@ const faqs = [
       showCTA={false}
     />
   </main>
-
-  <Footer />
 </Layout>

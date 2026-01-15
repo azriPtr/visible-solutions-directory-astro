@@ -5,8 +5,8 @@ interface Props {
   title: string;
   description: string;
   items: any[];
-  viewAllText: string;
-  viewAllUrl: string;
+  viewAllText?: string;
+  viewAllUrl?: string;
   columns?: "3" | "4"; // lg:grid-cols-3 or lg:grid-cols-4
   backgroundColor?: string;
   showArrow?: boolean;
@@ -46,26 +46,28 @@ const gridColsClass = columns === "3" ? "lg:grid-cols-3" : "lg:grid-cols-4";
     </ol>
 
     <!-- View All CTA -->
-    <div class="text-center mt-8">
-      <a
-        href={viewAllUrl}
-        class={`${showArrow ? "inline-flex items-center gap-1" : ""} text-sm font-bold text-primary hover:text-secondary transition-colors`}>
-        {viewAllText}
-        {
-          showArrow && (
-            <svg
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M5 12h14m-7-7 7 7-7 7" />
-            </svg>
-          )
-        }
-      </a>
-    </div>
+    {
+      viewAllText && viewAllUrl && (
+        <div class="text-center mt-8">
+          <a
+            href={viewAllUrl}
+            class={`${showArrow ? "inline-flex items-center gap-1" : ""} text-sm font-bold text-primary hover:text-secondary transition-colors`}>
+            {viewAllText}
+            {showArrow && (
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
+            )}
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>

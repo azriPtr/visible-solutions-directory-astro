@@ -1,0 +1,526 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import PageHero from "../components/PageHero.astro";
+
+const seoData = {
+  title: "Locksmith Articles & Security Advice | UK Locksmith Directory",
+  description:
+    "A comprehensive library of expert advice to help you manage home security, understand locksmith services, and make informed decisions. From lockout tips to legal requirements for landlords, explore our vetted resources.",
+};
+
+// Featured articles data
+const featuredArticles = [
+  {
+    category: "TECHNICAL",
+    title: "The Complete Guide to British Standard Locks",
+    description:
+      "Understanding BS3621 and why insurance companies may require these specific standards for your property.",
+    image: "/article-placeholder.png",
+    imageAlt: "British Standard Locks illustration",
+    linkUrl: "/articles/british-standard-locks",
+    linkText: "Read article",
+  },
+  {
+    category: "LANDLORDS",
+    title: "Rental Property Security Requirements 2024",
+    description:
+      "A breakdown of legal obligations for landlords regarding locks, key management, and tenant safety.",
+    image: "/article-placeholder.png",
+    imageAlt: "Rental property security illustration",
+    linkUrl: "/articles/rental-security-requirements",
+    linkText: "Read article",
+  },
+  {
+    category: "ADVICE",
+    title: "What to Do When You Lose Your House Keys",
+    description:
+      "Immediate steps to take for security when to change your locks, and how to prevent future incidents.",
+    image: "/article-placeholder.png",
+    imageAlt: "Lost house keys illustration",
+    linkUrl: "/articles/lost-house-keys",
+    linkText: "Read article",
+  },
+  {
+    category: "VERIFICATION",
+    title: "Identifying a Legitimate Locksmith",
+    description:
+      "How to spot rogue traders, verify ID badges, and understand the difference between national call centers and local pros.",
+    image: "/article-placeholder.png",
+    imageAlt: "Locksmith verification illustration",
+    linkUrl: "/articles/legitimate-locksmith",
+    linkText: "Read article",
+  },
+  {
+    category: "MAINTENANCE",
+    title: "uPVC Door Lock Maintenance Tips",
+    description:
+      "Why your multipoint lock might be sticking and simple maintenance routines to extend its lifespan.",
+    image: "/article-placeholder.png",
+    imageAlt: "uPVC door maintenance illustration",
+    linkUrl: "/articles/upvc-maintenance",
+    linkText: "Read article",
+  },
+  {
+    category: "COMMERCIAL",
+    title: "Master Key Systems for Businesses",
+    description:
+      "Exploring the benefits of tiered access control and how master key suites improve internal security.",
+    image: "/article-placeholder.png",
+    imageAlt: "Master key systems illustration",
+    linkUrl: "/articles/master-key-systems",
+    linkText: "Read article",
+  },
+];
+---
+
+<Layout {...seoData}>
+  <div class="bg-base-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <!-- Page Hero -->
+      <PageHero
+        title="Locksmith articles & security advice"
+        description="A comprehensive library of expert advice to help you manage home security, understand locksmith services, and make informed decisions. From lockout tips to legal requirements for landlords, explore our vetted resources.">
+        <!-- Search Bar -->
+        <div class="mb-6 max-w-2xl">
+          <div class="relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-base-content/40">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input
+              type="search"
+              placeholder="Search articles (e.g. 'tenant rights', 'BS3621 locks')"
+              class="w-full rounded-lg border border-base-200 bg-white py-3 pl-12 pr-4 text-base text-base-content placeholder:text-base-content/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            />
+          </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2">
+          <span class="text-sm font-semibold text-base-content/60"
+            >BROWSE BY:</span
+          >
+          <button
+            class="rounded-md bg-white px-4 py-2 text-sm font-medium text-base-content transition-colors hover:bg-primary hover:text-white">
+            Homeowners
+          </button>
+          <button
+            class="rounded-md bg-white px-4 py-2 text-sm font-medium text-base-content transition-colors hover:bg-primary hover:text-white">
+            Tenants
+          </button>
+          <button
+            class="rounded-md bg-white px-4 py-2 text-sm font-medium text-base-content transition-colors hover:bg-primary hover:text-white">
+            Landlords
+          </button>
+          <button
+            class="rounded-md bg-white px-4 py-2 text-sm font-medium text-base-content transition-colors hover:bg-primary hover:text-white">
+            Business Owners
+          </button>
+        </div>
+      </PageHero>
+
+      <!-- Featured Articles -->
+      <section class="mb-16">
+        <h2 class="mb-8 text-2xl font-bold text-primary">Featured Articles</h2>
+
+        <ul class="grid list-none gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {
+            featuredArticles.map((article) => (
+              <Card
+                variant="article"
+                category={article.category}
+                title={article.title}
+                description={article.description}
+                image={article.image}
+                imageAlt={article.imageAlt}
+                linkUrl={article.linkUrl}
+                linkText={article.linkText}
+              />
+            ))
+          }
+        </ul>
+      </section>
+
+      <!-- Home Security Section -->
+      <section class="mb-16">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary">Home Security</h2>
+          <a
+            href="/articles/home-security"
+            class="text-sm font-semibold text-primary hover:underline">
+            View all →
+          </a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Article Link 1 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Smart Locks vs Traditional Deadbolts
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              A comparison of security features and vulnerability assessments.
+            </p>
+            <a
+              href="/articles/smart-locks-comparison"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 2 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Securing Patio Doors
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Anti-snap cylinders and supplementary locks for vulnerable entry
+              points.
+            </p>
+            <a
+              href="/articles/patio-door-security"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 3 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Moving House Checklist
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Why changing locks should be your first priority when moving to a
+              new property.
+            </p>
+            <a
+              href="/articles/moving-house-locks"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+        </div>
+
+        <!-- Find Specialist CTA -->
+        <div
+          class="mt-8 flex items-center gap-3 rounded-lg bg-white p-6 shadow-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-6 text-base-content/40">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <a
+            href="/search"
+            class="text-sm font-semibold text-primary hover:underline">
+            Find a residential specialist near you
+          </a>
+        </div>
+      </section>
+
+      <!-- Landlord Compliance Section -->
+      <section class="mb-16">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary">Landlord Compliance</h2>
+          <a
+            href="/articles/landlord-compliance"
+            class="text-sm font-semibold text-primary hover:underline">
+            View all →
+          </a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Article Link 1 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              HMO Licensing & Locks
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Specific requirements for Houses in Multiple Occupation and
+              fire-rated doors.
+            </p>
+            <a
+              href="/articles/hmo-licensing"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 2 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Emergency Access Rules
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              When landlords can legally enter a property and rules around key
+              retention.
+            </p>
+            <a
+              href="/articles/emergency-access"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 3 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Between Tenancies
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Best practices for key management and cylinder changes when
+              tenants leave.
+            </p>
+            <a
+              href="/articles/between-tenancies"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Business Security Section -->
+      <section class="mb-16">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary">Business Security</h2>
+          <a
+            href="/articles/business-security"
+            class="text-sm font-semibold text-primary hover:underline">
+            View all →
+          </a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Article Link 1 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Fire Safety vs Security
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Balancing emergency egress with intrusion prevention in commercial
+              spaces.
+            </p>
+            <a
+              href="/articles/fire-safety-security"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 2 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Access Control Basics
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Digital entry systems for small offices, keypads, and fob
+              management.
+            </p>
+            <a
+              href="/articles/access-control"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+
+          <!-- Article Link 3 -->
+          <article class="rounded-lg border border-base-200 bg-white p-6">
+            <h3 class="mb-2 text-lg font-bold text-primary">
+              Commercial Insurance
+            </h3>
+            <p class="mb-4 text-sm text-base-content/70">
+              Lock standards required for business premises coverage and claims.
+            </p>
+            <a
+              href="/articles/commercial-insurance"
+              class="text-sm font-semibold text-primary hover:underline">
+              Read article →
+            </a>
+          </article>
+        </div>
+
+        <!-- Find Specialist CTA -->
+        <div
+          class="mt-8 flex items-center gap-3 rounded-lg bg-white p-6 shadow-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-6 text-base-content/40">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <a
+            href="/search?type=commercial"
+            class="text-sm font-semibold text-primary hover:underline">
+            Find a commercial security partner
+          </a>
+        </div>
+      </section>
+
+      <!-- Essential Resources Section -->
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          Essential Resources
+        </h2>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Resource Link 1 -->
+          <a
+            href="/glossary"
+            class="flex items-center gap-4 rounded-lg border border-base-200 bg-white p-6 transition-all hover:border-primary hover:shadow-md">
+            <div
+              class="flex size-12 items-center justify-center rounded-lg bg-base-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path
+                  d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="mb-1 font-bold text-primary">
+                Glossary of Locksmith Terms
+              </h3>
+              <p class="text-sm text-base-content/70">
+                Common industry terminology explained in plain English
+              </p>
+            </div>
+          </a>
+
+          <!-- Resource Link 2 -->
+          <a
+            href="/faq"
+            class="flex items-center gap-4 rounded-lg border border-base-200 bg-white p-6 transition-all hover:border-primary hover:shadow-md">
+            <div
+              class="flex size-12 items-center justify-center rounded-lg bg-base-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="mb-1 font-bold text-primary">
+                Frequently Asked Questions
+              </h3>
+              <p class="text-sm text-base-content/70">
+                Quick answers to the most common locksmith queries
+              </p>
+            </div>
+          </a>
+
+          <!-- Resource Link 3 -->
+          <a
+            href="/trust"
+            class="flex items-center gap-4 rounded-lg border border-base-200 bg-white p-6 transition-all hover:border-primary hover:shadow-md">
+            <div
+              class="flex size-12 items-center justify-center rounded-lg bg-base-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="mb-1 font-bold text-primary">
+                Trust & Verification Standards
+              </h3>
+              <p class="text-sm text-base-content/70">
+                How we verify locksmiths and what our badges mean
+              </p>
+            </div>
+          </a>
+
+          <!-- Resource Link 4 -->
+          <a
+            href="/partners"
+            class="flex items-center gap-4 rounded-lg border border-base-200 bg-white p-6 transition-all hover:border-primary hover:shadow-md">
+            <div
+              class="flex size-12 items-center justify-center rounded-lg bg-base-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="mb-1 font-bold text-primary">
+                Industry Partners & Associations
+              </h3>
+              <p class="text-sm text-base-content/70">
+                Trade bodies and organizations we reference for verification
+              </p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

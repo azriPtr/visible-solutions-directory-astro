@@ -3,14 +3,6 @@ title: "Brum City Security"
 rating: 4.9
 reviewCount: 12
 googleRating: 4.8
-breadcrumbs:
-  - label: "Home"
-    href: "/"
-  - label: "West Midlands"
-    href: "/locations/west-midlands"
-  - label: "Birmingham"
-    href: "/locations/birmingham"
-  - label: "Brum City Security"
 
 # Badges
 isVerified: true

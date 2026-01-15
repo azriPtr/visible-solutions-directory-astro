@@ -1,9 +1,10 @@
 ---
 import logo from "../assets/logo.svg";
 import Button from "./Button.astro";
+import { mainNavigation, type NavGroup } from "../data/navigation";
 ---
 
-<header class="sticky">
+<header class="sticky top-0 z-50 bg-white shadow-sm">
   <div class="flex flex-row justify-between mx-auto max-w-7xl px-6 py-4">
     <!-- Logo -->
     <div class="flex">
@@ -18,10 +19,10 @@ import Button from "./Button.astro";
       </a>
     </div>
 
-    <!-- Emergency Button -->
+    <!-- Emergency Button & Navigation -->
     <div class="flex gap-4">
       <div class="">
-        <Button variant="outline" size="sm" href="#" class="group">
+        <Button variant="outline" size="sm" href="/emergency" class="group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -41,18 +42,17 @@ import Button from "./Button.astro";
         </Button>
       </div>
 
-      <!-- Desktop menu -->
-      <div class="hidden sm:inline-flex dropdown relative">
+      <!-- Desktop Menu Dropdown (CSS-only, no JavaScript) -->
+      <div class="hidden sm:inline-flex relative group">
+        <!-- Dropdown Trigger -->
         <button
-          id="dropdown-title"
           type="button"
-          class="dropdown-toggle btn btn-text btn-primary text-sm"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          aria-label="Dropdown">
+          class="inline-flex items-center gap-1 rounded-md px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary/20"
+          aria-haspopup="true"
+          aria-label="Explore menu">
           Explore
           <svg
-            class="dropdown-open:rotate-180 size-5 transition-transform duration-200"
+            class="size-5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="20"
@@ -65,14 +65,54 @@ import Button from "./Button.astro";
             <path d="m6 9 6 6 6-6"></path>
           </svg>
         </button>
+
+        <!-- Dropdown Menu (Shown on hover and focus-within) -->
+        <div
+          class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute right-0 top-full mt-2 w-[600px] rounded-lg border border-base-200 bg-white p-4 shadow-lg z-50 transition-all duration-200"
+          role="menu"
+          aria-label="Navigation menu">
+          <div class="grid grid-cols-2 gap-4">
+            {
+              mainNavigation.map((group: NavGroup) => (
+                <div>
+                  <div class="mb-3 px-3 text-xs font-bold uppercase tracking-wide text-base-content/60">
+                    {group.label}
+                  </div>
+                  <ul class="space-y-1">
+                    {group.items.map((item) => (
+                      <li>
+                        <a
+                          href={item.href}
+                          class="group/item block rounded-md px-3 py-2 transition-colors hover:bg-base-100 focus:outline-none focus:bg-base-100 focus:ring-2 focus:ring-primary/20">
+                          <div class="text-sm font-semibold text-base-content group-hover/item:text-primary">
+                            {item.label}
+                          </div>
+                          {item.description && (
+                            <div class="text-xs text-base-content/60">
+                              {item.description}
+                            </div>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
-      <!-- Mobile Menu -->
+
+      <!-- Mobile Menu Button -->
       <div class="sm:hidden flex items-center">
         <button
+          id="mobile-menu-button"
           type="button"
           class="flex h-9 w-9 items-center justify-center rounded-md text-primary transition-colors hover:bg-base-200 hover:text-[#1d3353]"
-          aria-label="Open menu">
+          aria-label="Open menu"
+          aria-expanded="false">
           <svg
+            id="menu-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -85,8 +125,124 @@ import Button from "./Button.astro";
             <line x1="4" x2="20" y1="6" y2="6"></line>
             <line x1="4" x2="20" y1="18" y2="18"></line>
           </svg>
+          <svg
+            id="close-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5 hidden">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-100 hidden bg-base-100 sm:hidden">
+    <div class="flex h-full w-full flex-col">
+      <!-- Mobile Menu Header -->
+      <div
+        class="flex items-center justify-between border-b border-base-200 p-4">
+        <span class="text-lg font-bold text-primary">Menu</span>
+        <button
+          id="mobile-menu-close"
+          type="button"
+          class="flex h-8 w-8 items-center justify-center rounded-md text-base-content transition-colors hover:bg-base-200"
+          aria-label="Close menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Content -->
+      <nav class="flex-1 overflow-y-auto p-4">
+        {
+          mainNavigation.map((group: NavGroup) => (
+            <div class="mb-6">
+              <div class="mb-3 text-xs font-bold uppercase tracking-wide text-base-content/60">
+                {group.label}
+              </div>
+              <ul class="space-y-1">
+                {group.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="block rounded-md px-3 py-2 text-sm font-semibold text-base-content transition-colors hover:bg-base-200 hover:text-primary">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
 </header>
+
+<!-- Mobile menu JavaScript (kept as mobile requires JS for full-screen overlay) -->
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  function openMobileMenu() {
+    mobileMenu?.classList.remove("hidden");
+    menuIcon?.classList.add("hidden");
+    closeIcon?.classList.remove("hidden");
+    mobileMenuButton?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileMenu() {
+    mobileMenu?.classList.add("hidden");
+    menuIcon?.classList.remove("hidden");
+    closeIcon?.classList.add("hidden");
+    mobileMenuButton?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  mobileMenuButton?.addEventListener("click", () => {
+    if (mobileMenu?.classList.contains("hidden")) {
+      openMobileMenu();
+    } else {
+      closeMobileMenu();
+    }
+  });
+
+  mobileMenuClose?.addEventListener("click", closeMobileMenu);
+
+  mobileMenu?.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) {
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+      closeMobileMenu();
+    }
+  });
+</script>

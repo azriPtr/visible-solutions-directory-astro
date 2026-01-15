@@ -1,6 +1,6 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+
+
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
 import { getEntry } from "astro:content";
@@ -10,7 +10,7 @@ if (!entry) {
   throw new Error("Cookie Policy content not found");
 }
 
-const { title, description, breadcrumbs, lastUpdated, policyVersion } =
+const { title, description, lastUpdated, policyVersion } =
   entry.data;
 
 const seoData = {

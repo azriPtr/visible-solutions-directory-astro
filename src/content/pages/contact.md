@@ -1,10 +1,6 @@
 ---
 title: "Contact us"
 description: "This page is for support, compliance, and general enquiries related to the UK Locksmith Directory platform. For emergency locksmith assistance, please return to our Emergency Hub. For all other matters, please select the appropriate channel below."
-breadcrumbs:
-  - label: "Home"
-    href: "/"
-  - label: "Contact"
 
 infoBox: "The UK Locksmith Directory is owned and operated by Visible Solutions LLC. For inquiries regarding corporate governance, data privacy, or international data transfer under UK GDPR, please use the 'Disputes & Governance' channel below."
 

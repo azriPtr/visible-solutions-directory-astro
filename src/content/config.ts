@@ -5,12 +5,6 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    breadcrumbs: z.array(
-      z.object({
-        label: z.string(),
-        href: z.string().optional(),
-      })
-    ),
     // About page
     governance: z
       .object({
@@ -115,12 +109,6 @@ const listings = defineCollection({
       rating: z.number().min(0).max(5),
       reviewCount: z.number(),
       googleRating: z.number().min(0).max(5).optional(),
-      breadcrumbs: z.array(
-        z.object({
-          label: z.string(),
-          href: z.string().optional(),
-        })
-      ),
       // Badges
       isVerified: z.boolean().default(true),
       isDbsChecked: z.boolean().default(false),
@@ -187,6 +175,26 @@ const listings = defineCollection({
     }),
 });
 
+// Guides collection (long-form editorial content)
+const guides = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    author: z
+      .object({
+        name: z.string(),
+        initials: z.string().optional(),
+        role: z.string().optional(),
+        bio: z.string().optional(),
+      })
+      .optional(),
+    publishedDate: z.string(),
+    readingTime: z.string().optional(),
+    category: z.string().optional(),
+  }),
+});
+
 export const collections = {
   pages,
   services,
@@ -194,4 +202,5 @@ export const collections = {
   locations,
   articles,
   listings,
+  guides,
 };

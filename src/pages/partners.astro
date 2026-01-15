@@ -1,0 +1,473 @@
+---
+
+
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+
+const seoData = {
+  title: "Partners & Associations | UK Locksmith Directory",
+  description:
+    "We collaborate with leading trade bodies, associations, and accreditation providers to maintain high standards across our directory.",
+};
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6">
+    <PageHero
+      title="Partners & associations"
+      description="We collaborate with leading trade bodies, associations, and accreditation providers to maintain high standards across our directory. Explore the organisations we reference in our verification process and learn what their standards mean for your security.">
+      <Button
+        href="/trust"
+        variant="outline"
+        size="md"
+        iconRight="icon-[tabler--arrow-right]">
+        How we verify locksmiths
+      </Button>
+    </PageHero>
+
+    <!-- Trade Associations -->
+    <section class="mb-16">
+      <div class="mb-8 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-primary">Trade Associations</h2>
+        <span class="text-sm text-base-content/50"
+          >Setting industry conduct</span
+        >
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Master Locksmiths Association -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <path d="M20 6 9 17l-5-5"></path>
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            Master Locksmiths Association
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            The primary trade body for locksmithing in the UK, setting standards
+            for training and conduct.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Associate Member</span
+            >
+            <a
+              href="https://locksmiths.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Institute of Certified Locksmiths -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <circle cx="12" cy="8" r="7"></circle>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"
+              ></polyline>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            Institute of Certified Locksmiths
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            A distinct non-profit organization focused on the educational
+            advancement of security professionals.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Standard Reference</span
+            >
+            <span class="text-sm text-base-content/50">Learn more</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Standards -->
+    <section class="mb-16">
+      <div class="mb-8 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-primary">Business Standards</h2>
+        <span class="text-sm text-base-content/50"
+          >Verifying commercial legitimacy</span
+        >
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- British Chambers of Commerce -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+              <path d="M9 22v-4h6v4"></path>
+              <path d="M8 6h.01"></path>
+              <path d="M16 6h.01"></path>
+              <path d="M12 6h.01"></path>
+              <path d="M12 10h.01"></path>
+              <path d="M12 14h.01"></path>
+              <path d="M16 10h.01"></path>
+              <path d="M16 14h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M8 14h.01"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            British Chambers of Commerce
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            A national network of accredited chambers of commerce supporting UK
+            businesses and standards.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Network Partner</span
+            >
+            <a
+              href="https://britishchambers.org.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Federation of Small Businesses -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            Federation of Small Businesses
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            The leading voice for small businesses in the UK, advocating for
+            fair practices and compliance.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Verification Partner</span
+            >
+            <a
+              href="https://fsb.org.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Infrastructure -->
+    <section class="mb-16">
+      <div class="mb-8 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-primary">
+          Verification Infrastructure
+        </h2>
+        <span class="text-sm text-base-content/50">Data and safety checks</span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Information Commissioner's Office -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            Information Commissioner's Office
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            The UK's independent authority set up to uphold information rights
+            and data privacy in the public interest.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Compliance Body</span
+            >
+            <a
+              href="https://ico.org.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+              Learn more
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Disclosure & Barring Service -->
+        <div
+          class="rounded-lg border border-base-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
+              <path d="M12 10a2 2 0 0 1 2 2c0 1.02-.1 2.51-.26 4"></path>
+              <path d="M12 10a6 6 0 0 0-6 6c0 5.4 3 7 3 7"></path>
+              <path d="M12 10a6 6 0 0 1 6 6c0 5.4-3 7-3 7"></path>
+              <path d="M12 2a2 2 0 0 0-2 2c0 1.02.1 2.51.26 4"></path>
+              <path d="M12 2a2 2 0 0 1 2 2c0 1.02-.1 2.51-.26 4"></path>
+              <path d="M12 2a6 6 0 0 0-6 6c0 5.4-3 7-3 7"></path>
+              <path d="M12 2a6 6 0 0 1 6 6c0 5.4 3 7 3 7"></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold text-primary">
+            Disclosure & Barring Service
+          </h3>
+          <p class="mb-4 text-sm text-base-content/70">
+            We utilise the DBS framework (formerly CRB) to validate background
+            checks provided by locksmiths.
+          </p>
+          <div class="flex items-center justify-between">
+            <span
+              class="rounded-md bg-base-100 px-3 py-1.5 text-xs font-semibold text-primary"
+              >Standard Only</span
+            >
+            <span class="text-sm text-base-content/50">Learn more</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why we reference these organisations -->
+    <section class="mb-16">
+      <h2 class="mb-8 text-2xl font-bold text-primary">
+        Why we reference these organisations
+      </h2>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Independent Validation -->
+        <div>
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Independent Validation
+          </h3>
+          <p class="text-sm leading-relaxed text-base-content/70">
+            We don't just take a locksmith's word for their qualifications. We
+            cross-reference their claims against the public registers of these
+            independent bodies to ensure legitimacy.
+          </p>
+        </div>
+
+        <!-- Ongoing Accountability -->
+        <div>
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              ></path>
+              <path d="M21 3v5h-5"></path>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              ></path>
+              <path d="M8 16H3v5"></path>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-lg font-bold text-primary">
+            Ongoing Accountability
+          </h3>
+          <p class="text-sm leading-relaxed text-base-content/70">
+            Membership statuses change. We monitor active memberships with our
+            partners to ensure that standards don't slip after the initial
+            verification is complete.
+          </p>
+        </div>
+
+        <!-- UK Standards -->
+        <div>
+          <div class="mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary size-6">
+              <path
+                d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
+              ></path>
+              <line x1="4" x2="4" y1="22" y2="15"></line>
+            </svg>
+          </div>
+          <h3 class="mb-3 text-lg font-bold text-primary">UK Standards</h3>
+          <p class="text-sm leading-relaxed text-base-content/70">
+            We prioritize UK-based entities with a proven history in security
+            and trade. This ensures that the standards applied are relevant to
+            British law and insurance requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

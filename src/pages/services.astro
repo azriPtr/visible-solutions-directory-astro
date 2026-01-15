@@ -1,0 +1,226 @@
+---
+
+
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+
+// Import from data layer (CMS-ready)
+import {
+  serviceCategories,
+  type ServiceCategory,
+  type ServiceItem,
+} from "../data/services/index";
+
+const seoData = {
+  title: "Locksmith Services We Cover | UK Locksmith Directory",
+  description:
+    "Explore the range of professional locksmith services available across our network. From emergency lockouts to advanced security upgrades, learn what each service involves and find the right specialist for your needs.",
+};
+
+// Service categories are now imported from data layer
+// No more inline data!
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="bg-base-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <!-- Hero Section -->
+      <PageHero
+        title="Locksmith services we cover"
+        description="Explore the range of professional locksmith services available across our network. From emergency lockouts to advanced security upgrades, learn what each service involves and find the right specialist for your needs.">
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <Button
+            href="/search"
+            variant="primary"
+            size="md"
+            iconRight="icon-[tabler--arrow-right]">
+            Search locksmiths near you
+          </Button>
+          <Button
+            href="#services"
+            variant="outline"
+            size="md"
+            iconLeft="icon-[tabler--list]">
+            Browse services by category
+          </Button>
+        </div>
+      </PageHero>
+
+      <!-- Category Quick Filter (Visual Only) -->
+      <section class="mb-12">
+        <div class="flex flex-wrap gap-3">
+          {
+            serviceCategories.map((category: ServiceCategory) => (
+              <a
+                href={`#${category.id}`}
+                class="rounded-lg border border-base-200 bg-white px-6 py-3 text-sm font-semibold text-base-content transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md">
+                {category.title}
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Service Category Sections -->
+      <div id="services" class="space-y-16">
+        {
+          serviceCategories.map((category: ServiceCategory) => (
+            <section id={category.id}>
+              <div class="mb-8">
+                <h2 class="mb-2 text-3xl font-bold text-primary">
+                  {category.title}
+                </h2>
+                <p class="text-base-content/60">
+                  {category.id === "emergency" &&
+                    "Rapid-response services for urgent locksmith needs"}
+                  {category.id === "everyday" &&
+                    "Regular locksmith services for home and business"}
+                  {category.id === "security" &&
+                    "Advanced security solutions and upgrades"}
+                </p>
+              </div>
+
+              <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {category.services.map((service: ServiceItem) => (
+                  <div class="group flex flex-col rounded-lg border border-base-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md">
+                    {/* Badge */}
+                    <div class="mb-4">
+                      <span
+                        class={`inline-block rounded-md px-3 py-1 text-xs font-bold uppercase tracking-wide ${
+                          service.badge.color === "error"
+                            ? "bg-error/10 text-error"
+                            : service.badge.color === "warning"
+                              ? "bg-warning/10 text-warning"
+                              : service.badge.color === "success"
+                                ? "bg-success/10 text-success"
+                                : service.badge.color === "secondary"
+                                  ? "bg-secondary/10 text-secondary"
+                                  : "bg-primary/10 text-primary"
+                        }`}>
+                        {service.badge.text}
+                      </span>
+                    </div>
+
+                    {/* Icon */}
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-base-100 text-primary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        {category.id === "emergency" && (
+                          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        )}
+                        {category.id === "everyday" && (
+                          <>
+                            <path d="M12 22v-5" />
+                            <path d="M9 8V2" />
+                            <path d="M15 8V2" />
+                            <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" />
+                          </>
+                        )}
+                        {category.id === "security" && (
+                          <>
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                            <path d="m9 12 2 2 4-4" />
+                          </>
+                        )}
+                      </svg>
+                    </div>
+
+                    {/* Title */}
+                    <h3 class="mb-2 text-xl font-bold text-primary">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p class="mb-4 flex-1 text-sm leading-relaxed text-base-content/70">
+                      {service.description}
+                    </p>
+
+                    {/* Common Scenarios */}
+                    <div class="mb-4">
+                      <div class="mb-2 text-xs font-bold uppercase tracking-wide text-base-content/60">
+                        Common Scenarios
+                      </div>
+                      <ul class="space-y-1.5">
+                        {service.scenarios.map((scenario: string) => (
+                          <li class="flex items-start gap-2 text-sm text-base-content/70">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="mt-0.5 flex-shrink-0 text-success">
+                              <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                            <span>{scenario}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA Link */}
+                    <a
+                      href={`/services/${service.slug}`}
+                      class="mt-auto inline-flex items-center gap-1 text-sm font-bold text-primary transition-all group-hover:gap-2">
+                      {service.ctaText}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="transition-transform">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <!-- Final CTA Section -->
+      <section
+        class="mt-16 rounded-lg border border-base-200 bg-white p-12 text-center shadow-sm">
+        <h2 class="mb-4 text-3xl font-bold text-primary">
+          Not sure which service you need?
+        </h2>
+        <p class="mb-8 text-base-content/70">
+          Our AI-powered tool helps you identify the right locksmith service
+          based on your specific situation and location.
+        </p>
+        <Button
+          href="/emergency"
+          variant="primary"
+          size="lg"
+          iconLeft="icon-[tabler--sparkles]">
+          Ask the AI Locksmith Finder
+        </Button>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

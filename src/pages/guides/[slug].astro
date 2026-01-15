@@ -1,0 +1,381 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+
+import Card from "../../components/Card.astro";
+import Button from "../../components/Button.astro";
+
+// Generate paths for all guides
+export async function getStaticPaths() {
+  const guides = await getCollection("guides");
+  return guides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+// Get the guide data
+const { guide } = Astro.props;
+const { Content, headings } = await guide.render();
+
+// Format date
+const publishedDate = new Date(guide.data.publishedDate).toLocaleDateString(
+  "en-GB",
+  {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }
+);
+
+const seoData = {
+  title: `${guide.data.title} | UK Locksmith Directory`,
+  description: guide.data.description,
+};
+
+// Mock related articles (in production, fetch based on category/tags)
+const relatedArticles = [
+  {
+    title: "What is Lock Snapping?",
+    description:
+      "Understanding the most common break-in method for uPVC doors and how to protect yourself.",
+    category: "SECURITY",
+    linkUrl: "/guides/lock-snapping",
+    image: "/article-placeholder.png",
+    imageAlt: "Lock snapping illustration",
+    linkText: "Read guide",
+  },
+  {
+    title: "New Home Security Checklist",
+    description:
+      "Why you should change locks when you move. Plus other first-day security checks.",
+    category: "ADVICE",
+    linkUrl: "/guides/new-home-security",
+    image: "/article-placeholder.png",
+    imageAlt: "New home security illustration",
+    linkText: "Read guide",
+  },
+  {
+    title: "Securing Sliding Patio Doors",
+    description:
+      "Supplementary locks and anti-lift bars to protect vulnerable entry points.",
+    category: "TECHNICAL",
+    linkUrl: "/guides/patio-door-security",
+    image: "/article-placeholder.png",
+    imageAlt: "Patio door security illustration",
+    linkText: "Read guide",
+  },
+];
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <article class="bg-base-50">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <!-- Article Header -->
+      <header class="py-12">
+        <!-- Breadcrumb -->
+        <nav class="mb-6 flex items-center gap-2 text-sm">
+          <a href="/" class="text-primary hover:underline">Home</a>
+          <span class="text-base-content/50">/</span>
+          <a href="/guides" class="text-primary hover:underline">Guides</a>
+          <span class="text-base-content/50">/</span>
+          {
+            guide.data.category && (
+              <>
+                <a
+                  href={`/guides/category/${guide.data.category.toLowerCase()}`}
+                  class="text-primary hover:underline">
+                  {guide.data.category}
+                </a>
+                <span class="text-base-content/50">/</span>
+              </>
+            )
+          }
+          <span class="font-medium text-base-content">{guide.data.title}</span>
+        </nav>
+
+        <!-- Title -->
+        <h1 class="mb-6 text-4xl font-bold text-primary md:text-5xl">
+          {guide.data.title}
+        </h1>
+
+        <!-- Meta Info -->
+        <div
+          class="flex flex-wrap items-center gap-4 text-sm text-base-content/70">
+          <!-- Author -->
+          {
+            guide.data.author && (
+              <div class="flex items-center gap-2">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                  {guide.data.author.initials || "JW"}
+                </div>
+                <span>By {guide.data.author.name}</span>
+              </div>
+            )
+          }
+
+          <span class="text-base-content/40">•</span>
+
+          <!-- Published Date -->
+          <div class="flex items-center gap-1.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-base-content/40">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            <span>Published {publishedDate}</span>
+          </div>
+
+          <span class="text-base-content/40">•</span>
+
+          <!-- Reading Time -->
+          <div class="flex items-center gap-1.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-base-content/40">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>{guide.data.readingTime || "8 min read"}</span>
+          </div>
+
+          {
+            guide.data.category && (
+              <>
+                <span class="text-base-content/40">•</span>
+                <span class="rounded-md bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                  {guide.data.category}
+                </span>
+              </>
+            )
+          }
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      {
+        guide.data.description && (
+          <div class="mb-12 rounded-lg border border-base-200 bg-white p-6 shadow-sm">
+            <p class="text-lg leading-relaxed text-base-content/80">
+              {guide.data.description}
+            </p>
+          </div>
+        )
+      }
+
+      <!-- Table of Contents -->
+      {
+        headings.length > 0 && (
+          <nav class="mb-12 rounded-lg border border-base-200 bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-bold text-primary">In this guide</h2>
+            <ul class="space-y-2">
+              {headings
+                .filter((h) => h.depth <= 2)
+                .map((heading) => (
+                  <li>
+                    <a
+                      href={`#${heading.slug}`}
+                      class="flex items-center gap-2 text-sm text-base-content/70 hover:text-primary">
+                      <span class="text-base-content/40">
+                        {heading.depth === 1 ? "01." : "—"}
+                      </span>
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </nav>
+        )
+      }
+
+      <!-- Article Body (Markdown Content) -->
+      <div class="prose mb-16">
+        <Content />
+      </div>
+
+      <!-- Author Box -->
+      {
+        guide.data.author && (
+          <section class="mb-16 rounded-lg border border-base-200 bg-white p-8 shadow-sm">
+            <div class="flex items-start gap-4">
+              <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary">
+                {guide.data.author.initials || "JW"}
+              </div>
+              <div class="flex-1">
+                <h3 class="mb-1 text-lg font-bold text-primary">
+                  About {guide.data.author.name}
+                </h3>
+                {guide.data.author.role && (
+                  <div class="mb-3 text-sm font-medium text-base-content/60">
+                    {guide.data.author.role}
+                  </div>
+                )}
+                {guide.data.author.bio && (
+                  <p class="text-sm leading-relaxed text-base-content/70">
+                    {guide.data.author.bio}
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Related Guides -->
+      <section class="pb-16">
+        <h2 class="mb-8 text-2xl font-bold text-primary">Related Guides</h2>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {
+            relatedArticles.map((article) => (
+              <Card
+                variant="article"
+                title={article.title}
+                description={article.description}
+                category={article.category}
+                image={article.image}
+                imageAlt={article.imageAlt}
+                linkUrl={article.linkUrl}
+                linkText={article.linkText}
+              />
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  /* Prose styles for markdown content */
+  .prose {
+    @apply mx-auto max-w-none text-base leading-relaxed text-base-content/80;
+  }
+
+  .prose h2 {
+    @apply mb-4 mt-12 text-2xl font-bold text-primary;
+  }
+
+  .prose h3 {
+    @apply mb-3 mt-8 text-xl font-bold text-primary;
+  }
+
+  .prose h4 {
+    @apply mb-2 mt-6 text-lg font-bold text-base-content;
+  }
+
+  .prose p {
+    @apply mb-4;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-6 ml-6 space-y-2;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply text-base-content/80;
+  }
+
+  .prose a {
+    @apply font-semibold text-primary underline hover:no-underline;
+  }
+
+  .prose strong {
+    @apply font-bold text-base-content;
+  }
+
+  .prose blockquote {
+    @apply my-6 border-l-4 border-primary/30 bg-base-100 p-6 italic;
+  }
+
+  .prose code {
+    @apply rounded bg-base-200 px-1.5 py-0.5 text-sm font-mono text-primary;
+  }
+
+  .prose pre {
+    @apply my-6 overflow-x-auto rounded-lg bg-base-900 p-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-base-100;
+  }
+
+  .prose img {
+    @apply my-8 rounded-lg shadow-md;
+  }
+
+  .prose table {
+    @apply my-8 w-full border-collapse overflow-hidden rounded-lg border border-base-200;
+  }
+
+  .prose thead {
+    @apply bg-base-100;
+  }
+
+  .prose th {
+    @apply border-b border-base-200 px-6 py-4 text-left text-sm font-bold text-base-content;
+  }
+
+  .prose td {
+    @apply border-b border-base-200 px-6 py-4 text-sm text-base-content/70;
+  }
+
+  .prose tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* Info/Callout boxes */
+  .prose .callout {
+    @apply my-8 rounded-lg border border-base-200 bg-base-100 p-6;
+  }
+
+  .prose .callout h4 {
+    @apply mt-0 mb-3 flex items-center gap-2;
+  }
+
+  .prose .callout ul {
+    @apply mb-0 ml-0 space-y-2;
+  }
+
+  .prose .callout li {
+    @apply flex items-start gap-2;
+  }
+
+  .prose .callout li::before {
+    content: "✓";
+    @apply text-success;
+  }
+</style>

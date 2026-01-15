@@ -1,0 +1,419 @@
+---
+
+
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+
+const seoData = {
+  title: "UK Locksmith Directory | Find Local Locksmiths by County & City",
+  description:
+    "Discover professional locksmith coverage across every region of the UK. Use our regional index to find verified local specialists or search directly by postcode.",
+};
+
+// County data grouped by country
+const englandCounties = [
+  {
+    number: "01",
+    title: "Greater London",
+    description:
+      "Comprehensive coverage across all London boroughs for residential and commercial security.",
+    prosCount: "180+ VERIFIED PROS",
+    linkUrl: "/search?region=greater-london",
+    linkText: "View locksmiths →",
+  },
+  {
+    number: "02",
+    title: "Greater Manchester",
+    description:
+      "Rapid-response specialists serving Manchester, Bolton, Stockport, and surrounding towns.",
+    prosCount: "85+ VERIFIED PROS",
+    linkUrl: "/search?region=greater-manchester",
+    linkText: "View locksmiths →",
+  },
+  {
+    number: "03",
+    title: "West Midlands",
+    description:
+      "Expert locksmiths available 24/7 across Birmingham, Coventry, and Wolverhampton.",
+    prosCount: "96+ VERIFIED PROS",
+    linkUrl: "/search?region=west-midlands",
+    linkText: "View locksmiths →",
+  },
+  {
+    number: "04",
+    title: "West Yorkshire",
+    description:
+      "Reliable services covering Leeds, Bradford, and Wakefield districts.",
+    prosCount: "72+ VERIFIED PROS",
+    linkUrl: "/search?region=west-yorkshire",
+    linkText: "View locksmiths →",
+  },
+];
+
+// Major cities data
+const majorCities = [
+  {
+    title: "Manchester",
+    description:
+      "Specializing in central 24/7 lockout response and suburban uPVC repairs.",
+    prosCount: "85 Verified",
+    linkUrl: "/search?city=manchester",
+    linkText: "View Manchester Locksmiths →",
+  },
+  {
+    title: "London",
+    description:
+      "High-density coverage for residential, commercial, and auto lock emergencies.",
+    prosCount: "120 Verified",
+    linkUrl: "/search?city=london",
+    linkText: "View London Locksmiths →",
+  },
+  {
+    title: "Birmingham",
+    description:
+      "Trusted providers for Bullring commercial security and Edgbaston residential needs.",
+    prosCount: "65 Verified",
+    linkUrl: "/search?city=birmingham",
+    linkText: "View Birmingham Locksmiths →",
+  },
+  {
+    title: "Leeds",
+    description:
+      "Student housing specialists and rapid city-center emergency response teams.",
+    prosCount: "55 Verified",
+    linkUrl: "/search?city=leeds",
+    linkText: "View Leeds Locksmiths →",
+  },
+];
+
+// Services lists
+const nationwideServices = [
+  "Emergency gain entry (Non-destructive)",
+  "Insurance-approved BS3621 lock upgrades",
+  "uPVC door mechanism alignment and repair",
+];
+
+const specializedServices = [
+  "Safe opening and vault maintenance",
+  "Security gate automation systems",
+  "Commercial CCTV and access control integration",
+];
+---
+
+<Layout {...seoData}>
+  <Header />
+
+  <main class="bg-base-50">
+    <!-- Hero Section -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <PageHero
+        title="UK locksmith directory"
+        description="Discover professional locksmith coverage across every region of the UK. Use our regional index to find verified local specialists or search directly by postcode.">
+        <!-- Search Input -->
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:max-w-2xl">
+          <div class="relative flex-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-base-content/40">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <input
+              type="text"
+              placeholder="Enter your postcode (e.g. SW1A)"
+              class="w-full rounded-lg border border-base-200 bg-white py-3 pl-12 pr-4 text-base text-base-content placeholder:text-base-content/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            />
+          </div>
+          <Button variant="primary" size="lg">Search Area</Button>
+        </div>
+
+        <!-- Jump Links -->
+        <div class="flex flex-wrap gap-4 text-sm">
+          <a
+            href="#counties"
+            class="text-base-content/70 hover:text-primary transition-colors">
+            Jump to Counties
+          </a>
+          <span class="text-base-content/30">|</span>
+          <a
+            href="#cities"
+            class="text-base-content/70 hover:text-primary transition-colors">
+            Jump to Major Cities
+          </a>
+        </div>
+      </PageHero>
+    </div>
+
+    <!-- Locksmiths by County -->
+    <section id="counties" class="py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <h2 class="mb-8 text-3xl font-bold text-primary">
+          Locksmiths by county
+        </h2>
+
+        <!-- England Counties -->
+        <details class="group mb-6 rounded-lg border border-base-200 bg-white" open>
+          <summary
+            class="flex cursor-pointer items-center justify-between px-6 py-4 font-bold text-primary hover:bg-base-50 transition-colors">
+            <span>England</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform group-open:rotate-180">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </summary>
+
+          <div class="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
+            {
+              englandCounties.map((county) => (
+                <div class="rounded-lg border border-base-200 bg-base-50 p-6 transition-shadow hover:shadow-md">
+                  <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-primary">
+                      {county.number}. {county.title}
+                    </h3>
+                  </div>
+                  <p class="mb-3 text-sm text-base-content/70">
+                    {county.description}
+                  </p>
+                  <div class="mb-4">
+                    <span class="text-xs font-semibold text-secondary">
+                      {county.prosCount}
+                    </span>
+                  </div>
+                  <a
+                    href={county.linkUrl}
+                    class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                    {county.linkText}
+                  </a>
+                </div>
+              ))
+            }
+          </div>
+        </details>
+
+        <!-- Scotland Counties -->
+        <details class="group rounded-lg border border-base-200 bg-white">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-6 py-4 font-bold text-primary hover:bg-base-50 transition-colors">
+            <span>Scotland</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform group-open:rotate-180">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </summary>
+
+          <div class="p-6">
+            <p class="text-sm text-base-content/60">
+              Scotland coverage coming soon. <a
+                href="/contact"
+                class="text-primary hover:underline">Contact us</a
+              > for specialist recommendations.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Major UK Cities -->
+    <section id="cities" class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mb-8">
+          <h2 class="mb-2 text-3xl font-bold text-primary">
+            Major UK cities with locksmith coverage
+          </h2>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            majorCities.map((city) => (
+              <div class="rounded-lg border border-base-200 bg-base-50 p-6 transition-shadow hover:shadow-md">
+                <div class="mb-2 flex items-center justify-between">
+                  <h3 class="text-xl font-bold text-primary">{city.title}</h3>
+                  <span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold text-primary">
+                    {city.prosCount}
+                  </span>
+                </div>
+                <p class="mb-4 text-sm text-base-content/70">
+                  {city.description}
+                </p>
+                <a
+                  href={city.linkUrl}
+                  class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                  {city.linkText}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Services -->
+    <section class="py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <h2 class="mb-8 text-3xl font-bold text-primary">
+          Popular locksmith services across the UK
+        </h2>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          <!-- Nationwide Services -->
+          <div>
+            <h3
+              class="mb-4 text-sm font-bold uppercase tracking-wide text-base-content/60">
+              Nationwide Services
+            </h3>
+            <ul class="space-y-3">
+              {
+                nationwideServices.map((service) => (
+                  <li class="flex items-start gap-3 text-base-content/80">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="mt-0.5 flex-shrink-0 text-success">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    <span>{service}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Specialized Services -->
+          <div>
+            <h3
+              class="mb-4 text-sm font-bold uppercase tracking-wide text-base-content/60">
+              Specialized Services
+            </h3>
+            <ul class="space-y-3">
+              {
+                specializedServices.map((service) => (
+                  <li class="flex items-start gap-3 text-base-content/80">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="mt-0.5 flex-shrink-0 text-base-content/40">
+                      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" x2="12" y1="19" y2="22" />
+                    </svg>
+                    <span>{service}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nationwide Coverage Stats -->
+    <section class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mb-8">
+          <h2 class="mb-2 text-3xl font-bold text-primary">
+            Nationwide coverage & verification
+          </h2>
+          <p class="text-base-content/70">
+            We maintain rigorous standards for every locksmith listed in our
+            directory to ensure safety, fair pricing, and quality workmanship
+            across the United Kingdom.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Stat Card 1 -->
+          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+            <div class="mb-2 text-5xl font-bold text-primary">48</div>
+            <div class="text-sm font-semibold text-base-content/70">
+              Counties Covered
+            </div>
+          </div>
+
+          <!-- Stat Card 2 -->
+          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+            <div class="mb-2 text-5xl font-bold text-primary">1,200+</div>
+            <div class="text-sm font-semibold text-base-content/70">
+              Verified Professionals
+            </div>
+          </div>
+
+          <!-- Stat Card 3 -->
+          <div class="rounded-lg border border-base-200 bg-base-50 p-8 text-center">
+            <div class="mb-2 text-5xl font-bold text-primary">24/7</div>
+            <div class="text-sm font-semibold text-base-content/70">
+              Availability
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a
+            href="/trust"
+            class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+            Learn how we verify every listing →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-16">
+      <div class="mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <h2 class="mb-4 text-3xl font-bold text-primary">
+          Not sure where to search?
+        </h2>
+        <p class="mb-8 text-base-content/70">
+          If you're unsure which region covers your location or what service you
+          need, our AI can help map your situation to the right professional.
+        </p>
+        <Button href="/emergency" variant="primary" size="lg">
+          Ask the AI locksmith finder
+        </Button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

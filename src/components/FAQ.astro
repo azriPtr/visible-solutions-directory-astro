@@ -14,21 +14,21 @@ interface Props {
 const {
   title = "Frequently asked questions",
   faqs = [
-    {
-      question: "How do you vet locksmiths?",
-      answer:
-        "We verify every locksmith's credentials, insurance, and trade body memberships. Our team conducts thorough background checks, reviews qualifications, and validates their professional standing with organizations like MLA, NAL, and SafeContractor before listing them on our directory.",
-    },
-    {
-      question: "Do you cover emergency callouts 24/7?",
-      answer:
-        "Yes, our directory includes locksmiths who offer 24/7 emergency services. When you search for locksmiths in your area, you can filter by availability and emergency services to find professionals who can help you any time of day or night.",
-    },
-    {
-      question: "Are locksmiths insured and DBS checked?",
-      answer:
-        "All locksmiths listed on our platform are required to have valid public liability insurance and relevant certifications. Many of our professionals also hold DBS (Disclosure and Barring Service) checks. You can view each locksmith's credentials and certifications on their profile page.",
-    },
+  {
+    question: "How do you vet locksmiths?",
+    answer:
+      "We verify every locksmith's credentials, insurance, and trade body memberships. Our team conducts thorough background checks, reviews qualifications, and validates their professional standing with organizations like MLA, NAL, and SafeContractor before listing them on our directory.",
+  },
+  {
+    question: "Do you cover emergency callouts 24/7?",
+    answer:
+      "Yes, our directory includes locksmiths who offer 24/7 emergency services. When you search for locksmiths in your area, you can filter by availability and emergency services to find professionals who can help you any time of day or night.",
+  },
+  {
+    question: "Are locksmiths insured and DBS checked?",
+    answer:
+      "All locksmiths listed on our platform are required to have valid public liability insurance and relevant certifications. Many of our professionals also hold DBS (Disclosure and Barring Service) checks. You can view each locksmith's credentials and certifications on their profile page.",
+  },
   ],
   backgroundColor = "bg-base-100",
   showCTA = true,
@@ -59,7 +59,7 @@ const {
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
+                stroke-width="2"
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
@@ -78,22 +78,22 @@ const {
     {
       showCTA && (
         <div class="mt-12 text-center">
-          <a
-            href="/about"
+      <a
+        href="/about"
             class="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-secondary">
-            About the uk locksmith directory
-            <svg
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round">
+        About the uk locksmith directory
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
               <path d="M5 12h14m-7-7 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
+        </svg>
+      </a>
+    </div>
       )
     }
   </div>

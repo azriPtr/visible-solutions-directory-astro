@@ -1,11 +1,6 @@
 ---
 title: "Privacy Policy"
 description: "This Privacy Policy explains how Visible Solutions LLC collects, uses, and protects your personal data. This policy applies to all visitors to our website, consumers using our routing tools to find locksmith services, and independent locksmith businesses listed on our platform."
-breadcrumbs:
-  - label: "Home"
-    href: "/"
-  - label: "Privacy Policy"
-
 lastUpdated: "October 12, 2023"
 policyVersion: "1.0"
 

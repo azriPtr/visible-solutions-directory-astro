@@ -1,10 +1,6 @@
 ---
 title: "About the UK Locksmith Directory"
 description: "The UK Locksmith Directory is a comprehensive digital index and lead-routing platform owned and operated by Visible Solutions LLC. We provide the technological infrastructure and marketing tools that allow independent UK locksmiths to connect with local customers."
-breadcrumbs:
-  - label: "Home"
-    href: "/"
-  - label: "About"
 
 governance:
   operator: "Visible Solutions LLC"

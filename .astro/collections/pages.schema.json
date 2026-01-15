@@ -10,24 +10,6 @@
         "description": {
           "type": "string"
         },
-        "breadcrumbs": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string"
-              },
-              "href": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "label"
-            ],
-            "additionalProperties": false
-          }
-        },
         "governance": {
           "type": "object",
           "properties": {
@@ -159,8 +141,7 @@
       },
       "required": [
         "title",
-        "description",
-        "breadcrumbs"
+        "description"
       ],
       "additionalProperties": false
     }

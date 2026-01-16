@@ -1,9 +1,15 @@
 ---
-
-
 import Layout from "../../../../../layouts/Layout.astro";
 import PageHero from "../../../../../components/PageHero.astro";
 import Button from "../../../../../components/Button.astro";
+
+// Generate static paths - currently returns empty array
+// TODO: Populate with actual county/city/service combinations
+export async function getStaticPaths() {
+  // Return empty array for now - this route is not yet populated
+  // In production, you would query your data source to generate all valid combinations
+  return [];
+}
 
 // For now, we'll use static mock data
 // In production, you'd fetch this based on params
@@ -35,11 +41,13 @@ const serviceOverview = {
   items: [
     {
       title: "Multipoint Gearbox Replacement",
-      description: "Swapping the central mechanism when the spindle drive fails.",
+      description:
+        "Swapping the central mechanism when the spindle drive fails.",
     },
     {
       title: "Toe and Heeling (Alignment)",
-      description: "Adjusting the door within the frame to stop catching or dragging.",
+      description:
+        "Adjusting the door within the frame to stop catching or dragging.",
     },
     {
       title: "Handle & Cylinder Upgrades",

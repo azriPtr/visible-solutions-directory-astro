@@ -1,9 +1,15 @@
 ---
-
-
 import Layout from "../../../layouts/Layout.astro";
 import PageHero from "../../../components/PageHero.astro";
 import Button from "../../../components/Button.astro";
+
+// Generate static paths - currently returns empty array
+// TODO: Populate with actual partner data
+export async function getStaticPaths() {
+  // Return empty array for now - this route is not yet populated
+  // In production, you would query your data source to generate all partner pages
+  return [];
+}
 
 // For now, we'll use static mock data
 // In production, fetch this from CMS based on params

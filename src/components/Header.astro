@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 import Button from "./Button.astro";
 import { mainNavigation, type NavGroup } from "../data/navigation";
@@ -11,7 +12,14 @@ import { mainNavigation, type NavGroup } from "../data/navigation";
       <a
         class="text-base-content flex items-center gap-2 text-sm font-semibold"
         href="/">
-        <img src={logo.src} class="size-5" alt="brand-logo" />
+        <Image
+          src={logo}
+          alt="UK Locksmith Directory logo"
+          class="size-5"
+          width={20}
+          height={20}
+          loading="eager"
+        />
         <span
           class="hidden sm:block text-sm text-primary font-bold tracking-tight"
           >UK Locksmith Directory</span

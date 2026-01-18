@@ -1,5 +1,9 @@
 ---
 import Button from "./Button.astro";
+import { buildStrapiSrcSet, generateSizes } from "../lib/imageUtils";
+
+const heroImageUrl =
+  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/81325119-3d7a-44c3-8a7d-f1eadd6fc60d_1600w.png";
 ---
 
 <section class="relative">
@@ -39,10 +43,20 @@ import Button from "./Button.astro";
           <div
             class="aspect-4/3 overflow-hidden bg-slate-100 w-full rounded-2xl shadow-lg">
             <img
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/81325119-3d7a-44c3-8a7d-f1eadd6fc60d_1600w.png"
+              src={heroImageUrl}
+              srcset={buildStrapiSrcSet(heroImageUrl)}
+              sizes={generateSizes({
+                sm: "100vw",
+                md: "50vw",
+                default: "50vw",
+              })}
               alt="Professional locksmith at work"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
               class="object-center w-full h-full object-cover"
+              width="1600"
+              height="1200"
             />
           </div>
         </div>

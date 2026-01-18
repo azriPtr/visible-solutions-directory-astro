@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Button from "../../components/Button.astro";
 import CTASection from "../../components/CTASection.astro";
+import { buildStrapiSrcSet, generateSizes, isExternalImage } from "../../lib/imageUtils";
 
 // Generate paths for all listings
 export async function getStaticPaths() {
@@ -23,6 +24,18 @@ const seoData = {
 };
 
 const stars = Array.from({ length: 5 }, (_, i) => i < listing.data.rating);
+
+// Prepare optimized attributes for service area map if it's an external image
+const serviceAreaMapUrl = listing.data.serviceAreaMap?.src || listing.data.serviceAreaMap;
+const serviceAreaMapAttrs = serviceAreaMapUrl && typeof serviceAreaMapUrl === "string" && isExternalImage(serviceAreaMapUrl) ? {
+  srcset: buildStrapiSrcSet(serviceAreaMapUrl),
+  sizes: generateSizes({
+    sm: "100vw",
+    md: "100vw",
+    lg: "66vw",
+    default: "800px",
+  }),
+} : {};
 
 // Generate breadcrumbs
 const pathname = Astro.url.pathname;
@@ -389,12 +402,16 @@ segments.forEach((segment, index) => {
                   {listing.data.serviceAreaMap && (
                     <div class="mb-6 overflow-hidden rounded-lg">
                       <img
-                        src={listing.data.serviceAreaMap.src}
+                        src={serviceAreaMapUrl}
+                        {...serviceAreaMapAttrs}
                         alt={
                           listing.data.serviceAreaMapAlt || "Service Area Map"
                         }
                         class="h-64 w-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        width="800"
+                        height="256"
                       />
                     </div>
                   )}

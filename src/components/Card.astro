@@ -1,4 +1,6 @@
 ---
+import { buildStrapiSrcSet, generateSizes, isExternalImage } from "../lib/imageUtils";
+
 interface Props {
   title?: string;
   description?: string;
@@ -59,6 +61,22 @@ const showLink = linkUrl && linkText;
 
 const stars =
   rating !== undefined ? Array.from({ length: 5 }, (_, i) => i < rating) : [];
+
+// Prepare optimized image attributes for external images
+const mainImageAttrs = image && isExternalImage(image) ? {
+  srcset: buildStrapiSrcSet(image),
+  sizes: generateSizes({
+    sm: "100vw",
+    md: variant === "listing" ? "14px" : "50vw",
+    lg: variant === "listing" ? "14px" : "33vw",
+    default: variant === "listing" ? "56px" : "400px",
+  }),
+} : {};
+
+const authorImageAttrs = authorImage && isExternalImage(authorImage) ? {
+  srcset: buildStrapiSrcSet(authorImage, [40, 80]),
+  sizes: "40px",
+} : {};
 ---
 
 <li
@@ -86,9 +104,13 @@ const stars =
       <div class="overflow-hidden rounded-t-lg">
         <img
           src={image}
-          alt={imageAlt || title}
+          {...mainImageAttrs}
+          alt={imageAlt || title || "Card image"}
           class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          width="400"
+          height="192"
         />
       </div>
     )
@@ -195,9 +217,13 @@ const stars =
               image ? (
                 <img
                   src={image}
-                  alt={imageAlt || title}
+                  {...mainImageAttrs}
+                  alt={imageAlt || title || "Company logo"}
                   class="h-14 w-14 rounded-lg object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width="56"
+                  height="56"
                 />
               ) : (
                 <div
@@ -477,9 +503,13 @@ const stars =
               {authorImage && (
                 <img
                   src={authorImage}
+                  {...authorImageAttrs}
                   alt={author || "Author"}
                   class="h-10 w-10 rounded-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
                 />
               )}
               <div class="flex flex-col">

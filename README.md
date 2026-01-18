@@ -301,10 +301,6 @@ This is a production project. For development guidelines:
 4. Maintain TypeScript type safety
 5. Test responsive design on multiple devices
 
-## 📄 License
-
-[Your License Here]
-
 ## 🔗 Links
 
 - **Documentation:** [Astro Docs](https://docs.astro.build)

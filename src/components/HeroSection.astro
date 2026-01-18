@@ -1,9 +1,7 @@
 ---
 import Button from "./Button.astro";
-import { buildStrapiSrcSet, generateSizes } from "../lib/imageUtils";
-
-const heroImageUrl =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/81325119-3d7a-44c3-8a7d-f1eadd6fc60d_1600w.png";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.png";
 ---
 
 <section class="relative">
@@ -14,7 +12,7 @@ const heroImageUrl =
       <div class="flex flex-col gap-4 md:mr-28">
         <h1
           class="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
-          The UK's Larges Directory of Verified, Local Locksmiths
+          The UK's Largest Directory of Verified, Local Locksmiths
         </h1>
         <p>
           Search 1,200+ verified local professionals for emergencies, repairs,
@@ -42,21 +40,14 @@ const heroImageUrl =
         <div class="mt-12 lg:mt-0 relative">
           <div
             class="aspect-4/3 overflow-hidden bg-slate-100 w-full rounded-2xl shadow-lg">
-            <img
-              src={heroImageUrl}
-              srcset={buildStrapiSrcSet(heroImageUrl)}
-              sizes={generateSizes({
-                sm: "100vw",
-                md: "50vw",
-                default: "50vw",
-              })}
+            <Image
+              src={heroImage}
               alt="Professional locksmith at work"
               loading="eager"
-              decoding="async"
               fetchpriority="high"
               class="object-center w-full h-full object-cover"
-              width="1600"
-              height="1200"
+              widths={[320, 640, 1024, 1600]}
+              sizes="(max-width: 640px) 100vw, 50vw"
             />
           </div>
         </div>

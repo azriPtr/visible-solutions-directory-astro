@@ -1,143 +1,71 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import PageHero from "../../../components/PageHero.astro";
 import Button from "../../../components/Button.astro";
+import { getAllPartnerSlugs, getPartnerBySlug } from "../../../data/partners";
 
-// Generate static paths - currently returns empty array
-// TODO: Populate with actual partner data
+// Generate static paths for all partners
 export async function getStaticPaths() {
-  // Return empty array for now - this route is not yet populated
-  // In production, you would query your data source to generate all partner pages
-  return [];
+  const slugs = getAllPartnerSlugs();
+  return slugs.map((slug) => ({
+    params: { partner: slug },
+  }));
 }
 
-// For now, we'll use static mock data
-// In production, fetch this from CMS based on params
-const { partner } = Astro.params;
+// Get the partner data
+const { partner: partnerSlug } = Astro.params;
+const partnerData = getPartnerBySlug(partnerSlug);
 
-// Mock data - in production, fetch based on params
-const partnerData = {
-  slug: "mla",
-  name: "Master Locksmiths Association",
-  subtitle: "Verified Association Partner",
-  description:
-    "The Master Locksmiths Association (MLA) is the leading trade association for the locksmithing profession in the United Kingdom. We integrate their public membership data to verify that listed professionals adhere to the specific vetting and inspection standards required for MLA licensure.",
-  verificationLink: "#verification",
-  
-  // About section
-  about: {
-    title: "About the MLA",
-    content: [
-      "Established in 1958, the Master Locksmiths Association is a non-profit body recognised by the Home Office, Police, and British Standards Institution (BSI). It acts as the authoritative body for setting and promoting standards of conduct, practice, and materials within the locksmithing industry. Unlike a commercial directory, the MLA imposes strict entry requirements including exam-based qualifications and regular inspections.",
-    ],
-  },
-  
-  // Why this partnership matters
-  whyMatters: {
-    title: "Why this partnership matters",
-    intro:
-      "The locksmith industry in the UK is currently unregulated, meaning there is no legal requirement for a locksmith to have a background check or formal training. This partnership allows our directory to distinguish providers who have voluntarily submitted to oversight.",
-    benefits: [
-      {
-        icon: "check",
-        title: "Verifiable proof of competence through the BLI exam.",
-      },
-      {
-        icon: "check",
-        title: "Standardised Criminal Record checks (DBS) for key staff.",
-      },
-      {
-        icon: "check",
-        title: "Regular inspection of business premises and tooling.",
-      },
-    ],
-  },
-  
-  // Verification steps
-  verification: {
-    title: "How verification works",
-    intro:
-      "Our platform maintains a neutral data link with the association's public register. When a locksmith claims MLA status on their profile, our system performs the following checks:",
-    steps: [
-      {
-        number: 1,
-        title: "Company Number Match",
-      },
-      {
-        number: 2,
-        title: "Geographic Verification",
-      },
-      {
-        number: 3,
-        title: "Membership Status Active",
-      },
-    ],
-    note: "Note: We do not access private member data. Checks are performed against publicly accessible records only.",
-  },
-  
-  // Badge limitations
-  badgeLimitations: {
-    title: "Partner badges & search ranking",
-    intro:
-      "Locksmiths who pass the verification steps above are awarded the \"Association Member\" badge on their profile. It is important for users to understand the limitations of this badge:",
-    items: [
-      {
-        icon: "trending-flat",
-        title: "No Ranking Boost",
-        description:
-          "Possessing an MLA badge does not artificially boost a locksmith's position in search results. Ranking is determined by distance, availability, and user relevance.",
-      },
-      {
-        icon: "credit-card",
-        title: "Not a Paid Ad",
-        description:
-          "This badge cannot be purchased. It is strictly earned through verified membership with the partner organisation.",
-      },
-    ],
-  },
-  
-  // FAQs
-  faqs: [
-    {
-      question: "Does the directory pay the MLA for these listings?",
-      answer:
-        "No. The presence of the MLA badge indicates verified membership status only. No financial transaction occurs between the directory and the association for listing prominence.",
-    },
-    {
-      question: "How often is membership checked?",
-      answer:
-        "We cross-reference our data with the MLA public register on a quarterly basis. Locksmiths who lapse in membership will have the badge removed automatically.",
-    },
-    {
-      question: "Does this partner endorse specific locksmiths?",
-      answer:
-        "No. The MLA approves the locksmith's compliance with their standards, but they do not endorse specific commercial jobs or pricing structures.",
-    },
-  ],
-  
-  // External link
-  externalWebsite: "https://locksmiths.co.uk",
-};
+// 404 if partner not found
+if (!partnerData) {
+  return Astro.redirect("/404");
+}
 
 const seoData = {
   title: `${partnerData.name} | Partner | UK Locksmith Directory`,
   description: partnerData.description,
 };
+
+// Breadcrumbs
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Partners", href: "/partners" },
+  { label: partnerData.name, href: `/partners/${partnerSlug}` },
+];
 ---
 
 <Layout {...seoData}>
-  <Header />
-
-  <main class="bg-base-50">
+  <div class="bg-base-50">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="py-4">
+        <ol class="flex items-center gap-2 text-sm text-base-content/60">
+          {
+            breadcrumbs.map((crumb, index) => (
+              <li class="flex items-center gap-2">
+                {index < breadcrumbs.length - 1 ? (
+                  <a href={crumb.href} class="hover:text-primary">
+                    {crumb.label}
+                  </a>
+                ) : (
+                  <span aria-current="page" class="text-base-content">
+                    {crumb.label}
+                  </span>
+                )}
+                {index < breadcrumbs.length - 1 && (
+                  <span aria-hidden="true">/</span>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
       <!-- Hero Section -->
       <section class="py-12">
-        <!-- Breadcrumb (auto-generated by PageHero) -->
-        
         <!-- Partner Logo/Icon -->
         <div class="mb-6 flex items-center gap-4">
           <div
-            class="flex h-16 w-16 items-center justify-center rounded-lg bg-white shadow-sm border border-base-200">
+            class="flex h-16 w-16 items-center justify-center rounded-lg border border-base-200 bg-white shadow-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -157,8 +85,7 @@ const seoData = {
             <h1 class="text-3xl font-bold text-primary">
               {partnerData.name}
             </h1>
-            <span
-              class="mt-1 inline-block text-sm font-medium text-base-content/60">
+            <span class="mt-1 inline-block text-sm font-medium text-base-content/60">
               {partnerData.subtitle}
             </span>
           </div>
@@ -250,14 +177,17 @@ const seoData = {
           </p>
 
           <!-- Steps -->
-          <div class="mb-4 grid gap-4 md:grid-cols-3">
+          <div class="mb-6 grid gap-4 md:grid-cols-3">
             {
               partnerData.verification.steps.map((step) => (
                 <div class="rounded-lg border border-base-200 bg-white p-6 text-center shadow-sm">
                   <div class="mb-2 text-sm font-semibold text-base-content/60">
                     Step {step.number}
                   </div>
-                  <div class="font-bold text-base-content">{step.title}</div>
+                  <div class="mb-2 font-bold text-base-content">{step.title}</div>
+                  {step.description && (
+                    <p class="text-xs text-base-content/60">{step.description}</p>
+                  )}
                 </div>
               ))
             }
@@ -297,8 +227,11 @@ const seoData = {
                         stroke-linejoin="round"
                         class="text-primary">
                         {item.icon === "trending-flat" ? (
+                          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        ) : item.icon === "clock" ? (
                           <>
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
                           </>
                         ) : (
                           <>
@@ -356,8 +289,7 @@ const seoData = {
 
         <!-- External Reference -->
         <section class="mb-16">
-          <div
-            class="rounded-lg border border-base-200 bg-white p-8 text-center shadow-sm">
+          <div class="rounded-lg border border-base-200 bg-white p-8 text-center shadow-sm">
             <div class="mb-2 text-xs font-bold uppercase tracking-wide text-base-content/60">
               External Reference
             </div>
@@ -378,17 +310,25 @@ const seoData = {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="size-5">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                ></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" x2="21" y1="14" y2="3"></line>
               </svg>
             </a>
           </div>
         </section>
+
+        <!-- Back Navigation -->
+        <section class="text-center">
+          <Button
+            href="/partners"
+            variant="outline"
+            size="md"
+            iconLeft="icon-[tabler--arrow-left]">
+            Back to all partners
+          </Button>
+        </section>
       </article>
     </div>
-  </main>
-
-  <Footer />
+  </div>
 </Layout>

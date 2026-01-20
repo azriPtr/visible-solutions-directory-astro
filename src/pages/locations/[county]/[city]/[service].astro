@@ -1,0 +1,452 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import PageHero from "../../../../components/PageHero.astro";
+import Button from "../../../../components/Button.astro";
+import Card from "../../../../components/Card.astro";
+import CTASection from "../../../../components/CTASection.astro";
+import { getCollection } from "astro:content";
+import {
+  getAllLocationServicePaths,
+  getCityInCounty,
+  getCountyBySlug,
+} from "../../../../data/locations/index";
+import {
+  getServiceBySlug,
+  getAllServices,
+} from "../../../../data/services/index";
+
+// Generate static paths for all county/city/service combinations
+export async function getStaticPaths() {
+  const paths = getAllLocationServicePaths();
+  return paths.map((path) => ({
+    params: { county: path.county, city: path.city, service: path.service },
+  }));
+}
+
+// Get the route parameters
+const {
+  county: countySlug,
+  city: citySlug,
+  service: serviceSlug,
+} = Astro.params;
+
+// Get data
+const cityData = getCityInCounty(countySlug, citySlug);
+const countyData = getCountyBySlug(countySlug);
+const serviceData = getServiceBySlug(serviceSlug);
+
+// 404 if any data not found
+if (!cityData || !countyData || !serviceData) {
+  return Astro.redirect("/404");
+}
+
+// Get locksmiths that might serve this city and service
+const allLocksmiths = await getCollection("locksmiths");
+const relevantLocksmiths = allLocksmiths
+  .filter((locksmith) => {
+    const areas = locksmith.data.serviceAreas || [];
+    const services = locksmith.data.servicesOffered || [];
+    const matchesCity = areas.some((area: string) =>
+      area.toLowerCase().includes(cityData.name.toLowerCase()),
+    );
+    const matchesService = services.some((s: any) =>
+      s.title
+        ?.toLowerCase()
+        .includes(serviceData.title.toLowerCase().split(" ")[0]),
+    );
+    return matchesCity || matchesService;
+  })
+  .slice(0, 3);
+
+// Get other services for this city
+const otherServices = getAllServices()
+  .filter((s) => s.slug !== serviceSlug)
+  .slice(0, 3);
+
+const seoData = {
+  title: `${serviceData.title} in ${cityData.name} | UK Locksmith Directory`,
+  description: `Find verified locksmiths in ${cityData.name} specializing in ${serviceData.title.toLowerCase()}. ${serviceData.description}`,
+};
+
+// Breadcrumbs
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Locations", href: "/locations" },
+  { label: countyData.name, href: `/locations/${countySlug}` },
+  { label: cityData.name, href: `/locations/${countySlug}/${citySlug}` },
+  {
+    label: serviceData.title,
+    href: `/locations/${countySlug}/${citySlug}/${serviceSlug}`,
+  },
+];
+
+// Pricing estimates (mock data - would come from CMS in production)
+const pricing = [
+  {
+    serviceType: "Standard call-out",
+    lowEst: "£65",
+    avgEst: "£85",
+    highEst: "£110",
+  },
+  {
+    serviceType: "Parts & Labour (avg)",
+    lowEst: "£80",
+    avgEst: "£120",
+    highEst: "£180",
+  },
+  {
+    serviceType: "Emergency/Out-of-hours",
+    lowEst: "£95",
+    avgEst: "£140",
+    highEst: "£200",
+  },
+];
+---
+
+<Layout {...seoData}>
+  <div class="bg-base-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="py-4">
+        <ol
+          class="flex flex-wrap items-center gap-2 text-sm text-base-content/60">
+          {
+            breadcrumbs.map((crumb, index) => (
+              <li class="flex items-center gap-2">
+                {index < breadcrumbs.length - 1 ? (
+                  <a href={crumb.href} class="hover:text-primary">
+                    {crumb.label}
+                  </a>
+                ) : (
+                  <span aria-current="page" class="text-base-content">
+                    {crumb.label}
+                  </span>
+                )}
+                {index < breadcrumbs.length - 1 && (
+                  <span aria-hidden="true">/</span>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <!-- Hero Section -->
+      <PageHero
+        title={`${serviceData.title} in ${cityData.name}`}
+        description={`Find vetted locksmiths in ${cityData.name} specializing in ${serviceData.title.toLowerCase()}. ${serviceData.description}`}>
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4">
+          <Button href="#providers" variant="primary" size="lg">
+            See locksmiths offering {
+              serviceData.title.toLowerCase().split(" ")[0]
+            }
+          </Button>
+          <Button href="/contact" variant="outline" size="lg">
+            Request quotes
+          </Button>
+        </div>
+      </PageHero>
+
+      <!-- Service Overview Section -->
+      <section class="mb-16">
+        <div
+          class="mb-6 inline-block rounded-md bg-base-200/50 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-base-content/60">
+          Service Overview
+        </div>
+
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          What {serviceData.title.toLowerCase()} involves
+        </h2>
+
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div>
+            <p class="mb-4 leading-relaxed text-base-content/70">
+              {serviceData.description}
+            </p>
+
+            <ul class="space-y-3">
+              {
+                serviceData.scenarios.map((scenario) => (
+                  <li class="flex gap-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="mt-0.5 flex-shrink-0 text-success">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    <span class="text-base-content/70">{scenario}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="rounded-lg border border-base-200 bg-white p-6">
+            <div class="mb-4 flex items-center gap-3">
+              <span
+                class={`rounded px-3 py-1 text-xs font-semibold uppercase ${
+                  serviceData.badge.color === "error"
+                    ? "bg-error/10 text-error"
+                    : serviceData.badge.color === "warning"
+                      ? "bg-warning/10 text-warning"
+                      : serviceData.badge.color === "success"
+                        ? "bg-success/10 text-success"
+                        : "bg-primary/10 text-primary"
+                }`}>
+                {serviceData.badge.text}
+              </span>
+              <span class="text-sm text-base-content/60">Priority Level</span>
+            </div>
+            <h3 class="mb-2 font-bold text-base-content">
+              {
+                serviceData.badge.text === "EMERGENCY"
+                  ? "Urgent Service"
+                  : "Scheduled Service"
+              }
+            </h3>
+            <p class="text-sm text-base-content/70">
+              {
+                serviceData.badge.text === "EMERGENCY"
+                  ? `This is typically an emergency service requiring rapid response. Locksmiths in ${cityData.name} can usually respond within 30-60 minutes.`
+                  : `This service can usually be scheduled at your convenience. Book in advance for the best availability and pricing.`
+              }
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Providers Section -->
+      <section id="providers" class="mb-16">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary">
+            Locksmiths offering {serviceData.title.toLowerCase()} in {
+              cityData.name
+            }
+          </h2>
+          <span
+            class="rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success">
+            Updated Today
+          </span>
+        </div>
+
+        {
+          relevantLocksmiths.length > 0 ? (
+            <ul class="space-y-4">
+              {relevantLocksmiths.map((locksmith, index) => (
+                <li class="relative">
+                  <div class="absolute right-6 top-6 flex size-10 items-center justify-center rounded-full bg-base-100 text-lg font-bold text-base-content/20">
+                    {(index + 1).toString().padStart(2, "0")}
+                  </div>
+                  <Card
+                    variant="listing"
+                    title={locksmith.data.title}
+                    description={
+                      locksmith.data.focus ||
+                      `Professional ${serviceData.title.toLowerCase()} services`
+                    }
+                    rating={locksmith.data.rating}
+                    reviewCount={locksmith.data.reviewCount}
+                    badges={[
+                      ...(locksmith.data.isVerified ? ["VERIFIED"] : []),
+                      ...(locksmith.data.isEmergency ? ["24/7"] : []),
+                    ]}
+                    features={[
+                      ...(locksmith.data.isDbsChecked ? ["DBS Checked"] : []),
+                      ...(locksmith.data.insurance
+                        ? [locksmith.data.insurance]
+                        : []),
+                    ]}
+                    phone={locksmith.data.phone}
+                    profileUrl={`/locksmiths/${locksmith.slug}`}
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div class="rounded-lg border border-base-200 bg-white p-8 text-center">
+              <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </div>
+              <h3 class="mb-2 text-xl font-bold text-primary">
+                Search for {serviceData.title} specialists
+              </h3>
+              <p class="mb-6 text-base-content/70">
+                Find verified locksmiths offering{" "}
+                {serviceData.title.toLowerCase()} in {cityData.name}.
+              </p>
+              <Button
+                href={`/search?location=${citySlug}&service=${serviceSlug}`}
+                variant="primary"
+                size="lg">
+                Search specialists
+              </Button>
+            </div>
+          )
+        }
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          Typical pricing in {cityData.name}
+        </h2>
+
+        <div class="overflow-x-auto rounded-lg border border-base-200 bg-white">
+          <table class="w-full text-left">
+            <thead class="border-b border-base-200 bg-base-50">
+              <tr>
+                <th class="px-6 py-4 text-sm font-bold text-base-content"
+                  >Service Type</th
+                >
+                <th
+                  class="px-6 py-4 text-right text-sm font-bold text-base-content"
+                  >Low</th
+                >
+                <th
+                  class="px-6 py-4 text-right text-sm font-bold text-base-content"
+                  >Average</th
+                >
+                <th
+                  class="px-6 py-4 text-right text-sm font-bold text-base-content"
+                  >High</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                pricing.map((row, index) => (
+                  <tr
+                    class={
+                      index !== pricing.length - 1
+                        ? "border-b border-base-200"
+                        : ""
+                    }>
+                    <td class="px-6 py-4 text-sm text-base-content/70">
+                      {row.serviceType}
+                    </td>
+                    <td class="px-6 py-4 text-right text-sm font-medium text-base-content">
+                      {row.lowEst}
+                    </td>
+                    <td class="px-6 py-4 text-right text-sm font-medium text-base-content">
+                      {row.avgEst}
+                    </td>
+                    <td class="px-6 py-4 text-right text-sm font-medium text-base-content">
+                      {row.highEst}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mt-4 text-xs text-base-content/50">
+          *Estimates based on typical {cityData.name} prices. Costs may vary based
+          on time of day, complexity, and parts required.
+        </p>
+      </section>
+
+      <!-- Other Services -->
+      <section class="mb-16">
+        <h2 class="mb-6 text-2xl font-bold text-primary">
+          Other locksmith services in {cityData.name}
+        </h2>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {
+            otherServices.map((service) => (
+              <a
+                href={`/locations/${countySlug}/${citySlug}/${service.slug}`}
+                class="group rounded-lg border border-base-200 bg-white p-6 transition-all hover:border-primary hover:shadow-md">
+                <span
+                  class={`mb-3 inline-block rounded px-2 py-1 text-xs font-semibold uppercase ${
+                    service.badge.color === "error"
+                      ? "bg-error/10 text-error"
+                      : service.badge.color === "warning"
+                        ? "bg-warning/10 text-warning"
+                        : service.badge.color === "success"
+                          ? "bg-success/10 text-success"
+                          : "bg-primary/10 text-primary"
+                  }`}>
+                  {service.badge.text}
+                </span>
+                <h3 class="mb-2 text-lg font-bold text-primary group-hover:underline">
+                  {service.title}
+                </h3>
+                <p class="mb-4 text-sm text-base-content/70 line-clamp-2">
+                  {service.description}
+                </p>
+                <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Learn more
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="transition-transform group-hover:translate-x-0.5">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <section class="mb-16 text-center">
+        <h2 class="mb-4 text-2xl font-bold text-primary">Explore more</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button
+            href={`/locations/${countySlug}/${citySlug}`}
+            variant="outline"
+            size="md"
+            iconLeft="icon-[tabler--arrow-left]">
+            Back to {cityData.name} locksmiths
+          </Button>
+          <Button
+            href="/trust"
+            variant="outline"
+            size="md"
+            iconRight="icon-[tabler--arrow-right]">
+            Trust & Verification
+          </Button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <CTASection
+    title={`Find ${serviceData.title} specialists near you`}
+    description={`Connect with vetted locksmiths who specialize in ${serviceData.title.toLowerCase()} in ${cityData.name} and surrounding areas.`}
+    buttonText={`Search for specialists`}
+    buttonHref={`/search?location=${citySlug}&service=${serviceSlug}`}
+  />
+</Layout>

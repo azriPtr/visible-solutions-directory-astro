@@ -101,7 +101,7 @@ const articles = defineCollection({
     }),
 });
 
-const listings = defineCollection({
+const locksmiths = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
@@ -201,6 +201,6 @@ export const collections = {
   reviews,
   locations,
   articles,
-  listings,
+  locksmiths,
   guides,
 };

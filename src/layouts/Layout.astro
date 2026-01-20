@@ -48,6 +48,9 @@ const ogImageURL = new URL(image, siteUrl).href;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
+
+    <!-- Schema -->
+    <slot name="head" />
   </head>
   <body>
     <Header />

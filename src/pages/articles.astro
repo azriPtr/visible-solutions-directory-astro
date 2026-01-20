@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
-import Card from "../components/Card.astro";
 import PageHero from "../components/PageHero.astro";
+import ContentSection from "../components/ContentSection.astro";
 
 const seoData = {
   title: "Locksmith Articles & Security Advice | UK Locksmith Directory",
@@ -13,6 +13,7 @@ const seoData = {
 // Featured articles data
 const featuredArticles = [
   {
+    variant: "article" as const,
     category: "TECHNICAL",
     title: "The Complete Guide to British Standard Locks",
     description:
@@ -23,6 +24,7 @@ const featuredArticles = [
     linkText: "Read article",
   },
   {
+    variant: "article" as const,
     category: "LANDLORDS",
     title: "Rental Property Security Requirements 2024",
     description:
@@ -33,6 +35,7 @@ const featuredArticles = [
     linkText: "Read article",
   },
   {
+    variant: "article" as const,
     category: "ADVICE",
     title: "What to Do When You Lose Your House Keys",
     description:
@@ -43,6 +46,7 @@ const featuredArticles = [
     linkText: "Read article",
   },
   {
+    variant: "article" as const,
     category: "VERIFICATION",
     title: "Identifying a Legitimate Locksmith",
     description:
@@ -53,6 +57,7 @@ const featuredArticles = [
     linkText: "Read article",
   },
   {
+    variant: "article" as const,
     category: "MAINTENANCE",
     title: "uPVC Door Lock Maintenance Tips",
     description:
@@ -63,6 +68,7 @@ const featuredArticles = [
     linkText: "Read article",
   },
   {
+    variant: "article" as const,
     category: "COMMERCIAL",
     title: "Master Key Systems for Businesses",
     description:
@@ -132,26 +138,12 @@ const featuredArticles = [
       </PageHero>
 
       <!-- Featured Articles -->
-      <section class="mb-16">
-        <h2 class="mb-8 text-2xl font-bold text-primary">Featured Articles</h2>
-
-        <ul class="grid list-none gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {
-            featuredArticles.map((article) => (
-              <Card
-                variant="article"
-                category={article.category}
-                title={article.title}
-                description={article.description}
-                image={article.image}
-                imageAlt={article.imageAlt}
-                linkUrl={article.linkUrl}
-                linkText={article.linkText}
-              />
-            ))
-          }
-        </ul>
-      </section>
+      <ContentSection
+        title="Featured Articles"
+        description=""
+        items={featuredArticles}
+        columns="3"
+      />
 
       <!-- Home Security Section -->
       <section class="mb-16">

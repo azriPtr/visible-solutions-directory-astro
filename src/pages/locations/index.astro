@@ -1,0 +1,234 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Button from "../../components/Button.astro";
+import Card from "../../components/Card.astro";
+import { getAllCounties, getCountyCards, type County } from "../../data/locations/index";
+
+const counties = getAllCounties();
+const countyCards = getCountyCards();
+
+const seoData = {
+  title: "Find Locksmiths by Location | UK Locksmith Directory",
+  description:
+    "Browse verified locksmiths across the United Kingdom by county and city. Find trusted local professionals for emergency lockouts, lock changes, and security upgrades.",
+};
+
+// Group counties by region
+const regionGroups = counties.reduce((acc, county) => {
+  if (!acc[county.region]) {
+    acc[county.region] = [];
+  }
+  acc[county.region].push(county);
+  return acc;
+}, {} as Record<string, County[]>);
+
+// Total pros count
+const totalPros = counties.reduce((sum, county) => {
+  const count = parseInt(county.prosCount.replace(/[^0-9]/g, ""));
+  return sum + count;
+}, 0);
+---
+
+<Layout {...seoData}>
+  <div class="bg-base-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <!-- Hero Section -->
+      <PageHero
+        title="Find locksmiths by location"
+        description={`Browse ${totalPros.toLocaleString()}+ verified locksmiths across the United Kingdom. Select your county to find trusted local professionals.`}>
+        <!-- Search Form -->
+        <div class="mb-6 max-w-xl">
+          <form action="/search" method="get" class="flex gap-3">
+            <div class="relative flex-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="absolute left-4 top-1/2 -translate-y-1/2 text-base-content/40">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <input
+                type="text"
+                name="postcode"
+                placeholder="Enter your postcode (e.g. B1, M1, SW1)"
+                class="w-full rounded-lg border border-base-200 bg-white py-3 pl-12 pr-4 text-base text-base-content placeholder:text-base-content/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
+            <Button type="submit" variant="primary" size="lg">
+              Search
+            </Button>
+          </form>
+        </div>
+
+        <p class="text-sm text-base-content/60">
+          Or browse by county below
+        </p>
+      </PageHero>
+
+      <!-- Counties Grid -->
+      <section class="pb-16">
+        <div class="mb-8 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-primary">Browse by County</h2>
+          <span class="text-sm text-base-content/60">
+            {counties.length} counties • {totalPros.toLocaleString()}+ locksmiths
+          </span>
+        </div>
+
+        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {
+            countyCards.map((county) => (
+              <Card
+                variant="location"
+                number={county.number}
+                title={county.title}
+                prosCount={county.prosCount}
+                description={county.description}
+                linkUrl={county.linkUrl}
+                linkText={county.linkText}
+              />
+            ))
+          }
+        </ul>
+      </section>
+
+      <!-- Regions Section -->
+      <section class="pb-16">
+        <h2 class="mb-8 text-2xl font-bold text-primary">Browse by Region</h2>
+
+        <div class="space-y-8">
+          {
+            Object.entries(regionGroups).map(([region, regionCounties]) => (
+              <div>
+                <h3 class="mb-4 text-lg font-semibold text-base-content/80">
+                  {region}
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                  {regionCounties.map((county) => (
+                    <a
+                      href={`/locations/${county.slug}`}
+                      class="rounded-lg border border-base-200 bg-white px-4 py-3 text-sm font-medium text-base-content transition-all hover:border-primary hover:shadow-md">
+                      <span class="font-semibold text-primary">{county.name}</span>
+                      <span class="ml-2 text-base-content/60">{county.prosCount} pros</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Why Use This Directory -->
+      <section class="pb-16">
+        <div class="rounded-lg border border-base-200 bg-white p-8 shadow-sm">
+          <h2 class="mb-6 text-2xl font-bold text-primary">
+            Why use the UK Locksmith Directory?
+          </h2>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="flex gap-4">
+              <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="mb-1 font-bold text-base-content">Verified Professionals</h3>
+                <p class="text-sm text-base-content/70">
+                  Every locksmith is identity-verified with optional DBS and trade association checks.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3 class="mb-1 font-bold text-base-content">Local Coverage</h3>
+                <p class="text-sm text-base-content/70">
+                  Find locksmiths who actually serve your area with verified postcode coverage.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div>
+                <h3 class="mb-1 font-bold text-base-content">Real Reviews</h3>
+                <p class="text-sm text-base-content/70">
+                  Read verified customer reviews from people who've actually used these services.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency CTA -->
+      <section class="pb-16">
+        <div class="rounded-lg bg-primary p-8 text-center text-white">
+          <h2 class="mb-4 text-2xl font-bold">
+            Locked out right now?
+          </h2>
+          <p class="mb-6 text-white/80">
+            Our AI dispatcher can connect you with an available locksmith in your area within seconds.
+          </p>
+          <Button
+            href="/emergency"
+            variant="secondary"
+            size="lg"
+            iconLeft="icon-[tabler--phone]">
+            Call Emergency Dispatch
+          </Button>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

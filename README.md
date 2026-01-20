@@ -49,7 +49,7 @@ UK Locksmith Directory is a comprehensive service business directory platform th
 │   │   ├── config.ts    # Zod schemas for content validation
 │   │   ├── articles/
 │   │   ├── guides/
-│   │   ├── listings/
+│   │   ├── locksmiths/
 │   │   ├── locations/
 │   │   ├── pages/
 │   │   ├── reviews/
@@ -69,7 +69,7 @@ UK Locksmith Directory is a comprehensive service business directory platform th
 │   │   ├── about.astro
 │   │   ├── contact.astro
 │   │   ├── articles.astro
-│   │   ├── listings/
+│   │   ├── locksmiths/
 │   │   │   └── [slug].astro
 │   │   ├── locations/
 │   │   │   ├── [county]/
@@ -107,8 +107,8 @@ UK Locksmith Directory is a comprehensive service business directory platform th
 - `/locations/west-midlands/birmingham` - City-level location page
 - `/locations/[county]/[city]/[service]` - Dynamic service + location pages
 
-### Business Listings
-- `/listings/[slug]` - Individual business profile pages
+### Business Profiles
+- `/locksmiths/[slug]` - Individual business profile pages
   - Ratings and reviews
   - Service offerings
   - Coverage area
@@ -143,25 +143,25 @@ UK Locksmith Directory is a comprehensive service business directory platform th
 
 ```
 Homepage:
-https://yourdomain.com/
+https://uklocksmithdirectory.co.uk/
 
 Search:
-https://yourdomain.com/search?location=birmingham&service=emergency
+https://uklocksmithdirectory.co.uk/search?location=birmingham&service=emergency
 
 Business Profile:
-https://yourdomain.com/listings/brum-city-security
+https://uklocksmithdirectory.co.uk/locksmiths/brum-city-security
 
 City Page:
-https://yourdomain.com/locations/west-midlands/birmingham
+https://uklocksmithdirectory.co.uk/locations/west-midlands/birmingham
 
 Service Page:
-https://yourdomain.com/services/upvc-repairs
+https://uklocksmithdirectory.co.uk/services/upvc-repairs
 
 City + Service:
-https://yourdomain.com/locations/west-midlands/birmingham/upvc-repairs
+https://uklocksmithdirectory.co.uk/locations/west-midlands/birmingham/upvc-repairs
 
 Guide:
-https://yourdomain.com/guides/bs3621-lock-standard
+https://uklocksmithdirectory.co.uk/guides/bs3621-lock-standard
 ```
 
 ## 🚀 Getting Started
@@ -213,7 +213,7 @@ npm run preview
 ### Deploy
 
 The project is optimized for deployment on:
-- **Vercel** (recommended)
+- **Vercel**
 - **Netlify**
 - **Cloudflare Pages**
 - Any static hosting provider
@@ -254,7 +254,7 @@ Content is managed using Astro Content Collections with Zod validation:
 ```typescript
 // src/content/config.ts
 export const collections = {
-  listings: defineCollection({ schema: listingSchema }),
+  locksmiths: defineCollection({ schema: locksmithSchema }),
   articles: defineCollection({ schema: articleSchema }),
   guides: defineCollection({ schema: guideSchema }),
   // ... more collections
@@ -263,8 +263,8 @@ export const collections = {
 
 ### Adding New Content
 
-1. **Add a new listing:**
-   - Create `src/content/listings/your-business-slug.md`
+1. **Add a new locksmith:**
+   - Create `src/content/locksmiths/your-business-slug.md`
    - Follow the schema defined in `config.ts`
 
 2. **Add a new article:**

@@ -1,0 +1,201 @@
+{
+  "$ref": "#/definitions/locksmiths",
+  "definitions": {
+    "locksmiths": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "reviewCount": {
+          "type": "number"
+        },
+        "googleRating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "isVerified": {
+          "type": "boolean",
+          "default": true
+        },
+        "isDbsChecked": {
+          "type": "boolean",
+          "default": false
+        },
+        "isEmergency": {
+          "type": "boolean",
+          "default": false
+        },
+        "established": {
+          "type": "string"
+        },
+        "focus": {
+          "type": "string"
+        },
+        "insurance": {
+          "type": "string"
+        },
+        "callOutFee": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "responseTime": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Open Now",
+            "Closed",
+            "24 Hours"
+          ],
+          "default": "Open Now"
+        },
+        "openingHours": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "string"
+              },
+              "hours": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "day",
+              "hours"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "isIdentityVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "isInsuranceChecked": {
+          "type": "boolean",
+          "default": false
+        },
+        "servicesOffered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "icon",
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "serviceAreaRadius": {
+          "type": "string"
+        },
+        "serviceAreas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serviceAreaMap": {
+          "type": "string"
+        },
+        "serviceAreaMapAlt": {
+          "type": "string"
+        },
+        "directoryReviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "author": {
+                "type": "string"
+              },
+              "initials": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "rating": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "comment": {
+                "type": "string"
+              },
+              "isVerified": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "required": [
+              "author",
+              "initials",
+              "date",
+              "rating",
+              "comment"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "externalReviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "string"
+              },
+              "rating": {
+                "type": "number"
+              },
+              "reviewCount": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "platform",
+              "rating",
+              "reviewCount"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "rating",
+        "reviewCount",
+        "phone"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

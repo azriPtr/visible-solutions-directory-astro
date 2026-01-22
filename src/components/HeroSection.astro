@@ -2,6 +2,26 @@
 import Button from "./Button.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero.png";
+import type { HeroSectionComponent } from "../lib/strapi";
+
+interface Props {
+  data?: HeroSectionComponent | null;
+}
+
+const { data } = Astro.props;
+
+// Extract data from Strapi or use fallbacks
+const heading = data?.heading?.heading || "";
+const subHeading = data?.heading?.subHeading || "";
+const ctaText = data?.cta?.ctaText || "";
+const ctaUrl = data?.cta?.ctaUrl || "";
+
+// Image handling: Check if we have a Strapi image URL
+const hasStrapiImage = data?.image?.url;
+const strapiImageUrl = hasStrapiImage 
+  ? `${import.meta.env.PUBLIC_STRAPI_URL || 'http://localhost:1337'}${data.image.url}`
+  : null;
+const imageAlt = data?.image?.alternativeText || "Professional locksmith at work";
 ---
 
 <section class="relative">
@@ -12,11 +32,10 @@ import heroImage from "../assets/hero.png";
       <div class="flex flex-col gap-4 md:mr-28">
         <h1
           class="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
-          The UK's Largest Directory of Verified, Local Locksmiths
+          {heading}
         </h1>
         <p>
-          Search 1,200+ verified local professionals for emergencies, repairs,
-          and lock upgrades.
+          {subHeading}
         </p>
 
         <!-- Search Box -->
@@ -27,7 +46,7 @@ import heroImage from "../assets/hero.png";
             class="md:col-span-3 rounded-lg border border-base-300 px-4 py-3 text-primary placeholder-base-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
           <Button
-            text="Find Locksmiths"
+            text={ctaText}
             variant="secondary"
             size="lg"
             class="md:col-span-2 rounded-lg"
@@ -40,15 +59,27 @@ import heroImage from "../assets/hero.png";
         <div class="mt-12 lg:mt-0 relative">
           <div
             class="aspect-4/3 overflow-hidden bg-slate-100 w-full rounded-2xl shadow-lg">
-            <Image
-              src={heroImage}
-              alt="Professional locksmith at work"
-              loading="eager"
-              fetchpriority="high"
-              class="object-center w-full h-full object-cover"
-              widths={[320, 640, 1024, 1600]}
-              sizes="(max-width: 640px) 100vw, 50vw"
-            />
+            {strapiImageUrl ? (
+              <!-- Remote Strapi image -->
+              <img
+                src={strapiImageUrl}
+                alt={imageAlt}
+                loading="eager"
+                fetchpriority="high"
+                class="object-center w-full h-full object-cover"
+              />
+            ) : (
+              <!-- Local asset image with optimization -->
+              <Image
+                src={heroImage}
+                alt={imageAlt}
+                loading="eager"
+                fetchpriority="high"
+                class="object-center w-full h-full object-cover"
+                widths={[320, 640, 1024, 1600]}
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            )}
           </div>
         </div>
       </div>

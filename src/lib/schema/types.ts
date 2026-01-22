@@ -47,4 +47,18 @@ export interface BreadcrumbSchema extends BaseSchema {
     itemListElement: BreadcrumbItem[];
 }
 
-export type AnySchema = LocksmithSchema | BreadcrumbSchema;
+export interface ServiceSchema extends BaseSchema {
+    "@type": "Service";
+    name: string;
+    description: string;
+    provider: {
+        "@type": "Organization";
+        name: string;
+        url: string;
+    };
+    areaServed?: string | string[];
+    serviceType?: string;
+    url?: string;
+}
+
+export type AnySchema = LocksmithSchema | BreadcrumbSchema | ServiceSchema;

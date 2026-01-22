@@ -8,17 +8,57 @@ import SubscribeSection from "../components/SubscribeSection.astro";
 import VerifiedSection from "../components/VerifiedSection.astro";
 import FAQ from "../components/FAQ.astro";
 
-import {
-  seo,
-  servicesSection,
-  locationsSection,
-  articlesSection,
-} from "../data/homepage";
+import { seo } from "../data/homepage";
 import { getHomepageServices } from "../data/services/index";
 import { getHomepageLocations } from "../data/locations";
 import { getCollection } from "astro:content";
 
-const seoData = seo;
+// Strapi Integration
+import {
+  getHomepage,
+  isHeroSection,
+  isCTASection,
+  isCardsSection,
+  isFAQSection,
+} from "../lib/strapi";
+import type {
+  HeroSectionComponent,
+  CTASectionComponent,
+  CardsSectionComponent,
+  FAQSectionComponent,
+} from "../lib/strapi";
+
+// ============================================================================
+// STRAPI DATA FETCHING & EXTRACTION (All logic in frontmatter)
+// ============================================================================
+
+const homepage = await getHomepage();
+const sections = homepage.data.content;
+
+// Extract sections by type using type guards
+const heroSection = sections.find(isHeroSection) as
+  | HeroSectionComponent
+  | undefined;
+const ctaSections = sections.filter(isCTASection) as CTASectionComponent[];
+const cardsSections = sections.filter(
+  isCardsSection,
+) as CardsSectionComponent[];
+const faqSection = sections.find(isFAQSection) as
+  | FAQSectionComponent
+  | undefined;
+
+// Map CTA sections by position (based on API order)
+const aiSection = ctaSections[0]; // First CTA: AI Finder
+const subscribeSection = ctaSections[1]; // Second CTA: Business signup
+
+// Map Cards sections by content type
+const servicesSection = cardsSections.find((s) => s.content === "service");
+const locationsSection = cardsSections.find((s) => s.content === "location");
+const articlesSection = cardsSections.find((s) => s.content === "article");
+
+// ============================================================================
+// LOCAL DATA LAYER (Items for cards)
+// ============================================================================
 
 // Services from data layer
 const servicesData = getHomepageServices();
@@ -38,47 +78,38 @@ const locations = locationsData.map((location) => ({
   ...location,
 }));
 
-// Articles from content collections (editorial content - stays in .md)
+// Articles from content collections
 const articlesData = await getCollection("articles");
 const articles = articlesData.map((entry) => ({
   variant: "article" as const,
   ...entry.data,
   image: entry.data.image.src,
 }));
+
+// SEO Data
+const seoData = seo;
 ---
 
 <Layout {...seoData}>
-  <HeroSection />
-  <AiSection />
-  <ContentSection
-    title={servicesSection.title}
-    description={servicesSection.description}
-    items={services}
-    viewAllText={servicesSection.viewAllText}
-    viewAllUrl={servicesSection.viewAllUrl}
-    columns="4"
-  />
+  {heroSection && <HeroSection data={heroSection} />}
+  {aiSection && <AiSection data={aiSection} />}
+  {
+    servicesSection && (
+      <ContentSection data={servicesSection} items={services} />
+    )
+  }
   <ReviewSection />
-  <ContentSection
-    title={locationsSection.title}
-    description={locationsSection.description}
-    items={locations}
-    viewAllText={locationsSection.viewAllText}
-    viewAllUrl={locationsSection.viewAllUrl}
-    columns="4"
-    cardVariant="location"
-  />
-  <SubscribeSection />
-  <ContentSection
-    title={articlesSection.title}
-    description={articlesSection.description}
-    items={articles}
-    viewAllText={articlesSection.viewAllText}
-    viewAllUrl={articlesSection.viewAllUrl}
-    columns="3"
-    backgroundColor="bg-base-100"
-    showArrow={true}
-  />
+  {
+    locationsSection && (
+      <ContentSection data={locationsSection} items={locations} />
+    )
+  }
+  {subscribeSection && <SubscribeSection data={subscribeSection} />}
+  {
+    articlesSection && (
+      <ContentSection data={articlesSection} items={articles} />
+    )
+  }
   <VerifiedSection />
-  <FAQ />
+  {faqSection && <FAQ data={faqSection} />}
 </Layout>
